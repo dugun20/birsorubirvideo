@@ -1,0 +1,55 @@
+{
+ "type": "meyve",
+ "rows": [
+  {
+   "tokens": [
+    "🥝",
+    "+",
+    "🥝",
+    "+",
+    "🥝",
+    "=",
+    "21"
+   ]
+  },
+  {
+   "tokens": [
+    "🍋",
+    "+",
+    "🍋",
+    "+",
+    "🥝",
+    "=",
+    "19"
+   ]
+  },
+  {
+   "tokens": [
+    "🍋",
+    "−",
+    "🍍",
+    "=",
+    "2"
+   ]
+  },
+  {
+   "tokens": [
+    "🥝",
+    "+",
+    "🍋",
+    "×",
+    "🍍",
+    "=",
+    "?"
+   ]
+  }
+ ],
+ "answer": 31,
+ "trap": 52,
+ "tts": "Kivi artı kivi artı kivi, yirmi bir ediyor... limon artı limon artı kivi, on dokuz ediyor... limon eksi ananas, iki ediyor... Peki, kivi artı limon çarpı ananas, kaç eder?",
+ "segments": 4,
+ "level": "ORTA",
+ "key": "meyve:kivi,limon,ananas:7,6,4:ABC",
+ "no": 4,
+ "caption": "İlk bakışta kolay görünüyor ama çoğu kişi yanılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠"
+}

@@ -1,5 +1,5 @@
 {
- "last_no": 3,
+ "last_no": 4,
  "items": [
   {
    "no": 1,
@@ -9,7 +9,7 @@
    "file": "out/soru-1.mp4",
    "caption": "Çoğu kişi bu soruda yanılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
    "created": "2026-10-31",
-   "status": "kuyrukta"
+   "status": "paylaşıldı"
   },
   {
    "no": 2,
@@ -19,7 +19,7 @@
    "file": "out/soru-2.mp4",
    "caption": "Bu soruda çoğu kişi takılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
    "created": "2026-10-31",
-   "status": "kuyrukta"
+   "status": "paylaşıldı"
   },
   {
    "no": 3,
@@ -28,6 +28,16 @@
    "answer": 30,
    "file": "out/soru-3.mp4",
    "caption": "İlk bakışta kolay görünüyor ama çoğu kişi yanılıyor 👀\n🤔 Sen kaç kare saydın?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
+   "created": "2026-11-01",
+   "status": "paylaşıldı"
+  },
+  {
+   "no": 4,
+   "key": "meyve:kivi,limon,ananas:7,6,4:ABC",
+   "type": "meyve",
+   "answer": 31,
+   "file": "out/soru-4.mp4",
+   "caption": "İlk bakışta kolay görünüyor ama çoğu kişi yanılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
    "created": "2026-11-01",
    "status": "kuyrukta"
   }
