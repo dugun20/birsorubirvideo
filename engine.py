@@ -324,12 +324,18 @@ class Video:
     def frame(self, t):
         base = BGIMG.convert('RGBA')
         out_p = ease_in_out(prog(t, self.OUTRO - 0.3, 0.3))
+        shrink = ease_in_out(prog(t, self.CD_START - 0.45, 0.5))
+        # soru sırasında başlık + kart ekranın ortasında (kapak/ızgara için), geri sayımda yukarı çıkar
+        ch = self.puz.ch
+        top = 960 - (120 + ch) / 2
+        hy = (top + 40) + (330 - (top + 40)) * shrink
+        cy = (top + 120 + ch / 2) + (740 - (top + 120 + ch / 2)) * shrink
         li = prog(t, 0.0, 0.5); lm = ease_in_out(prog(t, 0.9, 0.5))
         if t < self.OUTRO + 0.1:
-            paste(base, logo(320 + (78 - 320) * lm), W / 2 - 235 * lm, 690 + (330 - 690) * lm - 600 * out_p,
+            paste(base, logo(320 + (78 - 320) * lm), W / 2 - 235 * lm, 690 + (hy - 690) * lm - 600 * out_p,
                   0.2 + 0.8 * back_out(li), clamp(li * 2) * (1 - out_p), (1 - back_out(li)) * -120)
         ha = ease_out(prog(t, 1.1, 0.4)) * (1 - out_p)
-        if ha > 0: paste(base, self.HEADER, W / 2 + 40, 330 - 600 * out_p, 1.0, ha)
+        if ha > 0: paste(base, self.HEADER, W / 2 + 40, hy - 600 * out_p, 1.0, ha)
         hin = prog(t, 0.15, 0.35); hout = ease_in_out(prog(t, 2.05, 0.35))
         if hin > 0 and hout < 1:
             y = 1180 - 180 * ease_in_out(prog(t, 0.9, 0.5)) - 120 * hout
@@ -337,9 +343,9 @@ class Video:
             h2 = prog(t, 0.5, 0.35)
             paste(base, self.HOOK2, W / 2, y + 70, 0.6 + 0.4 * back_out(h2), clamp(h2 * 2.5) * (1 - hout))
         if t >= self.T2 - 0.3 and out_p < 1:
-            pc = ease_out(prog(t, self.T2 - 0.3, 0.4)); shrink = ease_in_out(prog(t, self.CD_START - 0.45, 0.5))
+            pc = ease_out(prog(t, self.T2 - 0.3, 0.4))
             card = self.puz.card(t)
-            paste(base, card, W / 2, 900 - 160 * shrink + 60 * (1 - pc) - 900 * out_p,
+            paste(base, card, W / 2, cy + 60 * (1 - pc) - 900 * out_p,
                   (1.0 - 0.2 * shrink) * (0.92 + 0.08 * pc), pc * (1 - out_p))
         self.countdown(base, t, 1290)
         if out_p < 1:
