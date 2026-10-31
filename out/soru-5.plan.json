@@ -1,0 +1,12 @@
+{
+ "type": "ucgen",
+ "cevians": 1,
+ "horiz": 1,
+ "answer": 6,
+ "tts": "Bu şekilde, toplam kaç tane üçgen var?... Dikkatli say... İlk aklına gelen cevap, yanlış olabilir!",
+ "segments": 3,
+ "level": "ORTA",
+ "key": "ucgen:1:1",
+ "no": 5,
+ "caption": "Herkes farklı bir sayı buluyor 👀\n🤔 Sen kaç tane saydın?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠"
+}
