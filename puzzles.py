@@ -138,8 +138,77 @@ def kare(rng):
                 level=level, key=f'kare:{n}x{m}:{word}')
 
 
-GENERATORS = {'meyve': meyve, 'dizi': dizi, 'kare': kare}
-ORDER = ['meyve', 'dizi', 'kare']
+def ucgen(rng):
+    n = rng.randint(1, 5)          # tepeden tabana inen iç çizgi sayısı
+    h = rng.randint(0, 3)          # yatay iç çizgi sayısı
+    from math import comb
+    answer = comb(n + 2, 2) * (h + 1)
+    # kaba kuvvet doğrulama: tepe çizgilerinden 2'si + yatay tabanlardan 1'i
+    cnt = sum(1 for i in range(n + 2) for j in range(i + 1, n + 2) for k in range(h + 1))
+    assert cnt == answer
+    if answer < 6:
+        return ucgen(rng)
+    level = 'ZOR' if answer >= 15 else 'ORTA'
+    tts = "Bu şekilde, toplam kaç tane üçgen var?... Dikkatli say... İlk aklına gelen cevap, yanlış olabilir!"
+    return dict(type='ucgen', cevians=n, horiz=h, answer=answer, tts=tts, segments=3, level=level,
+                key=f'ucgen:{n}:{h}')
+
+
+def piramit(rng):
+    base = [rng.randint(1, 9) for _ in range(4)]
+    rows = [base]
+    while len(rows[-1]) > 1:
+        r = rows[-1]
+        rows.append([r[i] + r[i + 1] for i in range(len(r) - 1)])
+    top = rows[-1][0]
+    assert top == base[0] + 3 * base[1] + 3 * base[2] + base[3]
+    variant = rng.choice(['tepe', 'taban'])
+    shown = [[str(v) if i == 0 else '' for v in r] for i, r in enumerate(rows)]
+    if variant == 'tepe':
+        shown[-1][0] = '?'
+        answer = top
+        level = 'ORTA'
+        tts = ("Her kutu, altındaki iki kutunun toplamına eşit... "
+               "Peki, en tepedeki kutuya hangi sayı gelmeli?")
+    else:
+        idx = rng.choice([1, 2])
+        answer = base[idx]
+        shown[0][idx] = '?'
+        shown[-1][0] = str(top)
+        level = 'ZOR'
+        # doğrulama: bilinmeyeni tepeden geri çöz
+        coef = [1, 3, 3, 1]
+        rest = sum(coef[i] * base[i] for i in range(4) if i != idx)
+        assert (top - rest) % coef[idx] == 0 and (top - rest) // coef[idx] == answer
+        tts = ("Her kutu, altındaki iki kutunun toplamına eşit... "
+               f"En tepedeki sayı {tr(top)}. Peki, soru işaretinin yerine hangi sayı gelmeli?")
+    return dict(type='piramit', rows=shown, answer=answer, tts=tts, segments=2, level=level,
+                key='piramit:' + variant + ':' + ','.join(map(str, base)))
+
+
+ODD_PAIRS = [('\U0001F600', '\U0001F603'), ('\U0001F642', '\U0001F643'), ('\U0001F552', '\U0001F553'),
+             ('\U0001F316', '\U0001F317'), ('\U0001F41F', '\U0001F420'), ('\U0001F604', '\U0001F601'),
+             ('\U0001F40C', '\U0001F41B'), ('\U0001F34F', '\U0001F350'), ('\U0001F31D', '\U0001F31E'),
+             ('\U0001F42D', '\U0001F439')]
+ROW_LETTERS = 'ABCDEFG'
+
+
+def farkli(rng):
+    a, b = rng.choice(ODD_PAIRS)
+    if rng.random() < 0.5:
+        a, b = b, a
+    rows, cols = 7, 6
+    r, c = rng.randrange(rows), rng.randrange(cols)
+    answer = f'{ROW_LETTERS[r]}{c + 1}'
+    grid = [[b if (i, j) == (r, c) else a for j in range(cols)] for i in range(rows)]
+    assert sum(row.count(b) for row in grid) == 1
+    tts = "Bu tablodaki emojilerden biri, diğerlerinden farklı... Onu bulabilir misin? Konumunu yorumlara yaz!"
+    return dict(type='farkli', grid=grid, rows_n=rows, cols_n=cols, answer=answer, tts=tts, segments=2,
+                level='ORTA', key=f'farkli:{a}{b}:{answer}')
+
+
+GENERATORS = {'meyve': meyve, 'dizi': dizi, 'kare': kare, 'ucgen': ucgen, 'piramit': piramit, 'farkli': farkli}
+ORDER = ['meyve', 'dizi', 'kare', 'piramit', 'ucgen', 'farkli']
 
 CAPTION_L1 = {
     'meyve': ['Çoğu kişi bu soruda yanılıyor \U0001F440', 'İlk bakışta kolay görünüyor ama çoğu kişi yanılıyor \U0001F440',
@@ -148,19 +217,25 @@ CAPTION_L1 = {
              'Bu soruda çoğu kişi takılıyor \U0001F440'],
     'kare': ['İlk bakışta kolay görünüyor ama çoğu kişi yanılıyor \U0001F440', 'Herkes farklı bir sayı buluyor \U0001F440',
              'Dikkatli saymayan yanılıyor \U0001F440'],
+    'ucgen': ['Herkes farklı bir sayı buluyor \U0001F440', 'Dikkatli saymayan yanılıyor \U0001F440',
+              'İlk bakışta kolay görünüyor ama çoğu kişi yanılıyor \U0001F440'],
+    'piramit': ['Bu piramidin kuralı basit ama çoğu kişi yanılıyor \U0001F440', 'Bu soruda çoğu kişi takılıyor \U0001F440'],
+    'farkli': ['Gözüne güveniyor musun? \U0001F440', 'Farklı olanı ilk 5 saniyede bulan çok az \U0001F440'],
 }
 
 
 def caption(p, rng):
     l1 = rng.choice(CAPTION_L1[p['type']])
-    l2 = '\U0001F914 Sen kaç tane saydın?' if p['type'] == 'kare' else '\U0001F914 Sen kaç buldun?'
-    l3 = '\U0001F447 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. \U0001F9E0'
+    l2 = {'kare': '\U0001F914 Sen kaç tane saydın?', 'ucgen': '\U0001F914 Sen kaç tane saydın?',
+          'farkli': '\U0001F914 Sen buldun mu?'}.get(p['type'], '\U0001F914 Sen kaç buldun?')
+    l3 = ('\U0001F447 Konumunu yorumlara yaz (örneğin B3), bakalım kaç kişi bulacak. \U0001F9E0' if p['type'] == 'farkli'
+          else '\U0001F447 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. \U0001F9E0')
     return f'{l1}\n{l2}\n{l3}'
 
 
 def make(no, history_keys, seed=None, ptype=None):
     rng = random.Random(seed if seed is not None else no * 7919 + 13)
-    ptype = ptype or ORDER[(no - 1) % 3]
+    ptype = ptype or ORDER[(no - 1) % len(ORDER)]
     p = None
     for t in [ptype] + [x for x in ORDER if x != ptype]:
         for _ in range(500):

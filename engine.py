@@ -113,7 +113,10 @@ class Puzzle:
         self.p, self.cues, self.T2, self.CD_END = p, cues, t2, cd_end
         if p['type'] == 'meyve': self._init_meyve()
         elif p['type'] == 'dizi': self._init_dizi()
-        else: self._init_kare()
+        elif p['type'] == 'kare': self._init_kare()
+        elif p['type'] == 'ucgen': self._init_ucgen()
+        elif p['type'] == 'piramit': self._init_piramit()
+        else: self._init_farkli()
 
     def glow(self, t):
         return 0.5 + 0.5 * math.sin((t - self.CD_END) * math.pi * 2 * 1.3 - math.pi / 2) if t > self.CD_END else 0.0
@@ -215,8 +218,125 @@ class Puzzle:
         paste(card, self._grid(t), self.cw / 2, self.top + self.gh / 2 + 10, 1 + pulse)
         return card
 
+
+    # üçgen sayma
+    def _init_ucgen(self):
+        self.cw, self.top = 940, 150
+        self.tw_, self.th_ = 720, 600
+        self.ch = int(self.top + self.th_ + 80)
+        self.title = text_img('Toplam kaç üçgen var?', 52, MUTED, FM)
+
+    def _tri(self, t):
+        n, hcount = self.p['cevians'], self.p['horiz']
+        S, pad, lw = 2, 16, 10
+        w, h = self.tw_ + pad * 2, self.th_ + pad * 2
+        im = Image.new('RGBA', (w * S, h * S), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+        ax, ay = pad + self.tw_ / 2, pad
+        bl, br, by = pad, pad + self.tw_, pad + self.th_
+        lines = [((ax, ay), (bl, by), WHITE), ((ax, ay), (br, by), WHITE), ((bl, by), (br, by), WHITE)]
+        for i in range(1, n + 1):
+            bx = bl + self.tw_ * i / (n + 1)
+            lines.append(((ax, ay), (bx, by), LIGHT))
+        for k in range(1, hcount + 1):
+            f = k / (hcount + 1)
+            yy = ay + (by - ay) * f
+            lines.append(((ax - self.tw_ / 2 * f, yy), (ax + self.tw_ / 2 * f, yy), LIGHT))
+        for k, (p0, p1, col) in enumerate(lines):
+            pr = ease_in_out(prog(t, self.T2 + 0.05 + 0.1 * k, 0.45))
+            if pr <= 0: continue
+            x1 = p0[0] + (p1[0] - p0[0]) * pr; y1 = p0[1] + (p1[1] - p0[1]) * pr
+            d.line((p0[0] * S, p0[1] * S, x1 * S, y1 * S), fill=col, width=lw * S)
+            r = lw / 2
+            for (x, y) in (p0, (x1, y1)):
+                d.ellipse(((x - r) * S, (y - r) * S, (x + r) * S, (y + r) * S), fill=col)
+        return im.resize((w, h), Image.LANCZOS)
+
+    def _card_ucgen(self, t):
+        card = card_base(self.cw, self.ch)
+        pt = prog(t, self.T2, 0.4)
+        if pt > 0: paste(card, self.title, self.cw / 2, 80, 1.0, clamp(pt * 2))
+        q = prog(t, self.T2 + self.cues[1] - 0.05, 0.6)
+        pulse = 0.12 * math.sin(math.pi * q) if 0 < q < 1 else 0.0
+        if t > self.CD_END: pulse = 0.03 * self.glow(t)
+        paste(card, self._tri(t), self.cw / 2, self.top + self.th_ / 2 + 16, 1 + pulse)
+        return card
+
+    # sayı piramidi
+    def _init_piramit(self):
+        self.bw, self.bh, self.bg = 180, 120, 14
+        self.cw, self.top = 940, 150
+        self.ch = self.top + 4 * self.bh + 3 * self.bg + 60
+        self.title = text_img('Her kutu = alttaki 2 kutunun toplamı', 44, MUTED, FM)
+
+    def _cell(self, txt, glow=0.0):
+        S = 2; w, h = self.bw, self.bh
+        im = Image.new('RGBA', (w * S, h * S), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+        if txt == '?':
+            d.rounded_rectangle((0, 0, w * S - 1, h * S - 1), 26 * S, fill=(255, 124, 9, int(30 + 70 * glow)),
+                                outline=ORANGE, width=int((5 + 4 * glow) * S))
+        elif txt == '':
+            d.rounded_rectangle((0, 0, w * S - 1, h * S - 1), 26 * S, fill=(24, 33, 64), outline=BORDER, width=3 * S)
+        else:
+            d.rounded_rectangle((0, 0, w * S - 1, h * S - 1), 26 * S, fill=(30, 41, 78), outline=BORDER, width=3 * S)
+        im = im.resize((w, h), Image.LANCZOS)
+        if txt:
+            paste(im, text_img(txt, 84 if len(txt) <= 2 else 70, ORANGE if txt == '?' else WHITE), w / 2, h / 2 - 3)
+        return im
+
+    def _card_piramit(self, t):
+        card = card_base(self.cw, self.ch)
+        pt = prog(t, self.T2, 0.4)
+        if pt > 0: paste(card, self.title, self.cw / 2, 80, 1.0, clamp(pt * 2))
+        rows = self.p['rows']
+        q = prog(t, self.T2 + self.cues[1] - 0.05, 0.6)
+        for ri, row in enumerate(rows):
+            y = self.top + (3 - ri) * (self.bh + self.bg) + self.bh / 2
+            n = len(row); total = n * self.bw + (n - 1) * self.bg
+            for ci, txt in enumerate(row):
+                pr = prog(t, self.T2 + 0.05 + 0.18 * ri + 0.05 * ci, 0.38)
+                if pr <= 0: continue
+                x = self.cw / 2 - total / 2 + self.bw / 2 + ci * (self.bw + self.bg)
+                g = self.glow(t) if (txt == '?' and t > self.CD_END) else 0.0
+                pulse = 0.22 * math.sin(math.pi * q) if (txt == '?' and 0 < q < 1) else 0.0
+                paste(card, self._cell(txt, g), x, y, (0.5 + 0.5 * back_out(pr)) * (1 + pulse), clamp(pr * 2.5))
+        return card
+
+    # farklı olanı bul
+    def _init_farkli(self):
+        self.cs = 92
+        rows, cols = self.p['rows_n'], self.p['cols_n']
+        self.cw, self.top = 940, 150
+        self.gw, self.gh = cols * self.cs, rows * self.cs
+        self.ch = int(self.top + 60 + self.gh + 50)
+        self.title = text_img('Farklı olanı bul!', 52, MUTED, FM)
+        self.emo = {}
+
+    def _card_farkli(self, t):
+        card = card_base(self.cw, self.ch)
+        pt = prog(t, self.T2, 0.4)
+        if pt > 0: paste(card, self.title, self.cw / 2, 80, 1.0, clamp(pt * 2))
+        rows, cols = self.p['rows_n'], self.p['cols_n']
+        x0 = self.cw / 2 - self.gw / 2 + 30; y0 = self.top + 60
+        pa = prog(t, self.T2 + 0.05, 0.4)
+        if pa > 0:
+            for j in range(cols):
+                paste(card, text_img(str(j + 1), 40, ORANGE), x0 + j * self.cs + self.cs / 2, y0 - 34, 1.0, clamp(pa * 2))
+            for i in range(rows):
+                paste(card, text_img('ABCDEFG'[i], 40, ORANGE), x0 - 44, y0 + i * self.cs + self.cs / 2, 1.0, clamp(pa * 2))
+        q = prog(t, self.T2 + self.cues[1] - 0.05, 0.6)
+        pulse = 0.08 * math.sin(math.pi * q) if 0 < q < 1 else 0.0
+        for i in range(rows):
+            for j in range(cols):
+                pr = prog(t, self.T2 + 0.1 + 0.035 * (i * cols + j) / 2, 0.3)
+                if pr <= 0: continue
+                ch = self.p['grid'][i][j]
+                paste(card, emoji(ch, 74), x0 + j * self.cs + self.cs / 2, y0 + i * self.cs + self.cs / 2,
+                      (0.5 + 0.5 * back_out(pr)) * (1 + pulse), clamp(pr * 2.5))
+        return card
+
     def card(self, t):
-        return {'meyve': self._card_meyve, 'dizi': self._card_dizi, 'kare': self._card_kare}[self.p['type']](t)
+        return {'meyve': self._card_meyve, 'dizi': self._card_dizi, 'kare': self._card_kare, 'ucgen': self._card_ucgen,
+                'piramit': self._card_piramit, 'farkli': self._card_farkli}[self.p['type']](t)
 
 # ---------------- video ----------------
 class Video:
@@ -409,9 +529,20 @@ class Video:
         elif typ == 'dizi':
             for i in range(6): put(sfx, pop(600 + 70 * i, 1000 + 70 * i, 0.07), self.T2 + 0.05 + 0.09 * i, 0.22)
             for i in range(6): put(sfx, tick(1400 + 120 * i, 0.06), self.T2 + self.cues[i + 1] - 0.05, 0.3)
-        else:
+        elif typ == 'kare':
             nl = self.p['rows_n'] + self.p['cols_n'] + 2
             for k in range(nl): put(sfx, tick(1300 + 90 * k, 0.05), self.T2 + 0.05 + 0.08 * k, 0.22)
+            put(sfx, pop(500, 900, 0.12), self.T2 + self.cues[1], 0.35)
+        elif typ == 'ucgen':
+            nl = 3 + self.p['cevians'] + self.p['horiz']
+            for k in range(nl): put(sfx, tick(1300 + 90 * k, 0.05), self.T2 + 0.05 + 0.1 * k, 0.22)
+            put(sfx, pop(500, 900, 0.12), self.T2 + self.cues[1], 0.35)
+        elif typ == 'piramit':
+            for ri in range(4): put(sfx, pop(600 + 90 * ri, 1000 + 90 * ri, 0.07), self.T2 + 0.05 + 0.18 * ri, 0.3)
+            put(sfx, pop(500, 900, 0.12), self.T2 + self.cues[1], 0.35)
+        else:
+            for k in range(0, self.p['rows_n'] * self.p['cols_n'], 6):
+                put(sfx, pop(700 + 15 * k, 1100 + 15 * k, 0.05), self.T2 + 0.1 + 0.035 * k / 2, 0.18)
             put(sfx, pop(500, 900, 0.12), self.T2 + self.cues[1], 0.35)
         put(sfx, whoosh(0.35), self.CD_START - 0.45, 0.25)
         for k in range(5): put(sfx, tick(2600 if k >= 3 else 2000), self.CD_START + k, 0.45)

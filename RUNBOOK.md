@@ -11,6 +11,7 @@ Kullanıcıya soru sorma: bu seri için Cihan her gün sormadan üretim onayı v
 - ElevenLabs sesi: Orcun Togan, `voice_id=c9eIhSvMHBxtYhLX4oBt`, model `eleven_v4`, `generations_count=1`
 - Kuyruk tablosu: spreadsheetId `1p4LOorRwq6WQahWz8-MPTedTwoG_DqMc3mzt17BS7so`
   sütunlar: No | Tür | Video dosyası | Açıklama | Durum | Paylaşım zamanı | Kapak (ms)
+- Bulmaca türleri (sırayla döner): meyve, dizi, kare, piramit, ucgen, farkli. 'farkli' türünde cevap bir konumdur (ör. C2).
 - Kurallar: açıklamada hashtag yok, "Her gün yeni bir soru..." satırı yok, cevap videoda ve açıklamada asla yok,
   arka plan müziği yok, ekrandaki sayılar rakamla.
 
