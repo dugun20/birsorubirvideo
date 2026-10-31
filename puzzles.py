@@ -115,9 +115,11 @@ def dizi(rng):
 
 
 def kare(rng):
-    shape = rng.choice([(3, 3), (4, 4), (3, 4), (5, 5), (2, 4), (3, 3, 'r'), (2, 3, 'r'), (2, 4, 'r')])
-    n, m = shape[0], shape[1]
-    rect = len(shape) == 3
+    n = rng.randint(2, 6)
+    m = rng.randint(n, 6)
+    rect = rng.random() < 0.4 and n * m <= 16
+    if not rect and n * m < 9:
+        return kare(rng)
     if rect:
         answer = (n * (n + 1) // 2) * (m * (m + 1) // 2)
         # kaba kuvvet doğrulama
@@ -159,11 +161,16 @@ def caption(p, rng):
 def make(no, history_keys, seed=None, ptype=None):
     rng = random.Random(seed if seed is not None else no * 7919 + 13)
     ptype = ptype or ORDER[(no - 1) % 3]
-    for _ in range(200):
-        p = GENERATORS[ptype](rng)
-        if p['key'] not in history_keys:
+    p = None
+    for t in [ptype] + [x for x in ORDER if x != ptype]:
+        for _ in range(500):
+            cand = GENERATORS[t](rng)
+            if cand['key'] not in history_keys:
+                p = cand
+                break
+        if p:
             break
-    else:
+    if p is None:
         raise RuntimeError('yeni bulmaca bulunamadı')
     p['no'] = no
     p['caption'] = caption(p, rng)
