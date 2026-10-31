@@ -346,7 +346,8 @@ class Video:
         self.cues = segment_starts(q_audio, p['segments'])
         self.T1, self.T2 = 0.3, 2.3
         self.T3 = self.T2 + qd + 0.35
-        self.CD_START = self.T3 + 0.4; self.CD_END = self.CD_START + 5.0
+        self.CD_LEN = 10 if p['type'] == 'farkli' else 5
+        self.CD_START = self.T3 + 0.4; self.CD_END = self.CD_START + self.CD_LEN
         self.T6 = self.CD_END + 0.25
         self.BUBBLE_T, self.LABEL_T = self.T6 + 0.95, self.T6 + 2.05
         self.OUTRO = self.T6 + duration(A('audio', 's6.mp3')) + 0.45
@@ -374,14 +375,14 @@ class Video:
     def countdown(self, base, t, cy):
         if t < self.CD_START - 0.3 or t > self.CD_END + 0.15: return
         pin = ease_out(prog(t, self.CD_START - 0.3, 0.3)); pout = ease_in_out(prog(t, self.CD_END, 0.15))
-        alpha = pin * (1 - pout); remain = clamp(self.CD_END - t, 0, 5)
+        alpha = pin * (1 - pout); remain = clamp(self.CD_END - t, 0, self.CD_LEN)
         n = max(1, math.ceil(remain - 1e-6)) if t < self.CD_END else 1
-        col = RED if t >= self.CD_START + 3.0 else ORANGE
+        col = RED if t >= self.CD_END - 2.0 else ORANGE
         S, R = 2, 150; size = R * 2 + 40
         big = Image.new('RGBA', (size * S, size * S), (0, 0, 0, 0)); d = ImageDraw.Draw(big)
         box = (20 * S, 20 * S, (size - 20) * S, (size - 20) * S)
         d.ellipse(box, fill=CARD + (240,), outline=BORDER, width=16 * S)
-        if remain > 0: d.arc(box, -90, -90 + 360 * remain / 5.0, fill=col, width=16 * S)
+        if remain > 0: d.arc(box, -90, -90 + 360 * remain / self.CD_LEN, fill=col, width=16 * S)
         im = big.resize((size, size), Image.LANCZOS)
         within = (t - self.CD_START) % 1.0 if self.CD_START <= t < self.CD_END else 1.0
         pulse = 1.0 + 0.18 * (1 - ease_out(within / 0.25)) if within < 0.25 else 1.0
@@ -517,7 +518,7 @@ class Video:
             return out * np.sin(np.pi * x / d) ** 2 * 2.2
         def click(): x = tt(0.03); return rng.standard_normal(len(x)) * np.exp(-x * 220)
 
-        for path, t in [(A('audio', 's1.mp3'), self.T1), (self.q_audio, self.T2), (A('audio', 's3a.wav'), self.T3),
+        for path, t in [(A('audio', 's1.mp3'), self.T1), (self.q_audio, self.T2), (A('audio', 's3_10.mp3' if self.CD_LEN == 10 else 's3a.wav'), self.T3),
                         (A('audio', 's6.mp3'), self.T6), (A('audio', 's5.mp3'), self.T5)]:
             put(voice, load(path), t)
         put(sfx, whoosh(0.45), 0.0, 0.35); put(sfx, pop(), 0.15, 0.35); put(sfx, pop(800, 1300), 0.5, 0.35)
@@ -545,7 +546,7 @@ class Video:
                 put(sfx, pop(700 + 15 * k, 1100 + 15 * k, 0.05), self.T2 + 0.1 + 0.035 * k / 2, 0.18)
             put(sfx, pop(500, 900, 0.12), self.T2 + self.cues[1], 0.35)
         put(sfx, whoosh(0.35), self.CD_START - 0.45, 0.25)
-        for k in range(5): put(sfx, tick(2600 if k >= 3 else 2000), self.CD_START + k, 0.45)
+        for k in range(self.CD_LEN): put(sfx, tick(2600 if k >= self.CD_LEN - 2 else 2000), self.CD_START + k, 0.45)
         put(sfx, buzz(), self.CD_END, 0.25); put(sfx, click(), self.CD_END, 0.6)
         put(sfx, pop(500, 900, 0.12), self.BUBBLE_T, 0.35); put(sfx, pop(), self.LABEL_T, 0.3)
         O = self.OUTRO
