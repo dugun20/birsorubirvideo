@@ -1,0 +1,35 @@
+{
+ "last_no": 3,
+ "items": [
+  {
+   "no": 1,
+   "key": "meyve:elma,muz,hindistan cevizi:10,4,2:CAB",
+   "type": "meyve",
+   "answer": 42,
+   "file": "out/soru-1.mp4",
+   "caption": "Çoğu kişi bu soruda yanılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
+   "created": "2026-10-31",
+   "status": "kuyrukta"
+  },
+  {
+   "no": 2,
+   "key": "dizi:3,5,9,17,33,65",
+   "type": "dizi",
+   "answer": 65,
+   "file": "out/soru-2.mp4",
+   "caption": "Bu soruda çoğu kişi takılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
+   "created": "2026-10-31",
+   "status": "kuyrukta"
+  },
+  {
+   "no": 3,
+   "key": "kare:4x4:kare",
+   "type": "kare",
+   "answer": 30,
+   "file": "out/soru-3.mp4",
+   "caption": "İlk bakışta kolay görünüyor ama çoğu kişi yanılıyor 👀\n🤔 Sen kaç kare saydın?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
+   "created": "2026-11-01",
+   "status": "kuyrukta"
+  }
+ ]
+}
