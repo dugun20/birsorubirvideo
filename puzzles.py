@@ -186,25 +186,26 @@ def piramit(rng):
                 key='piramit:' + variant + ':' + ','.join(map(str, base)))
 
 
-ODD_PAIRS = [('\U0001F600', '\U0001F603'), ('\U0001F642', '\U0001F643'), ('\U0001F552', '\U0001F553'),
-             ('\U0001F316', '\U0001F317'), ('\U0001F41F', '\U0001F420'), ('\U0001F604', '\U0001F601'),
-             ('\U0001F40C', '\U0001F41B'), ('\U0001F34F', '\U0001F350'), ('\U0001F31D', '\U0001F31E'),
-             ('\U0001F42D', '\U0001F439')]
-ROW_LETTERS = 'ABCDEFG'
+ODD_PAIRS = [('\U0001F600', '\U0001F603'), ('\U0001F603', '\U0001F604'), ('\U0001F642', '\U0001F60A'),
+             ('\U0001F617', '\U0001F619'), ('\U0001F61A', '\U0001F619'), ('\U0001F610', '\U0001F611'),
+             ('\U0001F636', '\U0001F610'), ('\U0001F641', '\u2639\ufe0f'), ('\U0001F626', '\U0001F627'),
+             ('\U0001F61E', '\U0001F614'), ('\U0001F550', '\U0001F551'), ('\U0001F552', '\U0001F553'),
+             ('\U0001F554', '\U0001F555'), ('\U0001F556', '\U0001F557'), ('\U0001F558', '\U0001F559')]
+ROW_LETTERS = 'ABCDEFGH'
 
 
 def farkli(rng):
     a, b = rng.choice(ODD_PAIRS)
     if rng.random() < 0.5:
         a, b = b, a
-    rows, cols = 7, 6
+    rows, cols = 8, 7
     r, c = rng.randrange(rows), rng.randrange(cols)
     answer = f'{ROW_LETTERS[r]}{c + 1}'
     grid = [[b if (i, j) == (r, c) else a for j in range(cols)] for i in range(rows)]
     assert sum(row.count(b) for row in grid) == 1
     tts = "Bu tablodaki emojilerden biri, diğerlerinden farklı... Onu bulabilir misin? Konumunu yorumlara yaz!"
     return dict(type='farkli', grid=grid, rows_n=rows, cols_n=cols, answer=answer, tts=tts, segments=2,
-                level='ORTA', key=f'farkli:{a}{b}:{answer}')
+                level='ZOR', key=f'farkli:{a}{b}:{answer}')
 
 
 GENERATORS = {'meyve': meyve, 'dizi': dizi, 'kare': kare, 'ucgen': ucgen, 'piramit': piramit, 'farkli': farkli}

@@ -303,7 +303,7 @@ class Puzzle:
 
     # farklı olanı bul
     def _init_farkli(self):
-        self.cs = 92
+        self.cs = 82
         rows, cols = self.p['rows_n'], self.p['cols_n']
         self.cw, self.top = 940, 150
         self.gw, self.gh = cols * self.cs, rows * self.cs
@@ -322,7 +322,7 @@ class Puzzle:
             for j in range(cols):
                 paste(card, text_img(str(j + 1), 40, ORANGE), x0 + j * self.cs + self.cs / 2, y0 - 34, 1.0, clamp(pa * 2))
             for i in range(rows):
-                paste(card, text_img('ABCDEFG'[i], 40, ORANGE), x0 - 44, y0 + i * self.cs + self.cs / 2, 1.0, clamp(pa * 2))
+                paste(card, text_img('ABCDEFGH'[i], 38, ORANGE), x0 - 42, y0 + i * self.cs + self.cs / 2, 1.0, clamp(pa * 2))
         q = prog(t, self.T2 + self.cues[1] - 0.05, 0.6)
         pulse = 0.08 * math.sin(math.pi * q) if 0 < q < 1 else 0.0
         for i in range(rows):
@@ -330,7 +330,7 @@ class Puzzle:
                 pr = prog(t, self.T2 + 0.1 + 0.035 * (i * cols + j) / 2, 0.3)
                 if pr <= 0: continue
                 ch = self.p['grid'][i][j]
-                paste(card, emoji(ch, 74), x0 + j * self.cs + self.cs / 2, y0 + i * self.cs + self.cs / 2,
+                paste(card, emoji(ch, 66), x0 + j * self.cs + self.cs / 2, y0 + i * self.cs + self.cs / 2,
                       (0.5 + 0.5 * back_out(pr)) * (1 + pulse), clamp(pr * 2.5))
         return card
 
