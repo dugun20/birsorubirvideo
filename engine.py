@@ -362,6 +362,9 @@ class Video:
         self.HOOK1 = text_img('Bu soruyu', 104, WHITE)
         self.HOOK2 = hstack([text_img('çözebilir misin', 104, WHITE), text_img('?', 120, ORANGE)], gap=4)
         self.CDLABEL = hstack([text_img('Cevabını yoruma yaz', 50, WHITE), emoji('\U0001F4AC', 58)], gap=16)
+        self.FOLLOWLABEL = hstack([text_img('Takip etmeyi unutma', 50, WHITE), emoji('\U0001F447', 58)], gap=16)
+        self.TAKIP_T = self.CD_START + 0.9
+        self.TAKIP_END = self.TAKIP_T + duration(A('audio', 'takip.mp3'))
         self.STAMP = pill(text_img('SÜRE DOLDU!', 76, WHITE), RED, pad=(44, 18), radius=22)
         self.LABEL = hstack([text_img('Cevabını yorumlara yaz', 56, WHITE), emoji('\U0001F447', 62)], gap=14)
         self.FOLLOW = pill(text_img('Takip Et', 64, WHITE), ORANGE, pad=(70, 22))
@@ -388,7 +391,10 @@ class Video:
         pulse = 1.0 + 0.18 * (1 - ease_out(within / 0.25)) if within < 0.25 else 1.0
         paste(im, text_img(str(n), 150, col), size / 2, size / 2 - 4, pulse)
         paste(base, im, W / 2, cy, 0.7 + 0.3 * back_out(pin), alpha)
-        paste(base, self.CDLABEL, W / 2, cy + 225, 1.0, alpha)
+        f_in = ease_in_out(prog(t, self.TAKIP_T, 0.25)); f_out = ease_in_out(prog(t, self.TAKIP_END - 0.1, 0.25))
+        fw = f_in * (1 - f_out)
+        if fw < 1: paste(base, self.CDLABEL, W / 2, cy + 225, 1.0, alpha * (1 - fw))
+        if fw > 0: paste(base, self.FOLLOWLABEL, W / 2, cy + 225, 0.9 + 0.1 * back_out(f_in), alpha * fw)
 
     def bubble(self, t):
         w, h, S = 560, 150, 2
@@ -519,6 +525,7 @@ class Video:
         def click(): x = tt(0.03); return rng.standard_normal(len(x)) * np.exp(-x * 220)
 
         for path, t in [(A('audio', 's1.mp3'), self.T1), (self.q_audio, self.T2), (A('audio', 's3_10.mp3' if self.CD_LEN == 10 else 's3a.wav'), self.T3),
+                        (A('audio', 'takip.mp3'), self.TAKIP_T),
                         (A('audio', 's6.mp3'), self.T6), (A('audio', 's5.mp3'), self.T5)]:
             put(voice, load(path), t)
         put(sfx, whoosh(0.45), 0.0, 0.35); put(sfx, pop(), 0.15, 0.35); put(sfx, pop(800, 1300), 0.5, 0.35)
