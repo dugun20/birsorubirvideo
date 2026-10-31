@@ -3,3 +3,4 @@ out/check-*.png
 out/*.part.mp4
 __pycache__/
 test_sheet.png
+out/*.cover.jpg

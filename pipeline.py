@@ -40,16 +40,19 @@ def build(plan_path, q_audio):
         p = json.load(f)
     no = p['no']
     mp4 = os.path.join(OUT, f'soru-{no}.mp4')
-    engine.Video(p, q_audio).build(mp4)
+    v = engine.Video(p, q_audio)
+    v.build(mp4)
+    cover_ms = int((v.CD_START - 0.6) * 1000)
+    v.frame(cover_ms / 1000).save(os.path.join(OUT, f'soru-{no}.cover.jpg'), quality=90)
     with open(os.path.join(OUT, f'soru-{no}.txt'), 'w', encoding='utf-8') as f:
         f.write(p['caption'])
     st = load()
     st['items'] = [it for it in st['items'] if it['no'] != no]
     st['items'].append(dict(no=no, key=p['key'], type=p['type'], answer=p['answer'], file=f'out/soru-{no}.mp4',
-                            caption=p['caption'], created=datetime.date.today().isoformat(), status='kuyrukta'))
+                            caption=p['caption'], cover_ms=cover_ms, created=datetime.date.today().isoformat(), status='kuyrukta'))
     st['last_no'] = max(st['last_no'], no)
     save(st)
-    print(json.dumps({'video': mp4, 'no': no, 'caption': p['caption']}, ensure_ascii=False))
+    print(json.dumps({'video': mp4, 'no': no, 'cover_ms': cover_ms, 'caption': p['caption']}, ensure_ascii=False))
 
 
 def status():
