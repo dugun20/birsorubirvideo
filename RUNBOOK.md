@@ -1,6 +1,9 @@
 # @birsorubirvideo – günlük otomatik üretim
 
-Her zamanlanmış çalışma 1 yeni bulmaca videosu üretir ve paylaşım kuyruğuna ekler.
+Her zamanlanmış çalışma (her gün 08:00) 2 yeni bulmaca videosu üretir ve paylaşım kuyruğuna ekler.
+Make senaryosu (id 8298082) kuyruktaki sıradaki videoyu her gün 12:30 ve 20:30'da Instagram'a Reels olarak paylaşır;
+video https://dugun20.github.io/birsorubirvideo/out/soru-<no>.mp4 adresinden alınır (GitHub Pages).
+Kuyrukta zaten 4 veya daha fazla 'kuyrukta' satırı varsa yeni video üretme, sadece rapor ver.
 Kullanıcıya soru sorma: bu seri için Cihan her gün sormadan üretim onayı verdi.
 
 ## Sabitler
@@ -11,7 +14,9 @@ Kullanıcıya soru sorma: bu seri için Cihan her gün sormadan üretim onayı v
 - Kurallar: açıklamada hashtag yok, "Her gün yeni bir soru..." satırı yok, cevap videoda ve açıklamada asla yok,
   arka plan müziği yok, ekrandaki sayılar rakamla.
 
-## Adımlar
+## Adımlar (her video için 1-6'yı tekrarla, toplam 2 video)
+0. Ön kontrol: `python3 -c "import PIL, numpy"` (yoksa `pip install --break-system-packages pillow numpy`), `which ffmpeg`.
+   Kuyruk tablosunu `get_values` (A1:G200) ile oku, 'kuyrukta' satırlarını say.
 1. `python3 pipeline.py plan` → JSON çıktısındaki `tts` metnini ve `no` değerini al.
 2. ElevenLabs `creative_generate_speech` ile `tts` metnini seslendir (yukarıdaki ses ve model, tek take).
    `creative_get_flow_run_status` ile bitene kadar bekle, `content_url`'yi
