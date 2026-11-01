@@ -1,0 +1,7 @@
+{"no": 8, "questions": [
+ {"q": "Örümceğin kaç bacağı vardır?", "options": ["6", "8", "10"], "answer": 1},
+ {"q": "Güneş Sistemi'nin en büyük gezegeni hangisidir?", "options": ["Satürn", "Jüpiter", "Neptün"], "answer": 1},
+ {"q": "İstanbul hangi yıl fethedildi?", "options": ["1071", "1453", "1517"], "answer": 1},
+ {"q": "İnsan vücudunun en büyük organı hangisidir?", "options": ["Karaciğer", "Deri", "Akciğer"], "answer": 1},
+ {"q": "Ahtapotun kaç kalbi vardır?", "options": ["1", "2", "3"], "answer": 2}
+]}
