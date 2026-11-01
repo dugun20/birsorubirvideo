@@ -1,0 +1,55 @@
+{
+ "type": "meyve",
+ "rows": [
+  {
+   "tokens": [
+    "🍓",
+    "+",
+    "🍓",
+    "+",
+    "🍓",
+    "=",
+    "30"
+   ]
+  },
+  {
+   "tokens": [
+    "🥝",
+    "+",
+    "🥝",
+    "+",
+    "🍓",
+    "=",
+    "28"
+   ]
+  },
+  {
+   "tokens": [
+    "🥝",
+    "−",
+    "🍇",
+    "=",
+    "1"
+   ]
+  },
+  {
+   "tokens": [
+    "🍓",
+    "+",
+    "🍇",
+    "×",
+    "🥝",
+    "=",
+    "?"
+   ]
+  }
+ ],
+ "answer": 82,
+ "trap": 162,
+ "tts": "Çilek artı çilek artı çilek, otuz ediyor... kivi artı kivi artı çilek, yirmi sekiz ediyor... kivi eksi üzüm, bir ediyor... Peki, çilek artı üzüm çarpı kivi, kaç eder?",
+ "segments": 4,
+ "level": "ORTA",
+ "key": "meyve:çilek,kivi,üzüm:10,9,8:ACB",
+ "no": 7,
+ "caption": "Çoğu kişi bu soruda yanılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠"
+}
