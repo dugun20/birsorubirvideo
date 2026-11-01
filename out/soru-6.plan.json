@@ -1,0 +1,86 @@
+{
+ "type": "farkli",
+ "grid": [
+  [
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖"
+  ],
+  [
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖"
+  ],
+  [
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖"
+  ],
+  [
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕗",
+   "🕖"
+  ],
+  [
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖"
+  ],
+  [
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖"
+  ],
+  [
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖"
+  ],
+  [
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖",
+   "🕖"
+  ]
+ ],
+ "rows_n": 8,
+ "cols_n": 7,
+ "answer": "D6",
+ "tts": "Bu tablodaki emojilerden biri, diğerlerinden farklı... Onu bulabilir misin? Konumunu yorumlara yaz!",
+ "segments": 2,
+ "level": "ZOR",
+ "key": "farkli:🕖🕗:D6",
+ "no": 6,
+ "caption": "Gözüne güveniyor musun? 👀\n🤔 Sen buldun mu?\n👇 Konumunu yorumlara yaz (örneğin B3), bakalım kaç kişi bulacak. 🧠"
+}

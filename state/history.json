@@ -1,5 +1,5 @@
 {
- "last_no": 5,
+ "last_no": 6,
  "items": [
   {
    "no": 1,
@@ -50,6 +50,17 @@
    "file": "out/soru-5.mp4",
    "caption": "Herkes farklı bir sayı buluyor 👀\n🤔 Sen kaç tane saydın?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
    "cover_ms": 9058,
+   "created": "2026-11-01",
+   "status": "kuyrukta"
+  },
+  {
+   "no": 6,
+   "key": "farkli:🕖🕗:D6",
+   "type": "farkli",
+   "answer": "D6",
+   "file": "out/soru-6.mp4",
+   "caption": "Gözüne güveniyor musun? 👀\n🤔 Sen buldun mu?\n👇 Konumunu yorumlara yaz (örneğin B3), bakalım kaç kişi bulacak. 🧠",
+   "cover_ms": 8405,
    "created": "2026-11-01",
    "status": "kuyrukta"
   }
