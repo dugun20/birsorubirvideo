@@ -28,7 +28,7 @@ merak cümlesi), hs (ekrandaki 2 satır giriş, satır başına en çok ~20 kara
 story ("<Key>! <komik sahne>! Artık <mean> deyince aklına <key> gelecek. <frag>..."), sub1 (sahnenin kısa altyazısı),
 sent (İngilizce örnek cümle, 2 satıra bölünmüş, ikisi de kısa), hl (sarı vurgulanacak kelime, noktalama dahil),
 trans (cümlenin Türkçesi).
-- 30'dan sonraki numaralar için yeni kelimeyi sen seç ve words.json'a ekle: başlangıç seviyesi, günlük hayatta çok
+- 1–90 arası kelimeler ve görselleri hazır (data/words.json, img/). 90'dan sonraki numaralar için yeni kelimeyi sen seç ve words.json'a ekle: başlangıç seviyesi, günlük hayatta çok
   kullanılan, daha önce kullanılmamış bir kelime olsun. Türkçe çağrışım kelimenin İngilizce okunuşuna gerçekten
   benzemeli ve komik, görsel bir sahneye dönüşebilmeli. Zorlama eşleşme varsa o kelimeyi atla. Aile dostu içerik.
   Hook ve story kalıbı mevcut örneklerle aynı olsun.
