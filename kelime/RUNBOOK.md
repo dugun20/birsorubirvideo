@@ -19,7 +19,7 @@ Cihan bu seri için her gün sormadan üretim onayı verdi: kullanıcıya soru s
 - Görsel: Higgsfield `generate_image`, model `gpt_image_2_5`, `aspect_ratio` "1:1", `use_unlim` false.
   Prompt = sahne + şu stil eki:
   `Funny, vivid 3D cartoon illustration (Pixar-like style), absurd and playful, warm cinematic lighting, rich saturated colors, centered composition. Absolutely no text, no letters, no numbers, no writing on signs or objects.`
-- Kurallar: arka plan müziği yok, ekrandaki sayılar rakamla, açıklamada hashtag yok.
+- Kurallar: arka plan müziği hep aynı (audio/fixed/bg.wav, kodla üretilmiş özgün marimba, music2.py), `build` sabit -13.5 dB seviyede kendisi ekler; başka müzik ekleme. Ekrandaki sayılar rakamla, açıklamada hashtag yok.
 
 ## Kelime verisi (data/words.json)
 Her numara için alanlar: word, pron (Türkçe okunuş), mean, me (anlam emojisi), key (BÜYÜK HARF Türkçe çağrışım),

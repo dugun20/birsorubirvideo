@@ -322,11 +322,26 @@ class Video:
         run(['ffmpeg', '-v', 'error', '-y', '-i', vid] + inputs + ['-filter_complex', ';'.join(filt), '-map', '0:v', '-map', '[aout]',
              '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', mp4])
         os.remove(vid); os.remove(sx)
+        add_music(mp4)
         self.frame(self.COVER).save(os.path.join(OUT, f'kelime-{no}.cover.jpg'), quality=90)
         info = {'no': no, 'word': self.w['word'], 'file': f'kelime/out/kelime-{no}.mp4', 'cover_ms': int(self.COVER * 1000),
-                'caption': self.caption(), 'dur': round(self.END, 2)}
+                'caption': self.caption(), 'dur': round(self.END, 2), 'music': True}
         json.dump(info, open(os.path.join(OUT, f'kelime-{no}.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
         print(json.dumps(info, ensure_ascii=False))
+
+
+MUSIC = os.path.join(HERE, 'audio', 'fixed', 'bg.wav')  # kodla üretilmiş özgün marimba döngüsü (music2.py marimba)
+MUSIC_DB = -13.5  # anlatımın altında sabit seviye; sessiz yerlerde yükselmez
+
+
+def add_music(mp4):
+    """Arka plan müziğini videonun sesine sabit seviyede ekler, son 1.5 sn'de yumuşakça kısar."""
+    dur = E.duration(mp4); tmp = mp4 + '.m.mp4'
+    run(['ffmpeg', '-v', 'error', '-y', '-i', mp4, '-stream_loop', '-1', '-i', MUSIC, '-filter_complex',
+         f'[1:a]volume={MUSIC_DB}dB,afade=t=out:st={max(0, dur - 1.5):.2f}:d=1.5[m];'
+         '[0:a][m]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.95[a]',
+         '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', tmp])
+    os.replace(tmp, mp4)
 
 
 if __name__ == '__main__':
@@ -339,5 +354,11 @@ if __name__ == '__main__':
         for i, t in enumerate(ts): sheet.paste(v.frame(t).resize((360, 640)), (i * 360, 0))
         sheet.save(os.path.join(HERE, 'check.png'))
         print({k: round(x, 2) for k, x in v.T.items()}, 'END', round(v.END, 2), 'COVER', round(v.COVER, 2))
+    elif cmd == 'music':  # müziksiz eski videolara bir kez müzik ekle
+        for n in sys.argv[2:]:
+            jp = os.path.join(OUT, f'kelime-{n}.json'); info = json.load(open(jp, encoding='utf-8'))
+            if info.get('music'): print(n, 'zaten müzikli'); continue
+            add_music(os.path.join(OUT, f'kelime-{n}.mp4')); info['music'] = True
+            json.dump(info, open(jp, 'w', encoding='utf-8'), ensure_ascii=False, indent=1); print(n, 'müzik eklendi')
     elif cmd == 'build':
         for n in sys.argv[2:]: Video(int(n)).build()
