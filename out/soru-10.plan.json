@@ -1,0 +1,30 @@
+{
+ "type": "piramit",
+ "rows": [
+  [
+   "7",
+   "5",
+   "8",
+   "3"
+  ],
+  [
+   "",
+   "",
+   ""
+  ],
+  [
+   "",
+   ""
+  ],
+  [
+   "?"
+  ]
+ ],
+ "answer": 49,
+ "tts": "Her kutu, altındaki iki kutunun toplamına eşit... Peki, en tepedeki kutuya hangi sayı gelmeli?",
+ "segments": 2,
+ "level": "ORTA",
+ "key": "piramit:tepe:7,5,8,3",
+ "no": 10,
+ "caption": "Bu piramidin kuralı basit ama çoğu kişi yanılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠"
+}

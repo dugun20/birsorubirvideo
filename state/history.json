@@ -1,5 +1,5 @@
 {
- "last_no": 9,
+ "last_no": 10,
  "items": [
   {
    "no": 1,
@@ -93,6 +93,17 @@
    "answer": 32,
    "file": "out/soru-9.mp4",
    "caption": "Herkes farklı bir sayı buluyor 👀\n🤔 Sen kaç tane saydın?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
+   "cover_ms": 8980,
+   "created": "2026-11-02",
+   "status": "kuyrukta"
+  },
+  {
+   "no": 10,
+   "key": "piramit:tepe:7,5,8,3",
+   "type": "piramit",
+   "answer": 49,
+   "file": "out/soru-10.mp4",
+   "caption": "Bu piramidin kuralı basit ama çoğu kişi yanılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
    "cover_ms": 8980,
    "created": "2026-11-02",
    "status": "kuyrukta"
