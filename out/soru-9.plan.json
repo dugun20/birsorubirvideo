@@ -1,0 +1,13 @@
+{
+ "type": "kare",
+ "rows_n": 3,
+ "cols_n": 6,
+ "word": "kare",
+ "answer": 32,
+ "tts": "Bu şekilde, toplam kaç tane kare var?... Dikkatli say... İlk aklına gelen cevap, yanlış olabilir!",
+ "segments": 3,
+ "level": "ZOR",
+ "key": "kare:3x6:kare",
+ "no": 9,
+ "caption": "Herkes farklı bir sayı buluyor 👀\n🤔 Sen kaç tane saydın?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠"
+}

@@ -1,5 +1,5 @@
 {
- "last_no": 8,
+ "last_no": 9,
  "items": [
   {
    "no": 1,
@@ -84,6 +84,17 @@
    "caption": "Sadece 5 soru, ama hepsini bilen çok az 👀\n🤔 Sen kaç tane bildin?\n👇 Skorunu yorumlara yaz, bakalım kaç kişi 5/5 yapacak. 🧠",
    "cover_ms": 8000,
    "created": "2026-11-01",
+   "status": "kuyrukta"
+  },
+  {
+   "no": 9,
+   "key": "kare:3x6:kare",
+   "type": "kare",
+   "answer": 32,
+   "file": "out/soru-9.mp4",
+   "caption": "Herkes farklı bir sayı buluyor 👀\n🤔 Sen kaç tane saydın?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
+   "cover_ms": 8980,
+   "created": "2026-11-02",
    "status": "kuyrukta"
   }
  ]
