@@ -1,0 +1,12 @@
+{
+ "type": "ucgen",
+ "cevians": 3,
+ "horiz": 3,
+ "answer": 40,
+ "tts": "Bu şekilde, toplam kaç tane üçgen var?... Dikkatli say... İlk aklına gelen cevap, yanlış olabilir!",
+ "segments": 3,
+ "level": "ZOR",
+ "key": "ucgen:3:3",
+ "no": 11,
+ "caption": "Dikkatli saymayan yanılıyor 👀\n🤔 Sen kaç tane saydın?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠"
+}
