@@ -1,5 +1,5 @@
 {
- "last_no": 12,
+ "last_no": 13,
  "items": [
   {
    "no": 1,
@@ -128,6 +128,17 @@
    "caption": "Gözüne güveniyor musun? 👀\n🤔 Sen buldun mu?\n👇 Konumunu yorumlara yaz (örneğin B3), bakalım kaç kişi bulacak. 🧠",
    "cover_ms": 8405,
    "created": "2026-11-03",
+   "status": "kuyrukta"
+  },
+  {
+   "no": 13,
+   "key": "meyve:üzüm,kiraz,limon:6,7,4:CBA",
+   "type": "meyve",
+   "answer": 46,
+   "file": "out/soru-13.mp4",
+   "caption": "İlk bakışta kolay görünüyor ama çoğu kişi yanılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
+   "cover_ms": 15537,
+   "created": "2026-11-04",
    "status": "kuyrukta"
   }
  ]

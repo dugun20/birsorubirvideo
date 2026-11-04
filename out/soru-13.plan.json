@@ -1,0 +1,55 @@
+{
+ "type": "meyve",
+ "rows": [
+  {
+   "tokens": [
+    "🍇",
+    "+",
+    "🍇",
+    "+",
+    "🍇",
+    "=",
+    "18"
+   ]
+  },
+  {
+   "tokens": [
+    "🍒",
+    "+",
+    "🍒",
+    "+",
+    "🍇",
+    "=",
+    "20"
+   ]
+  },
+  {
+   "tokens": [
+    "🍒",
+    "−",
+    "🍋",
+    "=",
+    "3"
+   ]
+  },
+  {
+   "tokens": [
+    "🍋",
+    "+",
+    "🍒",
+    "×",
+    "🍇",
+    "=",
+    "?"
+   ]
+  }
+ ],
+ "answer": 46,
+ "trap": 66,
+ "tts": "Üzüm artı üzüm artı üzüm, on sekiz ediyor... kiraz artı kiraz artı üzüm, yirmi ediyor... kiraz eksi limon, üç ediyor... Peki, limon artı kiraz çarpı üzüm, kaç eder?",
+ "segments": 4,
+ "level": "ORTA",
+ "key": "meyve:üzüm,kiraz,limon:6,7,4:CBA",
+ "no": 13,
+ "caption": "İlk bakışta kolay görünüyor ama çoğu kişi yanılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠"
+}
