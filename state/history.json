@@ -1,5 +1,5 @@
 {
- "last_no": 13,
+ "last_no": 14,
  "items": [
   {
    "no": 1,
@@ -138,6 +138,17 @@
    "file": "out/soru-13.mp4",
    "caption": "İlk bakışta kolay görünüyor ama çoğu kişi yanılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
    "cover_ms": 15537,
+   "created": "2026-11-04",
+   "status": "kuyrukta"
+  },
+  {
+   "no": 14,
+   "key": "dizi:3,5,8,13,21,34",
+   "type": "dizi",
+   "answer": 34,
+   "file": "out/soru-14.mp4",
+   "caption": "Bu soruda çoğu kişi takılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
+   "cover_ms": 12481,
    "created": "2026-11-04",
    "status": "kuyrukta"
   }

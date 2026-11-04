@@ -1,0 +1,19 @@
+{
+ "type": "dizi",
+ "seq": [
+  "3",
+  "5",
+  "8",
+  "13",
+  "21",
+  "?"
+ ],
+ "answer": 34,
+ "kind": "fib",
+ "tts": "Bu sayılar, belli bir kurala göre ilerliyor... üç... beş... sekiz... on üç... yirmi bir... Peki, soru işaretinin yerine hangi sayı gelmeli?",
+ "segments": 7,
+ "level": "ZOR",
+ "key": "dizi:3,5,8,13,21,34",
+ "no": 14,
+ "caption": "Bu soruda çoğu kişi takılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠"
+}
