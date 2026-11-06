@@ -1,5 +1,5 @@
 {
- "last_no": 14,
+ "last_no": 15,
  "items": [
   {
    "no": 1,
@@ -150,6 +150,17 @@
    "caption": "Bu soruda çoğu kişi takılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
    "cover_ms": 12481,
    "created": "2026-11-04",
+   "status": "kuyrukta"
+  },
+  {
+   "no": 15,
+   "key": "kare:4x6:kare",
+   "type": "kare",
+   "answer": 50,
+   "file": "out/soru-15.mp4",
+   "caption": "İlk bakışta kolay görünüyor ama çoğu kişi yanılıyor 👀\n🤔 Sen kaç tane saydın?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
+   "cover_ms": 8980,
+   "created": "2026-11-06",
    "status": "kuyrukta"
   }
  ]
