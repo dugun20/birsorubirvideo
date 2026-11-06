@@ -1,5 +1,5 @@
 {
- "last_no": 15,
+ "last_no": 16,
  "items": [
   {
    "no": 1,
@@ -160,6 +160,17 @@
    "file": "out/soru-15.mp4",
    "caption": "İlk bakışta kolay görünüyor ama çoğu kişi yanılıyor 👀\n🤔 Sen kaç tane saydın?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
    "cover_ms": 8980,
+   "created": "2026-11-06",
+   "status": "kuyrukta"
+  },
+  {
+   "no": 16,
+   "key": "piramit:taban:8,9,7,7",
+   "type": "piramit",
+   "answer": 7,
+   "file": "out/soru-16.mp4",
+   "caption": "Bu piramidin kuralı basit ama çoğu kişi yanılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
+   "cover_ms": 10730,
    "created": "2026-11-06",
    "status": "kuyrukta"
   }

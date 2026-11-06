@@ -1,0 +1,30 @@
+{
+ "type": "piramit",
+ "rows": [
+  [
+   "8",
+   "9",
+   "?",
+   "7"
+  ],
+  [
+   "",
+   "",
+   ""
+  ],
+  [
+   "",
+   ""
+  ],
+  [
+   "63"
+  ]
+ ],
+ "answer": 7,
+ "tts": "Her kutu, altındaki iki kutunun toplamına eşit... En tepedeki sayı altmış üç. Peki, soru işaretinin yerine hangi sayı gelmeli?",
+ "segments": 2,
+ "level": "ZOR",
+ "key": "piramit:taban:8,9,7,7",
+ "no": 16,
+ "caption": "Bu piramidin kuralı basit ama çoğu kişi yanılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠"
+}
