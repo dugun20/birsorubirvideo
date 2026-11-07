@@ -1,0 +1,4 @@
+node_modules/
+videos/*/raw.mp4
+videos/*/chk_*.jpg
+*.log

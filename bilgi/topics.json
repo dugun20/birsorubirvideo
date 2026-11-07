@@ -1,0 +1,19 @@
+{
+ "_aciklama": "Sıralı konu listesi. Her video, listede kendisinden sonraki konuyu 'Bir sonraki soru' olarak duyurur. done=true olanlar üretildi. Sırayı asla değiştirme, üretilmeyen konuyu atlama.",
+ "topics": [
+  {"no": 1, "slug": "mariana", "q": "Mariana Çukuru'nun dibinde ne var?", "done": true},
+  {"no": 2, "slug": "asansor", "q": "Asansörün halatı koparsa ne olur?", "done": false},
+  {"no": 3, "slug": "ucak", "q": "Uçaklar havada nasıl durur?", "done": false},
+  {"no": 4, "slug": "yildirim", "q": "Yıldırım insana çarparsa ne olur?", "done": false},
+  {"no": 5, "slug": "dunya-durursa", "q": "Dünya dönmeyi durdursa ne olur?", "done": false},
+  {"no": 6, "slug": "karinca", "q": "Karınca yüksekten düşünce neden ölmez?", "done": false},
+  {"no": 7, "slug": "ay-ziplama", "q": "Ay'da zıplasan ne kadar yükseğe çıkarsın?", "done": false},
+  {"no": 8, "slug": "kar-tanesi", "q": "Kar taneleri neden hep 6 köşeli?", "done": false},
+  {"no": 9, "slug": "volkan", "q": "Volkan nasıl patlar?", "done": false},
+  {"no": 10, "slug": "gemi", "q": "Tonlarca çelikten gemi neden batmaz?", "done": false},
+  {"no": 11, "slug": "uzay-kasksiz", "q": "Uzayda kasksız kalsan ne olur?", "done": false},
+  {"no": 12, "slug": "deprem", "q": "Deprem nasıl oluşur?", "done": false},
+  {"no": 13, "slug": "hapsirik", "q": "Hapşırırken gözlerimiz neden kapanır?", "done": false},
+  {"no": 14, "slug": "kara-delik", "q": "Kara deliğe düşsen ne olur?", "done": false}
+ ]
+}

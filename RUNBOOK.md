@@ -1,3 +1,6 @@
+> **NOT (Kasım 2026): Bulmaca üretimi durduruldu.** Sayfa 3D bilgi videosu konseptine döndü.
+> Günlük üretim için `bilgi/RUNBOOK.md` dosyasını izle. Bu dosya sadece eski bulmaca motorunun kaydı olarak duruyor.
+
 # @birsorubirvideo – günlük otomatik üretim
 
 Her zamanlanmış çalışma (her gün 08:00) 2 yeni bulmaca videosu üretir ve paylaşım kuyruğuna ekler.
