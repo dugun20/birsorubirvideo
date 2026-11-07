@@ -1,5 +1,5 @@
 {
- "last_no": 17,
+ "last_no": 18,
  "items": [
   {
    "no": 1,
@@ -182,6 +182,17 @@
    "file": "out/soru-17.mp4",
    "caption": "Dikkatli saymayan yanılıyor 👀\n🤔 Sen kaç tane saydın?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
    "cover_ms": 9058,
+   "created": "2026-11-07",
+   "status": "kuyrukta"
+  },
+  {
+   "no": 18,
+   "key": "farkli:😀😃:A4",
+   "type": "farkli",
+   "answer": "A4",
+   "file": "out/soru-18.mp4",
+   "caption": "Gözüne güveniyor musun? 👀\n🤔 Sen buldun mu?\n👇 Konumunu yorumlara yaz (örneğin B3), bakalım kaç kişi bulacak. 🧠",
+   "cover_ms": 8484,
    "created": "2026-11-07",
    "status": "kuyrukta"
   }
