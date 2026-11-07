@@ -59,5 +59,7 @@ yapılmasını onayladı: kullanıcıya soru sorma.
 8. `topics.json`'da konuyu `done: true` yap. Git: `git add bilgi/videos/<slug> bilgi/out/bilgi-<no>.* bilgi/topics.json`
    (raw.mp4 ve chk dosyaları .gitignore'da), commit "Bilgi #<no>: <slug>", `git pull --rebase`, `git push`.
 9. Tabloya satır ekle (`append_values`, range `Sayfa1!A1`), sadece push başarılıysa:
-   `[<no>, "bilgi", "bilgi/out/bilgi-<no>.mp4", <açıklama>, "kuyrukta", "", <kapak_ms>]` (<no> = topics.json numarası; tablo da 1'den, Mariana ile başlıyor. Eski bulmacalar "Bulmaca Arşivi" sekmesinde)
+   `[<no>, "bilgi", "bilgi/out/bilgi-<no>.mp4", <açıklama>, "kuyrukta", "", <kapak_ms>, <yorum>]` (<no> = topics.json numarası; tablo da 1'den, Mariana ile başlıyor. Eski bulmacalar "Bulmaca Arşivi" sekmesinde)
+   <yorum> (H sütunu, Make bunu videonun altına ilk yorum olarak atar): videonun sonunda duyurulan bir sonraki soruyu tekrarlar:
+   `Sıradaki soru: <topics.json'da sıradaki konunun sorusu> <konuya uygun 1 emoji> Kaçırmamak için takip et 👀`
 10. Rapor (SendUserMessage, kısa, Türkçe): üretilen konular, kuyrukta bekleyen video sayısı, sorunlar.
