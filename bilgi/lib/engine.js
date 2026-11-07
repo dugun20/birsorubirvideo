@@ -63,6 +63,7 @@ export async function run(slug) {
   const WORDS = await (await fetch(base + 'w.json')).json();
   const L = await import('./engine.js');
   const spec = (await import(`../${base}scene.js`)).default(L, WORDS);
+  if (spec.setup) spec.setup(renderer);
   const S = spec.state || {};
   const shots = spec.shots.map(sh => { const s = new THREE.Scene(); const cam = new THREE.PerspectiveCamera(sh.fov || 40, W / H, .1, 3000); return { ...sh, s, cam, up: sh.build(s, cam, S) }; });
   const titles = spec.titles; const END = spec.END;
