@@ -24,7 +24,8 @@ denenip bırakılan clay tarzıdır; kullanma.
 - Süre 35–45 sn. Ekrandaki sayılar her zaman rakamla (10.935 m, 1.000 KAT). Seslendirme metninde sayılar yazıyla.
 - Kapanış her zaman: "Bir sonraki soru: <topics.json'da sıradaki konunun sorusu> Kaçırmamak için takip et!"
   Son sahnede o konuyu anlatan 3D bir merak sahnesi + "SIRADAKİ SORU" etiketi + Takip Et düğmesi (`follow`).
-  Son altyazı videonun sonuna kadar ekranda kalır (motor böyle yapar).
+  Son altyazı videonun sonuna kadar ekranda kalır ve iki satırdır: "Kaçırmamak için" / "Takip Et!" (motor otomatik yapar;
+  seslendirme metni tam olarak "Kaçırmamak için takip et!" ile bitmeli).
 - Açıklama (caption), hashtag yok:
   `<Soru> <emoji>` / boş satır / 1–2 cümlelik merak uyandırıcı özet / boş satır / `Merak ettiğin her şey bu sayfada. Şimdi takip et.`
 

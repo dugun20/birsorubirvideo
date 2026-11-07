@@ -71,6 +71,13 @@ export async function run(slug) {
     WORDS.forEach((w, i) => { cur.push(i); if (/[.,:;?!…]$/.test(w[0]) || cur.length >= 3) { groups.push(cur); cur = []; } });
     if (cur.length) groups.push(cur);
     for (let k = groups.length - 1; k > 0; k--) if (groups[k].length === 1 && groups[k - 1].length < 4 && !/[.:;?!…]$/.test(WORDS[groups[k - 1].slice(-1)[0]][0])) { groups[k - 1].push(...groups[k]); groups.splice(k, 1); } }
+  // kapanış: "Kaçırmamak için" / "Takip Et!" iki satır, tek altyazı
+  const DISP = WORDS.map(w => w[0]); const BR = new Set();
+  { const ki = WORDS.findIndex(w => /^kaçırmamak/i.test(w[0]));
+    if (ki >= 0) { const ti = WORDS.findIndex((w, i) => i > ki && /^takip/i.test(w[0]));
+      for (let k = groups.length - 1; k >= 0; k--) { const g = groups[k].filter(i => i < ki); if (g.length) groups[k] = g; else groups.splice(k, 1); }
+      groups.push(WORDS.map((_, i) => i).filter(i => i >= ki));
+      if (ti > 0) { BR.add(ti); DISP[ti] = 'Takip'; if (WORDS[ti + 1] && /^et/i.test(WORDS[ti + 1][0])) DISP[ti + 1] = 'Et!'; } } }
   let last = -1;
   const q = id => document.getElementById(id);
   function overlay(t) {
@@ -87,7 +94,7 @@ export async function run(slug) {
     let gi = -1; for (let k = 0; k < groups.length; k++) if (t >= WORDS[groups[k][0]][1] - .08) gi = k;
     const cap = q('cap');
     if (gi >= 0) { const g = groups[gi]; const cur = g.filter(i => t >= WORDS[i][1] - .05).pop();
-      cap.innerHTML = g.map(i => `<span class="${i === cur ? 'on' : (t >= WORDS[i][1] - .05 ? '' : 'dim')}">${WORDS[i][0]}</span>`).join(''); }
+      cap.innerHTML = g.map(i => (BR.has(i) ? '<br>' : '') + `<span class="${i === cur ? 'on' : (t >= WORDS[i][1] - .05 ? '' : 'dim')}">${DISP[i]}</span>`).join(''); }
     else cap.innerHTML = '';
     const nb = Math.min(...titles.slice(1).map(x => Math.abs(t - x.t0)));
     q('flash').style.opacity = nb < .12 ? (1 - nb / .12) * .9 : 0;
