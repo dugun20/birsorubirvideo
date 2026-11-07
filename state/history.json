@@ -1,5 +1,5 @@
 {
- "last_no": 16,
+ "last_no": 17,
  "items": [
   {
    "no": 1,
@@ -172,6 +172,17 @@
    "caption": "Bu piramidin kuralı basit ama çoğu kişi yanılıyor 👀\n🤔 Sen kaç buldun?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
    "cover_ms": 10730,
    "created": "2026-11-06",
+   "status": "kuyrukta"
+  },
+  {
+   "no": 17,
+   "key": "ucgen:4:2",
+   "type": "ucgen",
+   "answer": 45,
+   "file": "out/soru-17.mp4",
+   "caption": "Dikkatli saymayan yanılıyor 👀\n🤔 Sen kaç tane saydın?\n👇 Cevabını yorumlara yaz, bakalım kaç kişi doğru bilecek. 🧠",
+   "cover_ms": 9058,
+   "created": "2026-11-07",
    "status": "kuyrukta"
   }
  ]
