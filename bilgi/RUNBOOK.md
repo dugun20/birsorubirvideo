@@ -6,13 +6,19 @@ sıradaki videoyu her gün 12:30 ve 20:30'da Reels olarak paylaşır; video adre
 `https://dugun20.github.io/birsorubirvideo/<Video dosyası sütunu>`. Cihan bu seri için sormadan seslendirme ve render
 yapılmasını onayladı: kullanıcıya soru sorma.
 
-Örnek ve şablon video: `videos/mariana/` (onaylı son hali `out/bilgi-1.mp4`). Yeni her video bu kaliteyi ve tarzı tutturmalı.
+**Tarz: CLAY DİORAMA (Kasım 2026'dan itibaren, Cihan onayladı).** Şablon video: `videos/asansor/` (`out/bilgi-2.mp4`).
+Her yeni `scene.js` `import { clayKit } from '../../lib/clay.js'` ile başlar ve `videos/asansor/scene.js` yapısını izler.
+`videos/mariana/` eski karanlık sinematik tarzdır, sadece motor kullanımına örnek; o görünümü tekrar kullanma.
 
 ## Tarz (değişmez)
 - Ana görüntü **tamamen hareketli 3D** (Three.js, kodla). Her cümlenin arkasında konuyu anlatan bir 3D sahne. Düz infografik değil.
 - Referans tarz: üstte küçük etiket (`.tag`, büyük harf, 2–3 kelime), altında büyük başlık (`.title`, Oswald, beyaz + sarı `.y` vurgu),
   gerekirse büyük sayı (`.big`), sayaç, liste satırları (`.row`). Ekranın altında kelime kelime altyazı (motor otomatik yapar).
-  Sol üstte "● BİR SORU BİR VİDEO" (motor ekler). Koyu, sinematik ışık, sis, partiküller.
+  Sol üstte "● BİR SORU BİR VİDEO" (motor ekler).
+- Clay görünüm: her sahne bir maket/diorama. `C.studio(s)` sıcak ışık + yumuşak gölge, `C.base()` yuvarlak kaide,
+  `C.rbox`/`C.blob` yumru hamur geometri, `C.person`, `C.tree`, `C.cloud`, `C.sparks`. `spec.setup = C.setup`,
+  overlay'e `C.css + C.tilt` ekle, etiket/başlık için `C.tag(...)`, `C.title('... <y>vurgu</y>')`, `C.big(...)`.
+  Pastel/toprak renkler (`C.PAL`). Basit, okunaklı şekiller; karanlık sahne, sis, gerçekçi doku yok.
 - Ses: ElevenLabs **Orçun Toğan** `voice_id=c9eIhSvMHBxtYhLX4oBt`, model `eleven_v4`, `generations_count=1`. Arka plan müziği yok.
   Efektler `build.py` ile (whoosh, boom, pop, crunch, snap, ding, click).
 - Süre 35–45 sn. Ekrandaki sayılar her zaman rakamla (10.935 m, 1.000 KAT). Seslendirme metninde sayılar yazıyla.
@@ -43,21 +49,24 @@ yapılmasını onayladı: kullanıcıya soru sorma.
 4. Kelime zamanlaması: `creative_transcribe_audio` (model `eleven_scribe_v1`, `flow_id` = seslendirmenin flow'u,
    `connect_from` = seslendirme node_id). Sonuçtaki `words` listesinden `videos/<slug>/w.json` yaz:
    `[["kelime", başlangıç, bitiş], ...]` (yalnızca type=word).
-5. `videos/<slug>/scene.js` yaz. `videos/mariana/scene.js` yapısını örnek al (`shots`, `titles`, `update`, `follow`, `sfx`, `END`).
+5. `videos/<slug>/scene.js` yaz. `videos/asansor/scene.js` yapısını örnek al (`shots`, `titles`, `update`, `follow`, `sfx`, `END`).
    - Sahne sınırlarını cümle başlangıçlarına göre `w.json`'dan al. `END` = son kelimenin bitişi + 0.2.
    - `follow.t` = "Kaçırmamak" kelimesinin başlangıcı, `follow.click` = "takip" kelimesinin başlangıcı + 0.1.
    - Kadraj: dikey 9:16, `fov` 40, yatay görüş dar (mesafenin yaklaşık ±0.2 katı). Ana obje ekranın 650–1350 px yüksekliği
      arasında dursun: üst 250–650 px başlık bölgesi, 1400 px altı altyazı bölgesi. Objeleri bu aralığa yerleştir.
-   - Kalite: `flatShading` kullanma; yumuşak geometri (yeterli segment), sis, 2–3 ışık (hemisphere/ambient + key + renkli rim),
-     partikül, yavaş kamera hareketi. Her sahnede bir şey hareket etsin. Gerekirse `lib/engine.js` yardımcılarını kullan
-     (`gradTex`, `snow`, `std`, `mountain`, `trenchFloor`, `hash`, easing).
+   - Kalite: `flatShading` kullanma; ışık ve gölge `C.studio` ile gelir. Yavaş kamera hareketi, her sahnede bir şey
+     hareket etsin (dönme, düşme, zıplama). Easing için `L.ease/easeOut/back/prog/lerp`.
 6. Kontrol: `node render.js frames <slug> <her sahneden 1-2 zaman, virgülle>` ve `videos/<slug>/chk_*.jpg` karelerine bak.
    Taşma, kadraj dışı obje, okunmayan yazı, boş/siyah sahne varsa düzelt, tekrar bak.
-7. Render: `node render.js video <slug>` (yaklaşık 8–10 dk). Ardından
+7. Render: gölgeler yüzünden tek parça render 10 dk'yı aşar, komut zaman aşımına uğrar. 3 parçayı paralel ve
+   arka planda (run_in_background) çalıştır: n = ceil(END*30), `node render.js video <slug> 0 a`, `... a b`, `... b n`
+   (a=n/3, b=2n/3). Bitince birleştir:
+   `printf "file 'seg_0_a.mp4'\nfile 'seg_a_b.mp4'\nfile 'seg_b_n.mp4'\n" > videos/<slug>/l.txt && ffmpeg -y -f concat -safe 0 -i videos/<slug>/l.txt -c copy videos/<slug>/raw.mp4`
+   sonra `rm videos/<slug>/seg_*.mp4 videos/<slug>/l.txt`. Ardından
    `python3 build.py <slug> <no> <kapak_saniye>` (kapak: başlığın ve ana 3D objenin göründüğü ilk sahneden bir an, ör. 2.0).
    `videos/<slug>/check.jpg` kontrol sayfasına bak.
 8. `topics.json`'da konuyu `done: true` yap. Git: `git add bilgi/videos/<slug> bilgi/out/bilgi-<no>.* bilgi/topics.json`
-   (raw.mp4 ve chk dosyaları .gitignore'da), commit "Bilgi #<no>: <slug>", `git pull --rebase`, `git push`.
+   (raw.mp4, seg, sfx.wav ve chk dosyaları .gitignore'da), commit "Bilgi #<no>: <slug>", `git pull --rebase`, `git push`.
 9. Tabloya satır ekle (`append_values`, range `Sayfa1!A1`), sadece push başarılıysa:
    `[<no>, "bilgi", "bilgi/out/bilgi-<no>.mp4", <açıklama>, "kuyrukta", "", <kapak_ms>, <yorum>]` (<no> = topics.json numarası; tablo da 1'den, Mariana ile başlıyor. Eski bulmacalar "Bulmaca Arşivi" sekmesinde)
    <yorum> (H sütunu, Make bunu videonun altına ilk yorum olarak atar): videonun sonunda duyurulan bir sonraki soruyu tekrarlar:
