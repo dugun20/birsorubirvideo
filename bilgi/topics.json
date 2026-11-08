@@ -17,13 +17,13 @@
    "no": 3,
    "slug": "ucak",
    "q": "Uçaklar havada nasıl durur?",
-   "done": false
+   "done": true
   },
   {
    "no": 4,
    "slug": "yildirim",
    "q": "Yıldırım insana çarparsa ne olur?",
-   "done": false
+   "done": true
   },
   {
    "no": 5,
