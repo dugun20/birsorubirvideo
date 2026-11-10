@@ -84,6 +84,30 @@
    "slug": "kara-delik",
    "q": "Kara deliğe düşsen ne olur?",
    "done": false
+  },
+  {
+   "no": 15,
+   "slug": "gokyuzu-mavi",
+   "q": "Gökyüzü neden mavi?",
+   "done": false
+  },
+  {
+   "no": 16,
+   "slug": "okyanus-tuz",
+   "q": "Okyanuslar neden tuzlu?",
+   "done": false
+  },
+  {
+   "no": 17,
+   "slug": "kedi-dusus",
+   "q": "Kediler neden hep ayaklarının üstüne düşer?",
+   "done": false
+  },
+  {
+   "no": 18,
+   "slug": "mikrodalga",
+   "q": "Mikrodalga fırın yemeği nasıl ısıtır?",
+   "done": false
   }
  ]
 }
