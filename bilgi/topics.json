@@ -108,6 +108,30 @@
    "slug": "mikrodalga",
    "q": "Mikrodalga fırın yemeği nasıl ısıtır?",
    "done": false
+  },
+  {
+   "no": 19,
+   "slug": "gokkusagi",
+   "q": "Gökkuşağı nasıl oluşur?",
+   "done": false
+  },
+  {
+   "no": 20,
+   "slug": "gunes-yok",
+   "q": "Güneş birden yok olsa ne olur?",
+   "done": false
+  },
+  {
+   "no": 21,
+   "slug": "ahtapot",
+   "q": "Ahtapotun neden 3 kalbi var?",
+   "done": false
+  },
+  {
+   "no": 22,
+   "slug": "miknatis",
+   "q": "Mıknatıs nasıl çeker?",
+   "done": false
   }
  ]
 }
