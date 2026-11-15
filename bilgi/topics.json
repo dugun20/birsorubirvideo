@@ -132,6 +132,48 @@
    "slug": "miknatis",
    "q": "Mıknatıs nasıl çeker?",
    "done": false
+  },
+  {
+   "no": 23,
+   "slug": "esneme",
+   "q": "Neden esneriz?",
+   "done": false
+  },
+  {
+   "no": 24,
+   "slug": "ay-dusmez",
+   "q": "Ay neden Dünya'ya düşmez?",
+   "done": false
+  },
+  {
+   "no": 25,
+   "slug": "buz-yuzer",
+   "q": "Buz neden suda yüzer?",
+   "done": false
+  },
+  {
+   "no": 26,
+   "slug": "bukalemun",
+   "q": "Bukalemun nasıl renk değiştirir?",
+   "done": false
+  },
+  {
+   "no": 27,
+   "slug": "ari-bal",
+   "q": "Arılar balı nasıl yapar?",
+   "done": false
+  },
+  {
+   "no": 28,
+   "slug": "deve-horguc",
+   "q": "Devenin hörgücünde ne var?",
+   "done": false
+  },
+  {
+   "no": 29,
+   "slug": "bulut-agirlik",
+   "q": "Bir bulut kaç ton gelir?",
+   "done": false
   }
  ]
 }
