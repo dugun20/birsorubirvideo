@@ -1,179 +1,179 @@
 {
-  "_aciklama": "Sıralı konu listesi. Her video, listede kendisinden sonraki konuyu 'Bir sonraki soru' olarak duyurur. done=true olanlar üretildi. Sırayı asla değiştirme, üretilmeyen konuyu atlama.",
-  "topics": [
-    {
-      "no": 1,
-      "slug": "mariana",
-      "q": "Mariana Çukuru'nun dibinde ne var?",
-      "done": true
-    },
-    {
-      "no": 2,
-      "slug": "asansor",
-      "q": "Asansörün halatı koparsa ne olur?",
-      "done": true
-    },
-    {
-      "no": 3,
-      "slug": "ucak",
-      "q": "Uçaklar havada nasıl durur?",
-      "done": true
-    },
-    {
-      "no": 4,
-      "slug": "yildirim",
-      "q": "Yıldırım insana çarparsa ne olur?",
-      "done": true
-    },
-    {
-      "no": 5,
-      "slug": "dunya-durursa",
-      "q": "Dünya dönmeyi durdursa ne olur?",
-      "done": true
-    },
-    {
-      "no": 6,
-      "slug": "karinca",
-      "q": "Karınca yüksekten düşünce neden ölmez?",
-      "done": true
-    },
-    {
-      "no": 7,
-      "slug": "ay-ziplama",
-      "q": "Ay'da zıplasan ne kadar yükseğe çıkarsın?",
-      "done": true
-    },
-    {
-      "no": 8,
-      "slug": "kar-tanesi",
-      "q": "Kar taneleri neden hep 6 köşeli?",
-      "done": true
-    },
-    {
-      "no": 9,
-      "slug": "volkan",
-      "q": "Volkan nasıl patlar?",
-      "done": true
-    },
-    {
-      "no": 10,
-      "slug": "gemi",
-      "q": "Tonlarca çelikten gemi neden batmaz?",
-      "done": true
-    },
-    {
-      "no": 11,
-      "slug": "uzay-kasksiz",
-      "q": "Uzayda kasksız kalsan ne olur?",
-      "done": true
-    },
-    {
-      "no": 12,
-      "slug": "deprem",
-      "q": "Deprem nasıl oluşur?",
-      "done": true
-    },
-    {
-      "no": 13,
-      "slug": "hapsirik",
-      "q": "Hapşırırken gözlerimiz neden kapanır?",
-      "done": true
-    },
-    {
-      "no": 14,
-      "slug": "kara-delik",
-      "q": "Kara deliğe düşsen ne olur?",
-      "done": true
-    },
-    {
-      "no": 15,
-      "slug": "gokyuzu-mavi",
-      "q": "Gökyüzü neden mavi?",
-      "done": true
-    },
-    {
-      "no": 16,
-      "slug": "okyanus-tuz",
-      "q": "Okyanuslar neden tuzlu?",
-      "done": true
-    },
-    {
-      "no": 17,
-      "slug": "kedi-dusus",
-      "q": "Kediler neden hep ayaklarının üstüne düşer?",
-      "done": true
-    },
-    {
-      "no": 18,
-      "slug": "mikrodalga",
-      "q": "Mikrodalga fırın yemeği nasıl ısıtır?",
-      "done": true
-    },
-    {
-      "no": 19,
-      "slug": "gokkusagi",
-      "q": "Gökkuşağı nasıl oluşur?",
-      "done": true
-    },
-    {
-      "no": 20,
-      "slug": "gunes-yok",
-      "q": "Güneş birden yok olsa ne olur?",
-      "done": false
-    },
-    {
-      "no": 21,
-      "slug": "ahtapot",
-      "q": "Ahtapotun neden 3 kalbi var?",
-      "done": false
-    },
-    {
-      "no": 22,
-      "slug": "miknatis",
-      "q": "Mıknatıs nasıl çeker?",
-      "done": false
-    },
-    {
-      "no": 23,
-      "slug": "esneme",
-      "q": "Neden esneriz?",
-      "done": false
-    },
-    {
-      "no": 24,
-      "slug": "ay-dusmez",
-      "q": "Ay neden Dünya'ya düşmez?",
-      "done": false
-    },
-    {
-      "no": 25,
-      "slug": "buz-yuzer",
-      "q": "Buz neden suda yüzer?",
-      "done": false
-    },
-    {
-      "no": 26,
-      "slug": "bukalemun",
-      "q": "Bukalemun nasıl renk değiştirir?",
-      "done": false
-    },
-    {
-      "no": 27,
-      "slug": "ari-bal",
-      "q": "Arılar balı nasıl yapar?",
-      "done": false
-    },
-    {
-      "no": 28,
-      "slug": "deve-horguc",
-      "q": "Devenin hörgücünde ne var?",
-      "done": false
-    },
-    {
-      "no": 29,
-      "slug": "bulut-agirlik",
-      "q": "Bir bulut kaç ton gelir?",
-      "done": false
-    }
-  ]
+ "_aciklama": "Sıralı konu listesi. Her video, listede kendisinden sonraki konuyu 'Bir sonraki soru' olarak duyurur. done=true olanlar üretildi. Sırayı asla değiştirme, üretilmeyen konuyu atlama.",
+ "topics": [
+  {
+   "no": 1,
+   "slug": "mariana",
+   "q": "Mariana Çukuru'nun dibinde ne var?",
+   "done": true
+  },
+  {
+   "no": 2,
+   "slug": "asansor",
+   "q": "Asansörün halatı koparsa ne olur?",
+   "done": true
+  },
+  {
+   "no": 3,
+   "slug": "ucak",
+   "q": "Uçaklar havada nasıl durur?",
+   "done": true
+  },
+  {
+   "no": 4,
+   "slug": "yildirim",
+   "q": "Yıldırım insana çarparsa ne olur?",
+   "done": true
+  },
+  {
+   "no": 5,
+   "slug": "dunya-durursa",
+   "q": "Dünya dönmeyi durdursa ne olur?",
+   "done": true
+  },
+  {
+   "no": 6,
+   "slug": "karinca",
+   "q": "Karınca yüksekten düşünce neden ölmez?",
+   "done": true
+  },
+  {
+   "no": 7,
+   "slug": "ay-ziplama",
+   "q": "Ay'da zıplasan ne kadar yükseğe çıkarsın?",
+   "done": true
+  },
+  {
+   "no": 8,
+   "slug": "kar-tanesi",
+   "q": "Kar taneleri neden hep 6 köşeli?",
+   "done": true
+  },
+  {
+   "no": 9,
+   "slug": "volkan",
+   "q": "Volkan nasıl patlar?",
+   "done": true
+  },
+  {
+   "no": 10,
+   "slug": "gemi",
+   "q": "Tonlarca çelikten gemi neden batmaz?",
+   "done": true
+  },
+  {
+   "no": 11,
+   "slug": "uzay-kasksiz",
+   "q": "Uzayda kasksız kalsan ne olur?",
+   "done": true
+  },
+  {
+   "no": 12,
+   "slug": "deprem",
+   "q": "Deprem nasıl oluşur?",
+   "done": true
+  },
+  {
+   "no": 13,
+   "slug": "hapsirik",
+   "q": "Hapşırırken gözlerimiz neden kapanır?",
+   "done": true
+  },
+  {
+   "no": 14,
+   "slug": "kara-delik",
+   "q": "Kara deliğe düşsen ne olur?",
+   "done": true
+  },
+  {
+   "no": 15,
+   "slug": "gokyuzu-mavi",
+   "q": "Gökyüzü neden mavi?",
+   "done": true
+  },
+  {
+   "no": 16,
+   "slug": "okyanus-tuz",
+   "q": "Okyanuslar neden tuzlu?",
+   "done": true
+  },
+  {
+   "no": 17,
+   "slug": "kedi-dusus",
+   "q": "Kediler neden hep ayaklarının üstüne düşer?",
+   "done": true
+  },
+  {
+   "no": 18,
+   "slug": "mikrodalga",
+   "q": "Mikrodalga fırın yemeği nasıl ısıtır?",
+   "done": true
+  },
+  {
+   "no": 19,
+   "slug": "gokkusagi",
+   "q": "Gökkuşağı nasıl oluşur?",
+   "done": true
+  },
+  {
+   "no": 20,
+   "slug": "gunes-yok",
+   "q": "Güneş birden yok olsa ne olur?",
+   "done": true
+  },
+  {
+   "no": 21,
+   "slug": "ahtapot",
+   "q": "Ahtapotun neden 3 kalbi var?",
+   "done": false
+  },
+  {
+   "no": 22,
+   "slug": "miknatis",
+   "q": "Mıknatıs nasıl çeker?",
+   "done": false
+  },
+  {
+   "no": 23,
+   "slug": "esneme",
+   "q": "Neden esneriz?",
+   "done": false
+  },
+  {
+   "no": 24,
+   "slug": "ay-dusmez",
+   "q": "Ay neden Dünya'ya düşmez?",
+   "done": false
+  },
+  {
+   "no": 25,
+   "slug": "buz-yuzer",
+   "q": "Buz neden suda yüzer?",
+   "done": false
+  },
+  {
+   "no": 26,
+   "slug": "bukalemun",
+   "q": "Bukalemun nasıl renk değiştirir?",
+   "done": false
+  },
+  {
+   "no": 27,
+   "slug": "ari-bal",
+   "q": "Arılar balı nasıl yapar?",
+   "done": false
+  },
+  {
+   "no": 28,
+   "slug": "deve-horguc",
+   "q": "Devenin hörgücünde ne var?",
+   "done": false
+  },
+  {
+   "no": 29,
+   "slug": "bulut-agirlik",
+   "q": "Bir bulut kaç ton gelir?",
+   "done": false
+  }
+ ]
 }
