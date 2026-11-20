@@ -32,8 +32,24 @@ Kuyrukta zaten **4 veya daha fazla 'kuyrukta' satırı** varsa yeni bölüm üre
 4. **Genel kitle:** yetişkin ve gençlerin de güleceği gündelik durumlar (Wi-Fi şifresi, alarm/uyku, diyet, toplantı, kira, trafik,
    kuyruk, market, kumanda kavgası, son dilim pizza, şarj kablosu…). Çocuklara özel tema (oyuncak, alfabe, renk öğretme) yok.
 5. **Süre hikâyeye göre:** 15–45 sn. Uzatma yok, **boşluk/ölü an yok**; ilk 1 sn içinde olay başlasın. Kısa hikâye kısa kalsın.
-6. **Diyalogsuz, yazısız:** her şey hareket, ifade, işaret (! ? ikonlar, tabelalar ikon ile) ve sesle anlaşılır. Ekranda kelime yok.
-7. **Bol ve senkron ses efekti** (`kit/sfx.py`; gerekirse yeni ses fonksiyonu ekle, eklediğin sesleri commit et).
+6. **Diyalogsuz:** hikâye hareket, ifade, işaret (! ? ikonlar, tabelalar ikon ile) ve sesle anlaşılır. Sahnenin İÇİNDE kelime yok.
+   TEK istisna aşağıdaki **başlık kancası** ve **sayaç** katmanı (ekran üstü, kısa İngilizce, sayılar rakamla).
+8. **Bol ve senkron ses efekti** (`kit/sfx.py`; gerekirse yeni ses fonksiyonu ekle, eklediğin sesleri commit et).
+
+## İzlenme kuralları (SEEDPIT gibi büyüyen kanallardan öğrenilen — kopyalama, kalıbı uygula)
+A. **Başlık kancası ZORUNLU:** her bölümde `kit/hook.py` → `overlay(svg, hook_title(t, ÜST, ANA))`.
+   0. saniyede patlayarak gelir, video boyunca üstte kalır, ilk kare kapak gibi okunur.
+   - ÜST satır ≤ 22 karakter (beyaz, küçük), ANA satır ≤ 16 karakter, BÜYÜK HARF (sarı-turuncu). İngilizce, sayılar rakamla.
+   - Merak sorusu/iddia olsun: `Can Nibbo get` / `GRUMPO'S PIZZA?`, `Grumpo said` / `ONLY 1 COOKIE`, `Nibbo tried` / `5 WAYS IN`,
+     `Don't wake` / `GRUMPO`, `Grumpo vs Nibbo` / `LAST SEAT`. SEEDPIT'in "Can Kevin ___ Seed?" kalıbını birebir KULLANMA;
+     son 5 bölümde kullanılan kalıbı tekrar etme (log'a hook'u da yaz).
+   - Hook ile YouTube başlığı aynı fikri taşısın.
+B. **Kadraj:** üstteki ~620 px yazıya ayrılmış — aksiyon ve karakter yüzleri y > 650'de olsun. Karakterler büyük:
+   kamera zoom ≥ 1.25, ana anlarda yakın plan. Telefonda yüz ifadeleri net okunmalı.
+C. **Tırmanan format (her 3 bölümden ~1'i):** ekranda büyüyen sayaç/seviye — `counter(t, değer, "ETİKET", adım, toplam, bump_t=...)`.
+   Örn: deneme sayısı (`TRY 3/5`), her seferinde ikiye katlanan şey (`1,024`), seviye barı. Her adım bir öncekinden büyük/absürt,
+   son adım sürprizle bağlanır. Diğer bölümler normal slapstick hikâye (sayaçsız).
+D. **İlk 1 saniye:** olay hemen başlasın (çatışma ilk karede görünsün), giriş/yavaş açılış yok.
 
 ## Adımlar
 0. Ön kontrol: `which rsvg-convert ffmpeg`, `python3 -c "import numpy, scipy"`
@@ -43,16 +59,16 @@ Kuyrukta zaten **4 veya daha fazla 'kuyrukta' satırı** varsa yeni bölüm üre
 2. `episodes/epNN_<slug>.py` dosyasını yaz (ep01_havuz.py'deki gibi: `W,H,FPS=1080,1920,60`, `DUR`, `frame(t)`, `EV`, `sfx()`, `build_sfx()`).
    Kitteki yardımcıları kullan; yeni sahne/prop gerekiyorsa aynı stilde çiz (dış çizgi OL, iki ton gölge).
 3. Önizleme: `python3 kit/build.py preview episodes/epNN_<slug>.py <8-12 zaman>` → `out/preview-epNN.png` resmine BAK.
-   Kontrol et: karakterler kadrajda mı, kesilme/üst üste binme/boş sahne var mı, kaşlar ayrı mı, hikâye karelerden okunuyor mu.
+   Kontrol et: başlık kancası okunuyor ve kenardan taşmıyor mu, yazı karakterlerin yüzüne biniyor mu, karakterler kadrajda mı, kesilme/üst üste binme/boş sahne var mı, kaşlar ayrı mı, hikâye karelerden okunuyor mu.
    Sorun varsa düzelt, tekrar önizle. (En az 2 tur bak.)
 4. Render: `python3 kit/build.py full episodes/epNN_<slug>.py NN` → `out/grumpo-NN.mp4` ve `out/check-NN.png`. Check resmine bak.
 5. Başlık/açıklama/etiket (İngilizce):
-   - Başlık: merak uyandıran, ≤ 70 karakter, sonu ` #shorts`. Örn: `Nibbo Is NOT Allowed in Grumpo's Pool! 🏊 #shorts`
+   - Başlık: ekrandaki kancayla aynı fikir, merak uyandıran, ≤ 70 karakter, sonu ` #shorts`. Örn: `Nibbo Is NOT Allowed in Grumpo's Pool! 🏊 #shorts`
    - Açıklama: 1–2 kısa cümle + yorum sorusu + boş satır + `#shorts #cartoon #animation #funny`
    - Etiketler: virgül+boşlukla ayrılmış: `Grumpo, Nibbo, Grumpo and Nibbo, Grumpo & Nibbo, cartoon, funny cartoon, animation, shorts, cartoon shorts, animated shorts, silent cartoon, slapstick cartoon, <konuya özel 2-4 etiket>`
    - Başlık ve açıklamada `<` `>` karakteri kullanma.
 6. Önce `git config user.name Cihan` ve `git config user.email dugun258@gmail.com`.
-   `git add grumpo/episodes/epNN_<slug>.py grumpo/out/grumpo-NN.mp4 grumpo/log/bolumler.md grumpo/kit/sfx.py`
+   `git add grumpo/episodes/epNN_<slug>.py grumpo/out/grumpo-NN.mp4 grumpo/log/bolumler.md grumpo/kit/`
    `git commit -m "Grumpo #NN: <kısa ad>"`, sonra `git pull --rebase` (aynı depoya başka sayfaların görevleri de push ediyor)
    ve `git -c push.negotiate=true push`. Reddedilirse `git fetch --depth=50 origin main` + rebase ile bir kez daha dene.
    Preview/check png'lerini commit etme.

@@ -12,6 +12,8 @@ from multiprocessing import Pool
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
+from hook import ensure_font
+ensure_font()
 
 
 def load(path):
