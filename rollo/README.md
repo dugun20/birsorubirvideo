@@ -14,5 +14,5 @@ Kanal adı: **Rollo Racing**, kullanıcı adı **@RolloRacingTV** (@RolloRacing 
 - Parça kütüphanesi: plinko, zikzak, dönen çubuk, huni, trambolin, asansör, ışınlanma, konveyör, sarkaç, açılır kapak, dar köprü, kırılan platform… her videoda 4–6 parça rastgele sıra.
 - Temalar: uzay, şeker, buz, lav, orman, su altı, şehir, Cadılar Bayramı, Yılbaşı (renk/arka plan/engel görünümü).
 - Formatlar: düz yarış, eleme yarışı, ülke yarışı (bayrak renkli toplar), 100 top yarışı, turnuva serisi (çeyrek/yarı/final ayrı videolar).
-- Otomasyon Grumpo gibi: ayrı kuyruk tablosu + günlük üretim görevleri + Make yükleme. Make ücretsiz planda 2 aktif senaryo dolu → Rollo yüklemesi Grumpo senaryosu 8693893'e ikinci kol (ayrı YouTube bağlantısı) olarak eklenecek.
+- Otomasyon kuruldu: Grumpo tablosunun "Rollo" sekmesi + günlük 2 üretim görevi + Make senaryosu 8708385 (YouTube bağlantısı "Rollo Racing YouTube" 13254106).
 - Yazı kuralları: İngilizce, sayılar rakamla, üst yazı YouTube'un üst düğmelerinin altında (y≈350+).
