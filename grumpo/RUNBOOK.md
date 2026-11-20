@@ -13,7 +13,7 @@ Kuyrukta zaten **4 veya daha fazla 'kuyrukta' satırı** varsa yeni bölüm üre
 - Bölüm kaydı: `grumpo/log/indeks.md` (tek satırlık parmak izleri – her zaman oku), `grumpo/log/bolumler.md` (ayrıntı)
 - Konu bankası: `grumpo/log/konu_bankasi.md` (mekân/çatışma/yapı/son listeleri + özel gün takvimi)
 - Kuyruk tablosu: spreadsheetId `1m6rYkgznD0tUN6wXidFxGHVnmradARs6E0fQiEkxS4g`, sayfa `Kuyruk`
-  sütunlar: No | Başlık | Video dosyası | Açıklama | Durum | Paylaşım zamanı | Etiketler | YouTube ID | Özet
+  sütunlar: No | Başlık | Video dosyası | Açıklama | Durum | Paylaşım zamanı | Etiketler | YouTube ID | Özet | Yorum
 - Çıktı: 1080×1920, 60 fps, H.264, sadece efekt sesleri (müzik YOK, seslendirme YOK, diyalog YOK)
 
 ## Karakterler (değiştirme)
@@ -77,7 +77,10 @@ D. **İlk 1 saniye:** olay hemen başlasın (çatışma ilk karede görünsün),
    ve `git -c push.negotiate=true push`. Reddedilirse `git fetch --depth=50 origin main` + rebase ile bir kez daha dene.
    Preview/check png'lerini commit etme.
 7. Kuyruğa satır ekle (Google Sheets `append_values`, sayfa `Kuyruk`, range `A1`):
-   `[NN, "<başlık>", "grumpo/out/grumpo-NN.mp4", "<açıklama>", "kuyrukta", "", "<etiketler>", "", "<1 cümle özet>"]`
+   `[NN, "<başlık>", "grumpo/out/grumpo-NN.mp4", "<açıklama>", "kuyrukta", "", "<etiketler>", "", "<1 cümle özet>", "<yorum>"]`
+   **Yorum** (J sütunu): Make video yüklenince bunu kanal adına ilk yorum olarak atar. İngilizce, tek satır, ≤ 120 karakter,
+   taraf tutturan veya cevaplaması kolay bir soru + 1-2 emoji. Örn: `Team Grumpo 🟣 or Team Nibbo 🟡? Who was right? 👇`.
+   Her bölümde farklı soru (bölümün olayına özel). ÇİFT TIRNAK (") ve satır sonu KULLANMA (JSON'u bozar); gerekirse tek tırnak (').
 8. `log/bolumler.md`'ye ayrıntılı satır, `log/indeks.md`'ye tek satırlık parmak izi ekle; `konu_bankasi.md` işaretlerini kaydet.
    Hepsini 6. adımdaki commit'e dahil et (`git add grumpo/log/`).
 9. Kısa rapor: bölüm no, başlık, süre, hikâye özeti, kuyrukta kaç video bekliyor.
