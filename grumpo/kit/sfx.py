@@ -596,6 +596,72 @@ def s_wobble():
     return norm(filt(x, 150, 1500) * env(len(t), 0.05, curve=0.8)) * 0.45
 
 
+def s_whirr():
+    """vending machine spiral motor: buzzy rising-falling whirr."""
+    d = 0.9
+    t = T(d)
+    f = 110 + 25 * np.sin(np.pi * t / d)
+    ph = 2 * np.pi * np.cumsum(f) / SR
+    x = np.tanh(3 * np.sin(ph)) + 0.4 * np.sin(3 * ph) + 0.15 * filt(noise(d), 800, 3000)
+    x *= 0.75 + 0.25 * np.sin(2 * np.pi * 14 * t)
+    return norm(filt(x, 70, 2500) * env(len(t), 0.04, curve=0.5)) * 0.45
+
+
+def s_coin():
+    """metallic coin clink."""
+    d = 0.5
+    t = T(d)
+    x = sum(a * np.sin(2 * np.pi * f * t) * np.exp(-t * k) for f, a, k in [(2900, 1, 9), (4300, 0.6, 12), (6100, 0.35, 16), (1900, 0.3, 14)])
+    x += 0.4 * filt(noise(d), 4000, 10000) * np.exp(-t * 90)
+    return norm(x) * 0.5
+
+
+def s_tap():
+    """knuckle tap on glass."""
+    d = 0.08
+    t = T(d)
+    x = np.sin(2 * np.pi * 1300 * t) * np.exp(-t * 70) + 0.6 * filt(noise(d), 1500, 6000) * np.exp(-t * 120)
+    return norm(x) * 0.5
+
+
+def s_clatter():
+    """a few cans/bags tumbling down."""
+    d = 0.7
+    out = np.zeros(int(SR * d))
+    for k in range(7):
+        st = int((k * 0.085 + rng.uniform(0, 0.03)) * SR)
+        n = int(0.12 * SR)
+        tt = np.arange(n) / SR
+        f = rng.uniform(500, 1400)
+        h = np.sin(2 * np.pi * f * tt) * np.exp(-tt * 35) + 0.7 * filt(noise(0.12), 800, 5000)[:n] * np.exp(-tt * 60)
+        out[st:st + n] += h[: len(out) - st] * rng.uniform(0.6, 1.0)
+    return norm(out) * 0.7
+
+
+def s_vacuum():
+    """robot vacuum hum (whiny motor + air)."""
+    d = 1.6
+    t = T(d)
+    f = 520 + 30 * np.sin(2 * np.pi * 3 * t)
+    x = 0.5 * sweep(1, 1, d) * 0 + np.sin(2 * np.pi * np.cumsum(f) / SR) * 0.35 + 0.6 * filt(noise(d), 1500, 6000)
+    return norm(x * env(len(t), 0.15, curve=0.6)) * 0.35
+
+
+def s_suck():
+    """quick suction 'shloop'."""
+    d = 0.22
+    t = T(d)
+    x = filt(noise(d), 800, 5000) * np.sin(np.pi * t / d) + 0.7 * sweep(300, 1400, d) * env(len(t), 0.01, curve=1.2)
+    return norm(x) * 0.55
+
+
+def s_robot_beep():
+    """happy little robot chirp: 3 rising notes."""
+    out = [sweep(f, f * 1.05, 0.07, wave="sq") * env(int(SR * 0.07), 0.002, curve=1.2) for f in (880, 1175, 1568)]
+    gap = np.zeros(int(SR * 0.025))
+    return norm(filt(cat(out[0], gap, out[1], gap, out[2]), hi=5000)) * 0.4
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 

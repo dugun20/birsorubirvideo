@@ -13,7 +13,7 @@ her listeye 30+ yeni madde ekle.
 1. Açık hava havuzu ✔01
 2. Oturma odası ✔02
 3. Mutfak ✔03
-4. Ofis / iki masa yan yana
+4. Ofis / iki masa yan yana ✔04
 5. Sinema salonu
 6. Otobüs durağı (yağmur)
 7. Kamp alanı / çadır
@@ -122,7 +122,7 @@ her listeye 30+ yeni madde ekle.
 8. Park yeri
 9. Sırada öne geçme
 10. Diyet – gizli tatlı
-11. Bozuk otomat makinesi (para yuttu)
+11. Bozuk otomat makinesi (para yuttu) ✔04
 12. Sinir bozucu sinek
 13. Rüzgârda uçan şapka
 14. Son sandalye (müzikli sandalye ama müziksiz – SFX ile)
@@ -237,7 +237,7 @@ her listeye 30+ yeni madde ekle.
 - A. 3 deneme + final ✔01
 - B. Sıcak-soğuk / ipucu oyunu + kılık + kovalamaca ✔02
 - C. Ters rol: Grumpo istiyor, Nibbo engelliyor
-- D. Ortak düşman: ikisi birlikte üçüncü bir şeye karşı
+- D. Ortak düşman: ikisi birlikte üçüncü bir şeye karşı ✔04
 - E. Zincirleme büyüyen tek şaka (domino etkisi)
 - F. Tırmanan sayaç (`counter`): TRY 1/5…, ikiye katlanan şey, seviye barı ✔03
 - G. Yarış (paralel çekim, iki şerit)
@@ -252,7 +252,7 @@ her listeye 30+ yeni madde ekle.
 - Nibbo kazanır ✔01 ✔02
 - Grumpo kazanır
 - İkisi de kaybeder / rezil olur ✔03
-- Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…)
+- Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…) ✔04
 - Barışırlar / paylaşırlar
 - Beklenmedik ters köşe (her şey rüyaydı DEĞİL — onu kullanma)
 - Ödül değersiz çıkar (uğruna savaştıkları şey boşmuş)
