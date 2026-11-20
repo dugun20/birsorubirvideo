@@ -137,7 +137,7 @@
    "no": 23,
    "slug": "esneme",
    "q": "Neden esneriz?",
-   "done": false
+   "done": true
   },
   {
    "no": 24,
@@ -173,6 +173,24 @@
    "no": 29,
    "slug": "bulut-agirlik",
    "q": "Bir bulut kaç ton gelir?",
+   "done": false
+  },
+  {
+   "no": 30,
+   "slug": "hickirik",
+   "q": "Neden hıçkırırız?",
+   "done": false
+  },
+  {
+   "no": 31,
+   "slug": "yildiz-kirpma",
+   "q": "Yıldızlar neden göz kırpar?",
+   "done": false
+  },
+  {
+   "no": 32,
+   "slug": "yarasa",
+   "q": "Yarasalar karanlıkta nasıl yol bulur?",
    "done": false
   }
  ]
