@@ -12,7 +12,7 @@ her listeye 30+ yeni madde ekle.
 ## MEKÂN
 1. Açık hava havuzu ✔01
 2. Oturma odası ✔02
-3. Mutfak
+3. Mutfak ✔03
 4. Ofis / iki masa yan yana
 5. Sinema salonu
 6. Otobüs durağı (yağmur)
@@ -231,7 +231,7 @@ her listeye 30+ yeni madde ekle.
 117. Tavuk yumurta
 118. İnek süt (çiftlik)
 119. Pasta yarışması
-120. Krep çevirme
+120. Krep çevirme ✔03
 
 ## YAPI (dönüşümlü – son 5 bölümde kullanılanı tekrarlama)
 - A. 3 deneme + final ✔01
@@ -239,7 +239,7 @@ her listeye 30+ yeni madde ekle.
 - C. Ters rol: Grumpo istiyor, Nibbo engelliyor
 - D. Ortak düşman: ikisi birlikte üçüncü bir şeye karşı
 - E. Zincirleme büyüyen tek şaka (domino etkisi)
-- F. Tırmanan sayaç (`counter`): TRY 1/5…, ikiye katlanan şey, seviye barı
+- F. Tırmanan sayaç (`counter`): TRY 1/5…, ikiye katlanan şey, seviye barı ✔03
 - G. Yarış (paralel çekim, iki şerit)
 - H. Taklit: biri ötekini kopyalıyor, iş çığırından çıkıyor
 - I. Yanlış anlaşılma: izleyici gerçeği biliyor, karakterler bilmiyor
@@ -251,7 +251,7 @@ her listeye 30+ yeni madde ekle.
 ## SON (son 5 bölümde kullanılanı tekrarlama)
 - Nibbo kazanır ✔01 ✔02
 - Grumpo kazanır
-- İkisi de kaybeder / rezil olur
+- İkisi de kaybeder / rezil olur ✔03
 - Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…)
 - Barışırlar / paylaşırlar
 - Beklenmedik ters köşe (her şey rüyaydı DEĞİL — onu kullanma)

@@ -548,6 +548,54 @@ def s_scan():
     return norm(x * env(len(t), 0.03, curve=0.4)) * 0.35
 
 
+def s_sizzle():
+    d = 1.0
+    t = T(d)
+    x = filt(noise(d), 2500, 9000) * (0.55 + 0.45 * np.abs(np.sin(2 * np.pi * 3.3 * t)))
+    for k in range(40):
+        st = int(rng.uniform(0, d - 0.01) * SR)
+        n = int(0.006 * SR)
+        x[st:st + n] += rng.uniform(1.5, 3.0) * filt(noise(0.006), 3000, 10000)[:n]
+    return norm(x * env(len(t), 0.05, curve=0.7)) * 0.45
+
+
+def s_flap():
+    """pancake flip: airy 'fwup' with a soft flap."""
+    d = 0.22
+    t = T(d)
+    x = filt(noise(d), 500, 2500) * np.sin(np.pi * t / d) ** 2
+    x += 0.5 * sweep(180, 420, d) * np.exp(-t * 14)
+    return norm(x) * 0.6
+
+
+def s_pancake():
+    """soft 'thwap' of a pancake landing."""
+    d = 0.2
+    t = T(d)
+    x = filt(noise(d), 250, 1800) * np.exp(-t * 28) * np.minimum(1, t / 0.001)
+    x += 0.7 * np.sin(2 * np.pi * np.cumsum(140 + 160 * np.exp(-t * 40)) / SR) * np.exp(-t * 22)
+    return norm(x) * 0.75
+
+
+def s_strain():
+    """effort grunt-like low wobble (no voice)."""
+    d = 0.9
+    t = T(d)
+    f = 95 + 15 * np.sin(2 * np.pi * 9 * t)
+    x = filt(np.sin(2 * np.pi * np.cumsum(f) / SR) + 0.4 * np.sign(np.sin(2 * np.pi * np.cumsum(f) / SR)), 80, 900)
+    return norm(x * env(len(t), 0.08, curve=0.8)) * 0.5
+
+
+def s_wobble():
+    """tall stack swaying: rubbery wah."""
+    d = 1.2
+    t = T(d)
+    f = 220 + 90 * np.sin(2 * np.pi * 2.2 * t)
+    x = sweep(1, 1, d)
+    x = np.sin(2 * np.pi * np.cumsum(f) / SR) * (0.6 + 0.4 * np.sin(2 * np.pi * 2.2 * t))
+    return norm(filt(x, 150, 1500) * env(len(t), 0.05, curve=0.8)) * 0.45
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 
