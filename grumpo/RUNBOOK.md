@@ -51,8 +51,10 @@ Kuyrukta zaten **4 veya daha fazla 'kuyrukta' satırı** varsa yeni bölüm üre
    - Açıklama: 1–2 kısa cümle + yorum sorusu + boş satır + `#shorts #cartoon #animation #funny`
    - Etiketler: virgül+boşlukla ayrılmış: `Grumpo, Nibbo, Grumpo and Nibbo, Grumpo & Nibbo, cartoon, funny cartoon, animation, shorts, cartoon shorts, animated shorts, silent cartoon, slapstick cartoon, <konuya özel 2-4 etiket>`
    - Başlık ve açıklamada `<` `>` karakteri kullanma.
-6. `git add grumpo/episodes/epNN_<slug>.py grumpo/out/grumpo-NN.mp4 grumpo/log/bolumler.md grumpo/kit/sfx.py`
-   `git commit -m "Grumpo #NN: <kısa ad>"` ve `git -c push.negotiate=true push` (reddedilirse RUNBOOK'taki derinlikli fetch/rebase ile tekrar dene).
+6. Önce `git config user.name Cihan` ve `git config user.email dugun258@gmail.com`.
+   `git add grumpo/episodes/epNN_<slug>.py grumpo/out/grumpo-NN.mp4 grumpo/log/bolumler.md grumpo/kit/sfx.py`
+   `git commit -m "Grumpo #NN: <kısa ad>"`, sonra `git pull --rebase` (aynı depoya başka sayfaların görevleri de push ediyor)
+   ve `git -c push.negotiate=true push`. Reddedilirse `git fetch --depth=50 origin main` + rebase ile bir kez daha dene.
    Preview/check png'lerini commit etme.
 7. Kuyruğa satır ekle (Google Sheets `append_values`, sayfa `Kuyruk`, range `A1`):
    `[NN, "<başlık>", "grumpo/out/grumpo-NN.mp4", "<açıklama>", "kuyrukta", "", "<etiketler>", "", "<1 cümle özet>"]`
