@@ -37,10 +37,57 @@ def thud():
     return np.sin(2 * np.pi * 110 * t) * env(n, 0.003, 0.018)
 
 
+def puf():
+    """very soft cushioned landing: short low-passed air puff + faint 240 Hz body (no boomy 'tok')"""
+    n = int(SR * 0.05); t = np.arange(n) / SR
+    noise = np.random.default_rng(int(1e6 * t.sum()) % 997).normal(0, 1, n)
+    lp = np.convolve(noise, np.ones(12) / 12, mode="same")
+    return (0.7 * lp / (np.abs(lp).max() + 1e-9) + 0.35 * np.sin(2 * np.pi * 240 * t)) * env(n, 0.002, 0.012)
+
+
+def beep(f, d, bright=0.0):
+    n = int(SR * d); t = np.arange(n) / SR
+    s = np.sin(2 * np.pi * f * t) + 0.3 * np.sin(4 * np.pi * f * t) + bright * np.sin(6 * np.pi * f * t)
+    return s * np.minimum(1, t / 0.004) * np.minimum(1, (d - t) / 0.04)
+
+
+def start_signal():
+    """race start: 2 short countdown beeps while the marbles fill the box, then a bright GO chord"""
+    out = np.zeros(int(SR * 1.3))
+    for i, t0 in enumerate((0.0, 0.42)):
+        b = beep(880, 0.13); k = int(t0 * SR); out[k:k + len(b)] += b * 0.5
+    g = beep(1760, 0.45, 0.25) + 0.6 * beep(1318.5, 0.45); k = int(0.84 * SR)
+    g *= np.exp(-np.arange(len(g)) / SR / 0.28)
+    out[k:k + len(g)] += g[:len(out) - k] * 0.8
+    return out
+
+
+LAND = "puf"     # "puf" | "thud" | "none"
+
+
 THUD_GAIN = 1 / 0.2805   # level-matched to the approved test mix
 
 
-def build(r, out_wav):
+def whistle(d=0.55):
+    """referee whistle (football world GO)"""
+    n = int(SR * d); t = np.arange(n) / SR
+    f = 2900 + 180 * np.sign(np.sin(2 * np.pi * 28 * t))          # pea trill
+    s = np.sin(2 * np.pi * np.cumsum(f) / SR) + 0.25 * np.random.default_rng(1).normal(0, 1, n)
+    env_ = np.minimum(1, t / 0.01) * np.minimum(1, (d - t) / 0.06)
+    return s * env_ * 0.5
+
+
+def crowd(d=2.2):
+    """soft stadium cheer (football world goal)"""
+    rng = np.random.default_rng(2)
+    n = int(SR * d); t = np.arange(n) / SR
+    x = rng.normal(0, 1, n)
+    k = np.ones(18) / 18; lo = np.convolve(x, k, mode="same"); band = lo - np.convolve(lo, np.ones(160) / 160, mode="same")
+    env_ = np.minimum(1, t / 0.25) * np.exp(-np.maximum(0, t - 0.6) / 0.7)
+    return band / np.abs(band).max() * env_
+
+
+def build(r, out_wav, world="pastel"):
     hits, finish = r["hits"], r["finish"]
     dur = len(r["frames"]) / C.FPS + 0.8
     L = np.zeros(int(SR * dur)); R = np.zeros_like(L); LT = np.zeros_like(L); RT = np.zeros_like(L)
@@ -53,9 +100,20 @@ def build(r, out_wav):
         m = min(len(s), len(A) - i)
         A[i:i + m] += s[:m] * v * np.sqrt((1 - pan) / 2); B[i:i + m] += s[:m] * v * np.sqrt((1 + pan) / 2)
     go = C.GO_T
-    lp = lr = ls = -1
+    lp = lr = ls = lb = -1
     for (t, k, s, x, y) in hits:
-        if t < go:
+        if t < go and k in ("rod", "peg") and y < 700:    # marbles landing in the start box: bright pentatonic clinks
+            if t - lb < 0.035:
+                continue
+            lb = t
+            idx = max(0, min(7, int((x - 500) / 400 * 7 + 0.5)))
+            add(t, repitch(PEG, SCALE[idx] / PEG_F), 0.05 + 0.08 * s, (x - 700) / 1400)
+            continue
+        if t < go and k == "ball":     # marbles settling in the start box – soft ticks so the intro isn't silent
+            if t - lb < 0.05:
+                continue
+            lb = t
+            add(t, repitch(PEG, (SCALE[5] + 200 * ((x * 7) % 3)) / PEG_F), 0.03 + 0.05 * s, (x - 700) / 1400)
             continue
         pan = max(-0.6, min(0.6, (x - 700) / 700))
         if k in ("peg", "bumper", "pad"):
@@ -70,12 +128,20 @@ def build(r, out_wav):
                 continue
             ls = t; add(t, SPIN, 0.10 + 0.08 * s, pan)
         elif k == "rod":
-            if t - lr < 0.14 or s < 0.25:
+            if t - lr < 0.14 or s < (0.12 if t < go else 0.25):
                 continue
-            lr = t; add(t, thud(), 0.05 + 0.08 * s, pan * 0.5, (LT, RT))
-    add(go - 0.01, GO, 0.6)
+            lr = t
+            if LAND != "none":
+                add(t, puf() if LAND == "puf" else thud(), (0.03 + 0.05 * s) if LAND == "puf" else (0.05 + 0.08 * s),
+                    pan * 0.5, (LT, RT))
     fin = sorted(x for x in finish if x is not None)
-    add(fin[0] - 0.05, WIN, 0.45)
+    add(go - 0.84, start_signal(), 0.45)
+    if world == "football":
+        add(go - 0.02, whistle(), 0.3)
+        add(fin[0] - 0.05, crowd(), 0.22)
+        add(fin[0] - 0.05, WIN, 0.35)
+    else:
+        add(fin[0] - 0.05, WIN, 0.45)
     for ft in fin[1:]:
         add(ft, repitch(PEG, SCALE[5] / PEG_F), 0.08)
     rng = np.random.default_rng(5)

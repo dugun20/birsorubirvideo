@@ -4,6 +4,7 @@ meta: dict(fmt='classic'|'country', theme=<name>, names=[...], colors=[(r,g,b)],
 """
 import cairo, math, random, subprocess, os
 import course as C
+import worlds as WD
 
 W, H = 1080, 1920
 FPS = C.FPS
@@ -117,7 +118,7 @@ def draw_flag(ctx, spec, x, y, r):
     elif spec == "mexico":
         for i, c in enumerate(["#1b7f4a", "#ffffff", "#d62b2b"]):
             rect(c, x0 + d * i / 3, y0, d / 3 + 1, d)
-        circ("#9b6a2f", x, y + r * .05, r * .14)
+        circ("#9b6a2f", x, y + r * .02, r * .2); circ("#3a8f3a", x, y + r * .2, r * .08)
     elif spec == "turkey":
         rect("#e30a17", x0, y0, d, d)
         circ("#ffffff", x - r * .18, y, r * .45); circ("#e30a17", x - r * .06, y, r * .36)
@@ -213,9 +214,8 @@ def eob(x):
 
 
 def render(r, meta, out_mp4, stills=None, crf=21):
-    th = THEMES[meta["theme"]]
-    BG = [hx(c) for c in th["bg"]]
-    ROD, PEG, SPIN, BUMP, PAD = (hx(th[k]) for k in ("rod", "peg", "spin", "bump", "pad"))
+    wd = WD.make(meta["world"], meta.get("palette"))
+    bump_hits = [h[0] for h in r["hits"] if h[1] == "bumper" and h[2] > 0.45]
     names, cols, flags = meta["names"], meta["colors"], meta["flags"]
     n = len(names)
     frames, finish = r["frames"], r["finish"]
@@ -224,10 +224,6 @@ def render(r, meta, out_mp4, stills=None, crf=21):
     first_t = done[0]; winner = finish.index(first_t)
     WN = names[winner]; WC = cols[winner]
     NF = len(frames)
-
-    def bgcol(p):
-        p = max(0, min(0.999, p)) * (len(BG) - 1); i = int(p)
-        return lerpc(BG[i], BG[i + 1], p - i)
 
     # camera
     cams = []
@@ -248,7 +244,6 @@ def render(r, meta, out_mp4, stills=None, crf=21):
         cams.append((cx, cy))
 
     rng = random.Random(3)
-    bokeh = [(rng.uniform(0, W), rng.uniform(0, 3000), rng.uniform(14, 48), rng.uniform(0.12, 0.3)) for _ in range(45)]
     conf = [(rng.uniform(0, W), rng.uniform(-300, 0), rng.uniform(-120, 120), rng.uniform(200, 600),
              rng.choice(cols), rng.uniform(0, 6), rng.uniform(-9, 9)) for _ in range(220)]
 
@@ -285,35 +280,29 @@ def render(r, meta, out_mp4, stills=None, crf=21):
             continue
         prev = frames[max(0, i - 1)]["b"]
         p = (camy + VH / 2) / cr.floor_y
-        g = cairo.LinearGradient(0, 0, 0, H); g.add_color_stop_rgb(0, *bgcol(p - 0.05)); g.add_color_stop_rgb(1, *bgcol(p + 0.12))
-        ctx.set_source(g); ctx.paint()
-        for (bx, by, br, ba) in bokeh:
-            yy = (by - camy * Z * 0.35) % 3000 - 500; xx = (bx - camx * Z * 0.35) % (W + 200) - 100
-            if -60 < yy < H + 60:
-                ctx.set_source_rgba(1, 1, 1, ba); ctx.arc(xx, yy, br, 0, 7); ctx.fill()
-        ctx.save(); ctx.scale(Z, Z); ctx.translate(-camx, -camy)
+        wd.background(ctx, W, H, camx, camy, Z, p, t)
+        shake = 0.0
+        for ht in bump_hits:
+            if 0 <= t - ht < 0.18:
+                shake = max(shake, 7 * (1 - (t - ht) / 0.18))
+        ctx.save()
+        if shake:
+            ctx.translate(shake * math.sin(t * 90), shake * math.cos(t * 77))
+        ctx.scale(Z, Z); ctx.translate(-camx, -camy)
         vt, vb, vl, vr = camy - 120, camy + VH + 120, camx - 120, camx + VW + 120
+        wd.under(ctx, camx, camy, VW, VH, t)
         fy = cr.finish_y
-        if vt < fy + 60 and vb > fy - 60:
-            sq = 40
-            for xq in range(C.L, C.R, sq):
-                for row in range(2):
-                    ctx.set_source_rgb(*((1, 1, 1) if ((xq - C.L) // sq + row) % 2 == 0 else (0.08, 0.06, 0.12)))
-                    ctx.rectangle(xq, fy - sq + row * sq, sq, sq); ctx.fill()
+        if vt < fy + 300 and vb > fy - 60:
+            wd.finish(ctx, fy, C.L, C.R)
         for (a, b, kind) in cr.rods:
             if max(a[1], b[1]) < vt or min(a[1], b[1]) > vb:
                 continue
-            rod(ctx, a, b, PAD if kind == "pad" else ROD, 18 if kind == "pad" else 22)
+            wd.rod(ctx, a, b, kind)
         if t < C.GO_T:
-            rod(ctx, (575, 430), (825, 430), (1, 1, 1))
+            rod(ctx, cr.gate[0], cr.gate[1], (1, 1, 1))
         for (x, y, rr, kind) in cr.pegs:
             if vt < y < vb and vl < x < vr:
-                colr = PEG if kind == "peg" else BUMP
-                ctx.set_source_rgb(*OUT); ctx.arc(x, y, rr + (3.5 if kind == "peg" else 5), 0, 7); ctx.fill()
-                ctx.set_source_rgb(*colr); ctx.arc(x, y, rr, 0, 7); ctx.fill()
-                if kind == "bumper":
-                    ctx.set_source_rgba(1, 1, 1, 0.55); ctx.set_line_width(5); ctx.arc(x, y, rr * .6, 0, 7); ctx.stroke()
-                ctx.set_source_rgba(1, 1, 1, 0.55); ctx.arc(x - rr * .35, y - rr * .35, rr * .3, 0, 7); ctx.fill()
+                wd.peg(ctx, x, y, rr, kind, t)
         for kd, (kx, ky, ka) in zip(cr.kin, f["k"]):
             if ky < vt - 300 or ky > vb + 300:
                 continue
@@ -321,7 +310,10 @@ def render(r, meta, out_mp4, stills=None, crf=21):
             for (a, b, thk) in kd["segs"]:
                 pa = (kx + a[0] * ca - a[1] * sa, ky + a[0] * sa + a[1] * ca)
                 pb = (kx + b[0] * ca - b[1] * sa, ky + b[0] * sa + b[1] * ca)
-                rod(ctx, pa, pb, SPIN if kd["kind"] == "spin" else PAD, 24)
+                if kd["kind"] == "spin":
+                    wd.spinner(ctx, pa, pb)
+                else:
+                    wd.rod(ctx, pa, pb, "pad")
             if kd["kind"] == "spin":
                 ctx.set_source_rgb(*OUT); ctx.arc(kx, ky, 17, 0, 7); ctx.fill()
                 ctx.set_source_rgb(1, 1, 1); ctx.arc(kx, ky, 12, 0, 7); ctx.fill()
@@ -352,6 +344,12 @@ def render(r, meta, out_mp4, stills=None, crf=21):
                     continue
                 ctx.save(); ctx.translate(x, y); ctx.rotate(r0 + vr * ct)
                 ctx.set_source_rgb(*c); ctx.rectangle(-8, -3.5, 16, 7); ctx.fill(); ctx.restore()
+        wd.overlay(ctx, W, H, t)
+        if meta.get("slow") and meta["slow"][0] <= t <= meta["slow"][1]:
+            sa, sb = meta["slow"]; q = min(1, (t - sa) / 0.25, (sb - t) / 0.25)
+            g = cairo.RadialGradient(W / 2, H / 2, H * 0.32, W / 2, H / 2, H * 0.75)
+            g.add_color_stop_rgba(0, 0, 0, 0, 0); g.add_color_stop_rgba(1, 0, 0, 0, 0.45 * q)
+            ctx.set_source(g); ctx.paint()
         # header (pushed down HDR px, WHO WINS ~10% smaller than v1)
         text_c(ctx, meta["header"], 540, 192 + HDR, 58, (1, 1, 1), sw=11)
         text_c(ctx, "WHO WINS?", 540, 292 + HDR, 135, None, sw=15, grad=(hx("#ffe35a"), hx("#ff9420")))
@@ -360,6 +358,12 @@ def render(r, meta, out_mp4, stills=None, crf=21):
             marble(ctx, slot[k], 471 + HDR, cols[k], rad=19, face=False, flag=flags[k])
         for m in range(3):
             text_c(ctx, str(m + 1), BAR_X0 + 50 + m * SLOT_DX, 536 + HDR, 34, (1, 1, 1), sw=8, shadow=False)
+        if meta["world"] == "football" and first_t <= t < first_t + 1.1:
+            q = (t - first_t) / 1.1
+            ctx.push_group()
+            ctx.save(); ctx.translate(540, 1150); ctx.rotate(-0.08); sc = max(0.01, eob(min(1, q * 3)))
+            ctx.scale(sc, sc); text_c(ctx, "GOAL!", 0, 0, 230, hx("#ffd23f"), sw=18); ctx.restore()
+            ctx.pop_group_to_source(); ctx.paint_with_alpha(1 if q < 0.7 else (1 - q) / 0.3)
         if t >= first_t:
             q = min(1, (t - first_t) / 0.45); s = max(0.01, eob(q))
             ctx.save(); ctx.translate(540, 760); ctx.scale(s, s)

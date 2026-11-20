@@ -13,7 +13,7 @@ WIN_L, WIN_R = L + 11, R - 11          # inner wall faces
 RAD = 34
 FPS = 60
 SUB = 4
-GO_T = 1.6
+GO_T = 1.3
 GAP = 170                               # vertical breathing room between parts
 
 
@@ -174,25 +174,65 @@ PARTS = {
 }
 
 
-def build(space, parts, layout_seed):
+START_GATES = {"v": ((575, 430), (825, 430)), "shelf": ((410, 430), (990, 430))}
+
+
+def _seg_dist(px, py, a, b):
+    ax, ay = a; bx, by = b; dx, dy = bx - ax, by - ay
+    L2 = dx * dx + dy * dy or 1
+    t = max(0, min(1, ((px - ax) * dx + (py - ay) * dy) / L2))
+    return math.hypot(px - (ax + t * dx), py - (ay + t * dy))
+
+
+def add_edge_guards(c, y0, y1, step=170, r=24):
+    """Pegs touching the side walls all the way down, so no marble can free-fall along a wall.
+    A peg tangent to the wall can't trap a marble (it is always pushed toward the centre)."""
+    walls = {(L, -600), (R, -600)}
+    y = y0 + 40
+    k = 0
+    while y < y1 - 40:
+        for x in (WIN_L + r, WIN_R - r):
+            ok = all(math.hypot(x - px, y - py) > pr + r + 110 for (px, py, pr, _) in c.pegs)
+            ok = ok and all(_seg_dist(x, y, a, b) > r + 105 for (a, b, kind) in c.rods)
+            for kd in c.kin:
+                bx, by = kd["base"]
+                if "amp" in kd["motion"]:
+                    ok = ok and abs(by - y) > 120
+                else:
+                    reach = max(math.hypot(*p) for seg in kd["segs"] for p in seg[:2])
+                    ok = ok and math.hypot(x - bx, y - by) > reach + r + 110
+            if ok:
+                c.peg(x, y + (85 if (k % 2) else 0) * (1 if x < 700 else 0), r)
+        y += step; k += 1
+
+
+def build(space, parts, layout_seed, start="v", connectors=True):
     rng = random.Random(layout_seed)
     c = Course(space)
-    # start V + gate
-    c.rod((300, 80), (575, 430)); c.rod((1100, 80), (825, 430))
-    gate = pymunk.Segment(c.st, (575, 430), (825, 430), 11)
+    c.start = start
+    if start == "v":
+        c.rod((300, 80), (575, 430)); c.rod((1100, 80), (825, 430))
+    else:   # shelf: 8 marbles side by side on a long trapdoor
+        c.rod((410, 250), (410, 430)); c.rod((990, 250), (990, 430))
+        c.rod((L, 300), (410, 520)); c.rod((R, 300), (990, 520))
+    a, b = START_GATES[start]
+    gate = pymunk.Segment(c.st, a, b, 11)
     gate.elasticity = 0.1; gate.friction = 0.8
     space.add(gate)
+    c.gate = (a, b)
     y = 620
     seq = []
     for i, name in enumerate(parts):
         seq.append(name)
-        if name != "zigzag" and i < len(parts) - 1 and parts[i + 1] != "zigzag":
+        if connectors and name not in ("zigzag", "ramps") and i < len(parts) - 1 and parts[i + 1] != "ramps" and parts[i + 1] != "zigzag" and rng.random() < 0.4:
             seq.append("ramps")
-    seq.append("ramps")
+    if connectors:
+        seq.append("ramps")
     for name in seq:
         h = (p_ramps if name == "ramps" else PARTS[name])(c, y, rng)
         c.parts.append((name, y, y + h))
         y += h + GAP
+    add_edge_guards(c, 600, y)
     finish_y = y + 120
     floor_y = finish_y + 300
     c.rod((L, -600), (L, floor_y)); c.rod((R, -600), (R, floor_y))
@@ -201,17 +241,32 @@ def build(space, parts, layout_seed):
     return c, gate
 
 
-def run(parts, layout_seed, seed, n_balls=8, max_t=45):
+VMAX = 950.0   # terminal speed: keeps free falls readable on screen
+
+
+def _capped_velocity(body, gravity, damping, dt):
+    pymunk.Body.update_velocity(body, gravity, damping, dt)
+    v = body.velocity
+    if v.length > VMAX:
+        body.velocity = v * (VMAX / v.length)
+
+
+def run(parts, layout_seed, seed, n_balls=8, max_t=45, start="v", connectors=True):
     rnd = random.Random(seed)
     space = pymunk.Space(); space.gravity = (0, 2600)
-    c, gate = build(space, parts, layout_seed)
-    spots = [(612 + 58 * k, 380 - 70 * r) for r in range(3) for k in range(4)]
-    rnd.shuffle(spots)
+    c, gate = build(space, parts, layout_seed, start, connectors)
+    # marbles rain in from above the screen one after another and fill the start box (visible + audible intro)
+    if start == "v":
+        xs = [628 + 48 * k for k in range(4)] * 2
+    else:
+        xs = [456 + 69 * k for k in range(8)]
+    rnd.shuffle(xs)
+    spots = [(x, -440 - i * 46) for i, x in enumerate(xs)]
     balls = []
     for i in range(n_balls):
         b = pymunk.Body(1, pymunk.moment_for_circle(1, 0, RAD))
         x, yy = spots[i]
-        b.position = (x + rnd.uniform(-5, 5), yy - 120)
+        b.position = (x + rnd.uniform(-4, 4), yy)
         s = pymunk.Circle(b, RAD); s.elasticity = 0.45; s.friction = 0.7; s.collision_type = 1
         space.add(b, s); balls.append(b)
     hits = []; ct = [0.0]
@@ -234,6 +289,8 @@ def run(parts, layout_seed, seed, n_balls=8, max_t=45):
         for _ in range(SUB):
             if not opened and t >= GO_T:
                 space.remove(gate); opened = True
+                for b in balls:
+                    b.velocity_func = _capped_velocity
             for k in c.kin:
                 m = k["motion"]
                 if "amp" in m:
@@ -258,14 +315,14 @@ def run(parts, layout_seed, seed, n_balls=8, max_t=45):
     return dict(frames=frames, finish=finish, hits=hits, course=c)
 
 
-def score(r):
+def score(r, tmin=15.0, tmax=26.0):
     """Return (ok, info) – race quality check."""
     f = r["finish"]
     done = sorted(x for x in f if x is not None)
     if len(done) < 4:
         return False, "few finishers"
     first = done[0]
-    if not (15.0 <= first <= 26.0):
+    if not (tmin <= first <= tmax):
         return False, f"winner time {first:.1f}"
     gap = done[1] - done[0]
     ch, prev = 0, None
@@ -274,5 +331,5 @@ def score(r):
         if prev is not None and l != prev:
             ch += 1
         prev = l
-    ok = gap < 1.3 and ch >= 5
+    ok = gap < 1.3 and ch >= 4
     return ok, dict(first=round(first, 2), gap=round(gap, 2), changes=ch, n_fin=len(done))
