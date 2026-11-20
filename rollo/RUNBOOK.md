@@ -13,22 +13,29 @@ Kuyrukta zaten **4 veya daha fazla 'kuyrukta' satırı** varsa yeni yarış üre
 - Kayıt: `rollo/log/races.json` (tema, format, parçalar, kazanan – çeşitlilik kuralları bunu okur).
 - Kuyruk tablosu: spreadsheetId `1m6rYkgznD0tUN6wXidFxGHVnmradARs6E0fQiEkxS4g`, sayfa **`Rollo`**
   sütunlar: No | Başlık | Video dosyası | Açıklama | Durum | Paylaşım zamanı | Etiketler | YouTube ID | Özet | Yorum
-- Çıktı: 1080×1920, 60 fps, ~25 sn, müzik YOK.
+- Çıktı: 1080×1920, 60 fps, ~18–22 sn, müzik YOK.
 
-## Değişmeyecek stil kuralları (Cihan onayladı – değiştirme)
-- Örnek videosu (race_ornek.mp4) tarzı: pastel geçişli arka plan + baloncuklar, yüzlü sevimli bilyeler, liderde taç,
-  üstte "Pick your color! / WHO WINS?" + 8'li canlı sıralama çubuğu, final "<AD> WINS!" + konfeti + "Did you pick <AD>?".
-- Başlık bloğu YouTube'un üst düğmelerinin altında (render.py `HDR=75`), yazılar ekrandan taşmaz.
-- Sesler `audio.py`'deki gibi (çivi/çubuk/GO/kazanma sesleri örnek videodan, rampaya düşüş = yumuşak 110 Hz tok ses).
-  Cihan rampaya düşüş sesi konusunda çok hassas: ASLA değiştirme.
-- Ekrandaki sayılar rakamla. Karanlık/neon tema YOK (Cihan beğenmedi) – sadece `render.THEMES` içindeki pastel temalar.
+## Değişmeyecek kurallar (Cihan onayladı, 20 Kasım 2026 – değiştirme)
+- Tarz: yüzlü sevimli bilyeler, liderde taç, üstte "Pick your color!/Pick your country!" + "WHO WINS?" + 8'li canlı sıralama çubuğu,
+  final "<AD> WINS!" + konfeti + "Did you pick <AD>?". Başlık bloğu YouTube üst düğmelerinin altında (render.py `HDR=75`), yazılar taşmaz.
+- HER VİDEO FARKLI GÖRÜNMELİ: `worlds.py` dünyaları dönüşümlü – pastel (5 palet), candy (şeker), beach (plaj), winter (kar), jungle (orman),
+  football (çim saha + fileli kale + "GOAL!"). Ülke yarışları çoğunlukla football. Son 2 yarışın dünyası tekrar etmez. Karanlık/neon dünya YOK.
+- AKSİYON: uzun kayma rampaları YOK (Cihan "aksiyonsuz" buldu). Parkur aksiyon parçalarından (zigzag çok nadir), bağlantı rampası yok,
+  bilyelere hız sınırı (course.VMAX), duvar boyunca kenar engelleri (add_edge_guards) – kenardan serbest düşüş olmaz.
+  Hedef: kazanan 11–19 sn, ilk iki arası < 1.3 sn, ≥4 lider değişimi. AĞIR ÇEKİM YOK (Cihan "mantık hatası" gibi buldu).
+- BAŞLANGIÇ: bilyeler ekranın üstünden sırayla yağıp başlangıç bölmesini doldurur (V kapı ya da raf), düşerken tın tın sesler,
+  2 kısa "bip" + parlak GO sesi (football'da + hakem düdüğü), yarış 1.3. saniyede başlar – bekletme yok.
+- SESLER (`audio.py`): çivi/zıplatıcı = örnek videonun çivi notası (pentatonik), dönen çubuk = örnek sesi, kazanma = örnek sesi
+  (football'da + kısa tribün sesi). Rampaya düşüş = çok yumuşak "puf" (LAND="puf") – tok ses ASLA. Müzik yok.
+- Ekrandaki sayılar rakamla.
 
 ## Çeşitlilik (otomatik – make_race.py yapar)
-- Parçalar: plinko, zigzag, spinners, windmill, funnel, bumpers, scatter, sliders, pads, split → her yarışta 4–5 tanesi rastgele sırada
-  (aralarda yuvarlanma rampaları). Son 15 yarıştaki parça setini tekrar etmez.
-- Tema son 2 yarıştan farklı; kazanan son 2 kazanandan farklı; format: klasik 8 renk (~%65) / ülke bayrakları (~%35).
-- Yarış kalitesi: kazanan 15–26 sn, ilk iki arası < 1.3 sn, en az 5 lider değişimi (course.score).
-- Yeni parça/tema/format eklemek serbest (aynı stil, aynı tuzaksızlık kuralı: bilyenin girebileceği her boşluk ≥ 80 px ya da < 20 px).
+- Parçalar: plinko, spinners, windmill, funnel, bumpers, scatter, sliders, pads, split (+ nadiren zigzag); 8–9 parça rastgele sırada,
+  süre hedefe uymazsa parça ekler/çıkarır. Son 15 yarışın parça setini tekrar etmez.
+- Dünya/palet son yarışlardan farklı; başlangıç tipi (v/shelf) rastgele; kazanan son 2 kazanandan farklı;
+  format: klasik 8 renk (~%65) / ülke bayrakları (~%35, İtalya+Meksika birlikte seçilmez).
+- Yeni dünya/parça eklemek serbest (aynı sevimli stil, tuzaksızlık: bilyenin girebileceği her boşluk ≥ 80 px ya da < 20 px;
+  duvara teğet engel güvenlidir).
 
 ## Adımlar
 0. Ön kontrol: `pip install --break-system-packages pymunk pycairo numpy pillow` (yoksa), `which ffmpeg`,
