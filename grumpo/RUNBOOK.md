@@ -10,7 +10,8 @@ Kuyrukta zaten **4 veya daha fazla 'kuyrukta' satırı** varsa yeni bölüm üre
 ## Sabitler
 - Depo klasörü: `grumpo/` (bu klasör). Kit: `grumpo/kit/` (chars2.py, env2.py, still_v2.py, sfx.py, build.py)
 - Örnek/referans bölüm: `grumpo/episodes/ep01_havuz.py` (kalite ve yapı referansı — kopyalama, ondan öğren)
-- Bölüm kaydı: `grumpo/log/bolumler.md` — yazmadan ÖNCE oku, bitince yeni satır ekle
+- Bölüm kaydı: `grumpo/log/indeks.md` (tek satırlık parmak izleri – her zaman oku), `grumpo/log/bolumler.md` (ayrıntı)
+- Konu bankası: `grumpo/log/konu_bankasi.md` (mekân/çatışma/yapı/son listeleri + özel gün takvimi)
 - Kuyruk tablosu: spreadsheetId `1m6rYkgznD0tUN6wXidFxGHVnmradARs6E0fQiEkxS4g`, sayfa `Kuyruk`
   sütunlar: No | Başlık | Video dosyası | Açıklama | Durum | Paylaşım zamanı | Etiketler | YouTube ID | Özet
 - Çıktı: 1080×1920, 60 fps, H.264, sadece efekt sesleri (müzik YOK, seslendirme YOK, diyalog YOK)
@@ -55,7 +56,10 @@ D. **İlk 1 saniye:** olay hemen başlasın (çatışma ilk karede görünsün),
 0. Ön kontrol: `which rsvg-convert ffmpeg`, `python3 -c "import numpy, scipy"`
    (yoksa `apt-get install -y librsvg2-bin ffmpeg` / `pip install --break-system-packages numpy scipy`).
    Kuyruk tablosunu `get_values` (A1:I400) ile oku; 'kuyrukta' satırlarını say (≥4 ise dur, rapor ver). Son No'yu bul → NN = son No + 1 (iki haneli: 02, 03…).
-1. `log/bolumler.md`'yi oku. Yeni bölümün hikâyesini yaz: mekân, yapı türü, saniye saniye akış, son. Önceki bölümlerle çakışmadığını kontrol et.
+1. `log/indeks.md` (tamamı) ve `log/konu_bankasi.md`'yi oku. Önce özel gün takvimine bak (tarihe 1–5 gün varsa özel gün bölümü yap).
+   Değilse bankadan kullanılmamış 1 MEKÂN + 1 ÇATIŞMA + son 5 bölümde olmayan 1 YAPI + 1 SON seç (banka kurallarına uy).
+   Yeni bölümün hikâyesini yaz: saniye saniye akış, gag'ler, son, başlık kancası. İndeksteki gag anahtar kelimeleriyle çakışmadığını kontrol et.
+   Seçtiğin banka satırlarına `✔NN` ekle.
 2. `episodes/epNN_<slug>.py` dosyasını yaz (ep01_havuz.py'deki gibi: `W,H,FPS=1080,1920,60`, `DUR`, `frame(t)`, `EV`, `sfx()`, `build_sfx()`).
    Kitteki yardımcıları kullan; yeni sahne/prop gerekiyorsa aynı stilde çiz (dış çizgi OL, iki ton gölge).
 3. Önizleme: `python3 kit/build.py preview episodes/epNN_<slug>.py <8-12 zaman>` → `out/preview-epNN.png` resmine BAK.
@@ -68,13 +72,14 @@ D. **İlk 1 saniye:** olay hemen başlasın (çatışma ilk karede görünsün),
    - Etiketler: virgül+boşlukla ayrılmış: `Grumpo, Nibbo, Grumpo and Nibbo, Grumpo & Nibbo, cartoon, funny cartoon, animation, shorts, cartoon shorts, animated shorts, silent cartoon, slapstick cartoon, <konuya özel 2-4 etiket>`
    - Başlık ve açıklamada `<` `>` karakteri kullanma.
 6. Önce `git config user.name Cihan` ve `git config user.email dugun258@gmail.com`.
-   `git add grumpo/episodes/epNN_<slug>.py grumpo/out/grumpo-NN.mp4 grumpo/log/bolumler.md grumpo/kit/`
+   `git add grumpo/episodes/epNN_<slug>.py grumpo/out/grumpo-NN.mp4 grumpo/log/ grumpo/kit/`
    `git commit -m "Grumpo #NN: <kısa ad>"`, sonra `git pull --rebase` (aynı depoya başka sayfaların görevleri de push ediyor)
    ve `git -c push.negotiate=true push`. Reddedilirse `git fetch --depth=50 origin main` + rebase ile bir kez daha dene.
    Preview/check png'lerini commit etme.
 7. Kuyruğa satır ekle (Google Sheets `append_values`, sayfa `Kuyruk`, range `A1`):
    `[NN, "<başlık>", "grumpo/out/grumpo-NN.mp4", "<açıklama>", "kuyrukta", "", "<etiketler>", "", "<1 cümle özet>"]`
-8. `log/bolumler.md`'ye satır ekle (bkz. dosya biçimi) ve commit/push et (6. adımla birlikte yapılabilir).
+8. `log/bolumler.md`'ye ayrıntılı satır, `log/indeks.md`'ye tek satırlık parmak izi ekle; `konu_bankasi.md` işaretlerini kaydet.
+   Hepsini 6. adımdaki commit'e dahil et (`git add grumpo/log/`).
 9. Kısa rapor: bölüm no, başlık, süre, hikâye özeti, kuyrukta kaç video bekliyor.
 
 Bir adım başarısız olursa kuyruğa bozuk satır ekleme; hatayı açıkça raporla. Push başarısızsa kuyruğa ekleme.
