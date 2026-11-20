@@ -510,6 +510,44 @@ def s_squeak_slide():
     return norm(filt(x, 600, 4000) * env(len(t), 0.03, curve=0.6)) * 0.5
 
 
+def s_error_beep():
+    a = sweep(420, 420, 0.14, wave="sq") * env(int(SR * 0.14), 0.003, curve=0.6)
+    b = sweep(300, 300, 0.22, wave="sq") * env(int(SR * 0.22), 0.003, curve=1.2)
+    return norm(filt(cat(a, np.zeros(int(SR * 0.04)), b), hi=3000)) * 0.5
+
+
+def s_blip():
+    d = 0.09
+    return norm(sweep(900, 1400, d, wave="sq") * env(int(SR * d), 0.002, curve=1.5)) * 0.35
+
+
+def s_blip_down():
+    out = [sweep(f, f * 0.8, 0.08, wave="sq") * env(int(SR * 0.08), 0.002, curve=1.5) for f in (1200, 900, 600)]
+    return norm(filt(cat(*out), hi=4000)) * 0.4
+
+
+def s_lock_click():
+    d = 0.12
+    t = T(d)
+    x = filt(noise(d), 2000, 8000) * np.exp(-t * 80) + 0.5 * np.sin(2 * np.pi * 1800 * t) * np.exp(-t * 60)
+    return norm(cat(x, np.zeros(int(SR * 0.05)), x * 0.7)) * 0.6
+
+
+def s_typing():
+    d = 0.04
+    t = T(d)
+    x = filt(noise(d), 1500, 7000) * np.exp(-t * 120)
+    return norm(cat(x, np.zeros(int(SR * 0.07)), x * 0.8, np.zeros(int(SR * 0.06)), x * 0.9)) * 0.45
+
+
+def s_scan():
+    d = 0.8
+    t = T(d)
+    f = 1200 + 300 * np.sin(2 * np.pi * 5 * t)
+    x = np.sin(2 * np.pi * np.cumsum(f) / SR) * 0.4 + 0.2 * filt(noise(d), 3000, 8000)
+    return norm(x * env(len(t), 0.03, curve=0.4)) * 0.35
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 
