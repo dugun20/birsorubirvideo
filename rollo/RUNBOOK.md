@@ -45,7 +45,7 @@ Kuyrukta zaten **4 veya daha fazla 'kuyrukta' satırı** varsa yeni yarış üre
    `git add rollo/out/rollo-NN.mp4 rollo/out/rollo-NN.json rollo/log/ rollo/kit/` (+ silinenler);
    `git commit -m "Rollo #NN: <kazanan> wins (<tema>)"`; `git pull --rebase`; `git -c push.negotiate=true push`.
    Reddedilirse `git fetch --depth=50 origin main` + rebase ile bir kez daha dene. check png'yi commit etme.
-6. Push'tan sonra video adresi açılıyor mu kontrol et (GitHub Pages 1-2 dk gecikebilir; `curl -sI` ile 200 bekle, en fazla ~5 dk).
+6. (İsteğe bağlı) Çalışma ortamının ağı github.io'ya izin vermeyebilir (curl 000 döner) – bu normaldir, Make dosyayı kendisi indirir. Push başarılıysa devam et.
 7. Kuyruğa satır ekle (`append_values`, range `Rollo!A1`), değerler `rollo-NN.json`'dan:
    `[NN, title, file, description, "kuyrukta", "", tags, "", summary, comment]`
 8. Kısa rapor (SendUserMessage, Türkçe): yarış no, başlık, tema/format, parçalar, kazanan, süre, kuyrukta bekleyen sayısı.
