@@ -1,6 +1,6 @@
 # Rollo Racing (@RolloRacingTV) – global, konuşmasız bilye yarışı Shorts kanalı
 
-Durum (20 Kasım 2026): konsept onaylandı, örnek video yapıldı (prototype/). Kanal Cihan tarafından açılıyor.
+Durum (20 Kasım 2026): kanal açık, #1 elle yüklendi. Otomatik üretim kuruldu → günlük iş akışı için `RUNBOOK.md`, kod `kit/`. (prototype/ eski deneme, kullanılmıyor)
 Kanal adı: **Rollo Racing**, kullanıcı adı **@RolloRacingTV** (@RolloRacing boş bir hesapta dolu).
 
 ## Prototip (prototype/)

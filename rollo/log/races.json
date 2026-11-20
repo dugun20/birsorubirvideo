@@ -1,0 +1,39 @@
+[
+ {
+  "nn": 2,
+  "title": "Pick a Marble Before the Race Starts! 🏁 #2",
+  "title_tpl": "Pick a Marble Before the Race Starts! 🏁 #{nn}",
+  "theme": "sunset",
+  "fmt": "classic",
+  "parts": [
+   "zigzag",
+   "sliders",
+   "scatter",
+   "bumpers"
+  ],
+  "winner": "BLUE",
+  "layout": 794250,
+  "seed": 16,
+  "first": 21.25,
+  "gap": 0.77
+ },
+ {
+  "nn": 3,
+  "title": "Pick Your Country! WHO WINS? 🏆 #3",
+  "title_tpl": "Pick Your Country! WHO WINS? 🏆 #{nn}",
+  "theme": "mint",
+  "fmt": "country",
+  "parts": [
+   "bumpers",
+   "funnel",
+   "windmill",
+   "pads",
+   "split"
+  ],
+  "winner": "FRANCE",
+  "layout": 851117,
+  "seed": 27,
+  "first": 22.07,
+  "gap": 0.53
+ }
+]

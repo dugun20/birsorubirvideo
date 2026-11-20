@@ -1,0 +1,36 @@
+{
+ "nn": 2,
+ "file": "rollo/out/rollo-02.mp4",
+ "title": "Pick a Marble Before the Race Starts! 🏁 #2",
+ "title_tpl": "Pick a Marble Before the Race Starts! 🏁 #{nn}",
+ "description": "Pick your color before the race starts! 🏁\n8 marbles, 1 winner. Which one did you choose? 👇\nComment your color and subscribe for new races every day! 🏆\n\n#marblerace #whowins #shorts",
+ "tags": "marble race, marble racing, who wins, rollo racing, marble run, satisfying, oddly satisfying, ball race, marble race shorts, race simulation, guess who wins, satisfying video, color race, pick your color",
+ "comment": "Which color did you pick? 👇",
+ "theme": "sunset",
+ "fmt": "classic",
+ "parts": [
+  "zigzag",
+  "sliders",
+  "scatter",
+  "bumpers"
+ ],
+ "names": [
+  "PINK",
+  "PURPLE",
+  "RED",
+  "GREEN",
+  "CYAN",
+  "YELLOW",
+  "ORANGE",
+  "BLUE"
+ ],
+ "winner": "BLUE",
+ "layout": 794250,
+ "seed": 16,
+ "first": 21.25,
+ "gap": 0.77,
+ "changes": 5,
+ "dur": 25.8,
+ "mb": 6.8,
+ "summary": "classic race, theme sunset, parts zigzag+sliders+scatter+bumpers; BLUE wins by 0.77s"
+}
