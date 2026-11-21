@@ -662,6 +662,38 @@ def s_robot_beep():
     return norm(filt(cat(out[0], gap, out[1], gap, out[2]), hi=5000)) * 0.4
 
 
+def s_twang():
+    """plucked rubber band / stretched wishbone: low wobbly decaying tone."""
+    d = 0.7
+    t = T(d)
+    f = 150 * (1 + 0.5 * np.exp(-t * 18)) * (1 + 0.04 * np.sin(2 * np.pi * 11 * t))
+    ph = 2 * np.pi * np.cumsum(f) / SR
+    x = (2 * ((ph / (2 * np.pi)) % 1) - 1) * 0.6 + np.sin(ph * 2) * 0.4
+    x = filt(x, hi=1800) * env(len(t), 0.002, curve=2.2)
+    return norm(x) * 0.8
+
+
+def s_snap():
+    """dry bone crack: sharp noise burst + low knock."""
+    d = 0.32
+    n = filt(noise(d), lo=1500) * env(int(SR * d), 0.0008, curve=14)
+    k = sweep(220, 70, d) * env(int(SR * d), 0.001, curve=6)
+    c = filt(noise(0.05), lo=3000) * env(int(SR * 0.05), 0.0005, curve=4)
+    c = np.pad(c, (int(SR * 0.03), len(n) - len(c) - int(SR * 0.03)))
+    return norm(n * 0.9 + k * 0.7 + c * 0.6) * 0.95
+
+
+def s_stretch():
+    """rubbery creak while something stretches."""
+    d = 0.8
+    t = T(d)
+    f = 90 + 70 * t / d
+    ph = 2 * np.pi * np.cumsum(f) / SR
+    am = 0.55 + 0.45 * np.abs(np.sin(2 * np.pi * 9 * t))
+    x = filt((2 * ((ph / (2 * np.pi)) % 1) - 1), 120, 1400) * am * env(len(t), 0.05, curve=1.0)
+    return norm(x) * 0.6
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 
