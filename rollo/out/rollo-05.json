@@ -1,0 +1,43 @@
+{
+ "nn": 5,
+ "file": "rollo/out/rollo-05.mp4",
+ "title": "Pick Your Color! WHO WINS? 🏆 Marble Race #5",
+ "title_tpl": "Pick Your Color! WHO WINS? 🏆 Marble Race #{nn}",
+ "description": "Pick your color before the race starts! 🏁\n8 marbles, 1 winner. Which one did you choose? 👇\nComment your color and subscribe for new races every day! 🏆\n\n#marblerace #whowins #shorts",
+ "tags": "marble race, marble racing, who wins, rollo racing, marble run, satisfying, oddly satisfying, ball race, marble race shorts, race simulation, guess who wins, satisfying video, color race, pick your color",
+ "comment": "Which color did you pick? 👇",
+ "theme": "winter",
+ "world": "winter",
+ "palette": null,
+ "start": "v",
+ "fmt": "classic",
+ "parts": [
+  "funnel",
+  "sliders",
+  "split",
+  "scatter",
+  "windmill",
+  "spinners",
+  "pads",
+  "bumpers"
+ ],
+ "names": [
+  "PINK",
+  "PURPLE",
+  "RED",
+  "GREEN",
+  "CYAN",
+  "YELLOW",
+  "ORANGE",
+  "BLUE"
+ ],
+ "winner": "GREEN",
+ "layout": 71253,
+ "seed": 10,
+ "first": 13.05,
+ "gap": 0.64,
+ "changes": 7,
+ "dur": 17.6,
+ "mb": 6.4,
+ "summary": "classic race, world winter, start v, parts funnel+sliders+split+scatter+windmill+spinners+pads+bumpers; GREEN wins by 0.64s"
+}

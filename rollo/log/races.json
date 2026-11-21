@@ -74,5 +74,30 @@
   "seed": 8,
   "first": 15.55,
   "gap": 0.62
+ },
+ {
+  "nn": 5,
+  "title": "Pick Your Color! WHO WINS? 🏆 Marble Race #5",
+  "title_tpl": "Pick Your Color! WHO WINS? 🏆 Marble Race #{nn}",
+  "theme": "winter",
+  "world": "winter",
+  "palette": null,
+  "start": "v",
+  "fmt": "classic",
+  "parts": [
+   "funnel",
+   "sliders",
+   "split",
+   "scatter",
+   "windmill",
+   "spinners",
+   "pads",
+   "bumpers"
+  ],
+  "winner": "GREEN",
+  "layout": 71253,
+  "seed": 10,
+  "first": 13.05,
+  "gap": 0.64
  }
 ]
