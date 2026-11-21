@@ -48,5 +48,31 @@
   "seed": 9,
   "first": 14.69,
   "gap": 0.5
+ },
+ {
+  "nn": 4,
+  "title": "Country Ball Race – Who Wins? 🌍 #4",
+  "title_tpl": "Country Ball Race – Who Wins? 🌍 #{nn}",
+  "theme": "pastel:sky",
+  "world": "pastel",
+  "palette": "sky",
+  "start": "shelf",
+  "fmt": "country",
+  "parts": [
+   "spinners",
+   "split",
+   "pads",
+   "plinko",
+   "sliders",
+   "scatter",
+   "windmill",
+   "bumpers",
+   "funnel"
+  ],
+  "winner": "JAPAN",
+  "layout": 138269,
+  "seed": 8,
+  "first": 15.55,
+  "gap": 0.62
  }
 ]
