@@ -83,7 +83,7 @@ def counter(t, value, label="", step=None, steps=None, y=560, bump_t=None):
     if label and not isinstance(value, int):
         txt = f"{label} {value}"
     size = _fit(txt, 84, maxw=760)
-    w = min(820, len(txt) * size * 0.6 + 90)
+    w = min(1000, len(txt) * size * 0.68 + 100)
     out = [f'<g transform="translate(540,{y}) scale({sc:.3f})">',
            f'<rect x="{-w/2:.0f}" y="-62" width="{w:.0f}" height="112" rx="56" fill="{OL}" opacity="0.82"/>',
            _txt(0, 26, txt, size, "#ffffff", 0)]
