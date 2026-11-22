@@ -763,6 +763,87 @@ def s_popcorn():
     return norm(out * env(len(out), 0.02, curve=1.2)) * 0.7
 
 
+def s_rain():
+    """3 s of steady rain: soft hiss + random droplet ticks (layer back to back for a bed)."""
+    d = 3.0
+    t = T(d)
+    x = 0.5 * filt(noise(d), 1200, 9000) * (0.85 + 0.15 * np.sin(2 * np.pi * 0.7 * t))
+    x += 0.25 * filt(noise(d), 200, 900)
+    n = int(0.012 * SR)
+    for k in range(160):
+        st = int(rng.uniform(0, d - 0.02) * SR)
+        f = rng.uniform(1800, 4200)
+        y = np.sin(2 * np.pi * f * np.arange(n) / SR) * env(n, 0.0005, curve=5) * rng.uniform(0.1, 0.35)
+        x[st:st + n] += y
+    e = np.minimum(1, np.minimum(t / 0.05, (d - t) / 0.05))
+    return norm(x * e) * 0.6
+
+
+def s_wind():
+    """a gust of wind: swelling band-passed whoosh with a whistle."""
+    d = 1.4
+    t = T(d)
+    sw = np.sin(np.pi * t / d) ** 1.5
+    x = filt(noise(d), 300, 2500) * sw
+    x += 0.25 * sweep(700, 1100, d, kind="lin") * sw * (0.6 + 0.4 * np.sin(2 * np.pi * 5 * t))
+    return norm(x) * 0.8
+
+
+def s_bus_horn():
+    """big low two-note bus horn."""
+    d = 0.7
+    t = T(d)
+    x = sum(np.tanh(2.5 * np.sin(2 * np.pi * f * t)) for f in (196, 247))
+    x = filt(x, 120, 3000) * env(len(t), 0.02, curve=0.4)
+    return norm(x) * 0.8
+
+
+def s_engine():
+    """bus driving past: low diesel rumble swelling then fading, slight pitch drop."""
+    d = 2.6
+    t = T(d)
+    f = 55 - 12 * (t / d)
+    ph = 2 * np.pi * np.cumsum(f) / SR
+    x = np.tanh(2 * np.sin(ph)) + 0.5 * np.tanh(2 * np.sin(2 * ph))
+    x = filt(x, 40, 900) + 0.35 * filt(noise(d), 80, 600)
+    sw = np.exp(-((t - 1.0) / 0.7) ** 2)
+    return norm(x * sw) * 0.85
+
+
+def s_wave():
+    """huge water crash: low boom + roaring noise + dripping tail."""
+    d = 2.2
+    t = T(d)
+    x = 1.2 * filt(noise(d), 40, 260) * np.exp(-t * 3.0) * np.minimum(1, t / 0.03)
+    x += filt(noise(d), 300, 7000) * np.exp(-t * 2.2) * np.minimum(1, t / 0.06)
+    drops = np.zeros(len(t))
+    for k in range(30):
+        st = int(rng.uniform(0.3, 1.9) * SR)
+        b = s_plop() * rng.uniform(0.1, 0.4)
+        b = b[: len(t) - st]
+        drops[st:st + len(b)] += b
+    return norm(x + drops)
+
+
+def s_stream():
+    """water gushing off an umbrella edge onto someone (1.1 s)."""
+    d = 1.1
+    t = T(d)
+    x = filt(noise(d), 500, 4500) * (0.75 + 0.25 * np.sin(2 * np.pi * 17 * t))
+    x += 0.4 * filt(noise(d), 120, 400)
+    return norm(x * env(len(t), 0.04, curve=0.5)) * 0.75
+
+
+def s_tweet():
+    """small bird chirp (2 quick upward whistles)."""
+    out = []
+    for f0 in (2600, 3100):
+        d = 0.09
+        out.append(sweep(f0, f0 * 1.5, d) * env(int(SR * d), 0.005, curve=1.5))
+        out.append(np.zeros(int(SR * 0.05)))
+    return norm(cat(*out)) * 0.5
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 

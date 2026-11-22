@@ -15,7 +15,7 @@ her listeye 30+ yeni madde ekle.
 3. Mutfak ✔03
 4. Ofis / iki masa yan yana ✔04
 5. Sinema salonu ✔08
-6. Otobüs durağı (yağmur)
+6. Otobüs durağı (yağmur) ✔09
 7. Kamp alanı / çadır
 8. Hastane-doktor bekleme salonu
 9. Uçak koltukları
@@ -141,7 +141,7 @@ her listeye 30+ yeni madde ekle.
 25. Kargo kutusu kimin
 26. Dondurma eriyor
 27. Kahve sırası
-28. Tek şemsiye – yağmur
+28. Tek şemsiye – yağmur ✔09
 29. Tek battaniye – soğuk
 30. Battaniye/yorgan çekişmesi
 31. Ranzada üst kat kavgası
@@ -247,7 +247,7 @@ her listeye 30+ yeni madde ekle.
 - G. Yarış (paralel çekim, iki şerit) ✔06
 - H. Taklit: biri ötekini kopyalıyor, iş çığırından çıkıyor ✔08
 - I. Yanlış anlaşılma: izleyici gerçeği biliyor, karakterler bilmiyor
-- J. İş birliği: birlikte bir şey yapıyorlar, sonunda ters tepiyor
+- J. İş birliği: birlikte bir şey yapıyorlar, sonunda ters tepiyor ✔09
 - K. Gizlilik/sızma: lazerler, nöbetçi, saklanma
 - L. Tek mekânda zaman atlaması (sabah → gece, mevsim)
 - M. Döngü: başa saran olay, her turda değişen tek detay
@@ -255,7 +255,7 @@ her listeye 30+ yeni madde ekle.
 ## SON (son 5 bölümde kullanılanı tekrarlama)
 - Nibbo kazanır ✔01 ✔02 ✔08
 - Grumpo kazanır ✔07
-- İkisi de kaybeder / rezil olur ✔03
+- İkisi de kaybeder / rezil olur ✔03 ✔09
 - Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…) ✔04
 - Barışırlar / paylaşırlar ✔05
 - Beklenmedik ters köşe (her şey rüyaydı DEĞİL — onu kullanma)
