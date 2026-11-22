@@ -99,5 +99,28 @@
   "seed": 10,
   "first": 13.05,
   "gap": 0.64
+ },
+ {
+  "nn": 6,
+  "title": "Can Your Color Win? Marble Race #6 🏆",
+  "title_tpl": "Can Your Color Win? Marble Race #{nn} 🏆",
+  "theme": "candy",
+  "world": "candy",
+  "palette": null,
+  "start": "v",
+  "fmt": "classic",
+  "parts": [
+   "pads",
+   "spinners",
+   "windmill",
+   "funnel",
+   "zigzag",
+   "plinko"
+  ],
+  "winner": "CYAN",
+  "layout": 740655,
+  "seed": 0,
+  "first": 17.54,
+  "gap": 0.81
  }
 ]

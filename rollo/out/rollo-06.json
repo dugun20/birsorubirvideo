@@ -1,0 +1,41 @@
+{
+ "nn": 6,
+ "file": "rollo/out/rollo-06.mp4",
+ "title": "Can Your Color Win? Marble Race #6 🏆",
+ "title_tpl": "Can Your Color Win? Marble Race #{nn} 🏆",
+ "description": "Pick your color before the race starts! 🏁\n8 marbles, 1 winner. Which one did you choose? 👇\nComment your color and subscribe for new races every day! 🏆\n\n#marblerace #whowins #shorts",
+ "tags": "marble race, marble racing, who wins, rollo racing, marble run, satisfying, oddly satisfying, ball race, marble race shorts, race simulation, guess who wins, satisfying video, color race, pick your color",
+ "comment": "Which color did you pick? 👇",
+ "theme": "candy",
+ "world": "candy",
+ "palette": null,
+ "start": "v",
+ "fmt": "classic",
+ "parts": [
+  "pads",
+  "spinners",
+  "windmill",
+  "funnel",
+  "zigzag",
+  "plinko"
+ ],
+ "names": [
+  "PINK",
+  "PURPLE",
+  "RED",
+  "GREEN",
+  "CYAN",
+  "YELLOW",
+  "ORANGE",
+  "BLUE"
+ ],
+ "winner": "CYAN",
+ "layout": 740655,
+ "seed": 0,
+ "first": 17.54,
+ "gap": 0.81,
+ "changes": 11,
+ "dur": 22.1,
+ "mb": 9.8,
+ "summary": "classic race, world candy, start v, parts pads+spinners+windmill+funnel+zigzag+plinko; CYAN wins by 0.81s"
+}
