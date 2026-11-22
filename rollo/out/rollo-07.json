@@ -1,0 +1,43 @@
+{
+ "nn": 7,
+ "file": "rollo/out/rollo-07.mp4",
+ "title": "Only 1 Marble Can Win! Pick Your Color 🏆 #7",
+ "title_tpl": "Only 1 Marble Can Win! Pick Your Color 🏆 #{nn}",
+ "description": "Pick your color before the race starts! 🏁\n8 marbles, 1 winner. Which one did you choose? 👇\nComment your color and subscribe for new races every day! 🏆\n\n#marblerace #whowins #shorts",
+ "tags": "marble race, marble racing, who wins, rollo racing, marble run, satisfying, oddly satisfying, ball race, marble race shorts, race simulation, guess who wins, satisfying video, color race, pick your color",
+ "comment": "Which color did you pick? 👇",
+ "theme": "beach",
+ "world": "beach",
+ "palette": null,
+ "start": "v",
+ "fmt": "classic",
+ "parts": [
+  "funnel",
+  "spinners",
+  "pads",
+  "plinko",
+  "bumpers",
+  "split",
+  "scatter",
+  "windmill"
+ ],
+ "names": [
+  "PINK",
+  "PURPLE",
+  "RED",
+  "GREEN",
+  "CYAN",
+  "YELLOW",
+  "ORANGE",
+  "BLUE"
+ ],
+ "winner": "YELLOW",
+ "layout": 624106,
+ "seed": 7,
+ "first": 13.95,
+ "gap": 0.07,
+ "changes": 11,
+ "dur": 18.5,
+ "mb": 8.6,
+ "summary": "classic race, world beach, start v, parts funnel+spinners+pads+plinko+bumpers+split+scatter+windmill; YELLOW wins by 0.07s"
+}

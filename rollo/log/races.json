@@ -122,5 +122,30 @@
   "seed": 0,
   "first": 17.54,
   "gap": 0.81
+ },
+ {
+  "nn": 7,
+  "title": "Only 1 Marble Can Win! Pick Your Color 🏆 #7",
+  "title_tpl": "Only 1 Marble Can Win! Pick Your Color 🏆 #{nn}",
+  "theme": "beach",
+  "world": "beach",
+  "palette": null,
+  "start": "v",
+  "fmt": "classic",
+  "parts": [
+   "funnel",
+   "spinners",
+   "pads",
+   "plinko",
+   "bumpers",
+   "split",
+   "scatter",
+   "windmill"
+  ],
+  "winner": "YELLOW",
+  "layout": 624106,
+  "seed": 7,
+  "first": 13.95,
+  "gap": 0.07
  }
 ]
