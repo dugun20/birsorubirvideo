@@ -1,7 +1,7 @@
 # Rollo Racing – otomatik yarış üretimi (@RolloRacingTV)
 
 Her zamanlanmış çalışma **1 yeni bilye yarışı** üretir ve kuyruğa ekler (günde 2 çalışma → günde 2 video).
-Make senaryosu 8708385 ("Rollo Racing - Kuyruktan YouTube Shorts yükle", her gün 20:00 ve 03:00 TR) kuyruktaki sıradaki videoyu Rollo Racing kanalına yükler;
+Make senaryosu 8708385 ("Rollo Racing - Kuyruktan YouTube Shorts yükle", her gün 14:00 ve 03:00 TR – izleyici Türkiye + Asya ve Amerika ağırlıklı) kuyruktaki sıradaki videoyu Rollo Racing kanalına yükler;
 video `https://dugun20.github.io/birsorubirvideo/rollo/out/rollo-<NN>.mp4` adresinden alınır (GitHub Pages).
 
 Cihan bu seri için tam otomatik üretime onay verdi: **kullanıcıya soru sorma**, render için onay bekleme.
