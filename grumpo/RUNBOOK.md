@@ -12,7 +12,7 @@ Kuyrukta zaten **4 veya daha fazla 'kuyrukta' satırı** varsa yeni bölüm üre
 - Örnek/referans bölüm: `grumpo/episodes/ep01_havuz.py` (kalite ve yapı referansı — kopyalama, ondan öğren)
 - Bölüm kaydı: `grumpo/log/indeks.md` (tek satırlık parmak izleri – her zaman oku), `grumpo/log/bolumler.md` (ayrıntı)
 - Konu bankası: `grumpo/log/konu_bankasi.md` (mekân/çatışma/yapı/son listeleri + özel gün takvimi)
-- Kuyruk tablosu: spreadsheetId `1m6rYkgznD0tUN6wXidFxGHVnmradARs6E0fQiEkxS4g`, sayfa `Kuyruk`
+- Kuyruk tablosu: spreadsheetId `1m6rYkgznD0tUN6wXidFxGHVnmradARs6E0fQiEkxS4g`, sayfa `Grumpo` (eski adı Kuyruk)
   sütunlar: No | Başlık | Video dosyası | Açıklama | Durum | Paylaşım zamanı | Etiketler | YouTube ID | Özet | Yorum
 - Çıktı: 1080×1920, 60 fps, H.264, sadece efekt sesleri (müzik YOK, seslendirme YOK, diyalog YOK)
 
@@ -76,7 +76,7 @@ D. **İlk 1 saniye:** olay hemen başlasın (çatışma ilk karede görünsün),
    `git commit -m "Grumpo #NN: <kısa ad>"`, sonra `git pull --rebase` (aynı depoya başka sayfaların görevleri de push ediyor)
    ve `git -c push.negotiate=true push`. Reddedilirse `git fetch --depth=50 origin main` + rebase ile bir kez daha dene.
    Preview/check png'lerini commit etme.
-7. Kuyruğa satır ekle (Google Sheets `append_values`, sayfa `Kuyruk`, range `A1`):
+7. Kuyruğa satır ekle (Google Sheets `append_values`, sayfa `Grumpo` (eski adı Kuyruk), range `A1`):
    `[NN, "<başlık>", "grumpo/out/grumpo-NN.mp4", "<açıklama>", "kuyrukta", "", "<etiketler>", "", "<1 cümle özet>", "<yorum>"]`
    **Yorum** (J sütunu): Make video yüklenince bunu kanal adına ilk yorum olarak atar. İngilizce, tek satır, ≤ 120 karakter,
    taraf tutturan veya cevaplaması kolay bir soru + 1-2 emoji. Örn: `Team Grumpo 🟣 or Team Nibbo 🟡? Who was right? 👇`.
