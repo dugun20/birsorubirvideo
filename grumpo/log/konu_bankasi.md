@@ -111,6 +111,7 @@ her listeye 30+ yeni madde ekle.
 99. Ay yüzeyi
 100. Rüya dünyası (sürreal)
 101. Yemek odası / bayram sofrası (Thanksgiving) ✔05
+102. Elektronik mağazası – Black Friday açılışı (kepenk, alışveriş arabası, ıslak zemin, top havuzu, TV kaidesi) ✔06
 
 ## ÇATIŞMA (ne için kapışıyorlar / ne oluyor)
 1. Havuza girme yasağı ✔01
@@ -234,6 +235,7 @@ her listeye 30+ yeni madde ekle.
 119. Pasta yarışması
 120. Krep çevirme ✔03
 121. Lades kemiği çekme – son dilim balkabağı turtası (Thanksgiving) ✔05
+122. Black Friday kapışması – son %90 indirimli TV ✔06
 
 ## YAPI (dönüşümlü – son 5 bölümde kullanılanı tekrarlama)
 - A. 3 deneme + final ✔01
@@ -242,7 +244,7 @@ her listeye 30+ yeni madde ekle.
 - D. Ortak düşman: ikisi birlikte üçüncü bir şeye karşı ✔04
 - E. Zincirleme büyüyen tek şaka (domino etkisi) ✔05
 - F. Tırmanan sayaç (`counter`): TRY 1/5…, ikiye katlanan şey, seviye barı ✔03
-- G. Yarış (paralel çekim, iki şerit)
+- G. Yarış (paralel çekim, iki şerit) ✔06
 - H. Taklit: biri ötekini kopyalıyor, iş çığırından çıkıyor
 - I. Yanlış anlaşılma: izleyici gerçeği biliyor, karakterler bilmiyor
 - J. İş birliği: birlikte bir şey yapıyorlar, sonunda ters tepiyor
@@ -257,12 +259,12 @@ her listeye 30+ yeni madde ekle.
 - Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…) ✔04
 - Barışırlar / paylaşırlar ✔05
 - Beklenmedik ters köşe (her şey rüyaydı DEĞİL — onu kullanma)
-- Ödül değersiz çıkar (uğruna savaştıkları şey boşmuş)
+- Ödül değersiz çıkar (uğruna savaştıkları şey boşmuş) ✔06
 
 ## ÖZEL GÜN TAKVİMİ (tarihten 1–5 gün önce üret)
 - 31 Ekim Cadılar Bayramı (kostüm, balkabağı, şeker)
 - 4. Perşembe Kasım – Thanksgiving (hindi, son dilim turta) ✔05 (2026: lades kemiği)
-- Kasım sonu Black Friday (indirim kapışması)
+- Kasım sonu Black Friday (indirim kapışması) ✔06 (2026: kepenk yarışı, %90 küçük TV)
 - 25 Aralık Christmas (ağaç süsleme, hediye, Noel Baba bacası)
 - 31 Aralık Yılbaşı (havai fişek, geri sayım)
 - 14 Şubat Sevgililer Günü (çikolata kutusu, ikisi de aynı kişiye hediye almış — romantik değil, komik)
