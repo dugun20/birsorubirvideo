@@ -14,7 +14,7 @@ her listeye 30+ yeni madde ekle.
 2. Oturma odası ✔02
 3. Mutfak ✔03
 4. Ofis / iki masa yan yana ✔04
-5. Sinema salonu
+5. Sinema salonu ✔08
 6. Otobüs durağı (yağmur)
 7. Kamp alanı / çadır
 8. Hastane-doktor bekleme salonu
@@ -196,7 +196,7 @@ her listeye 30+ yeni madde ekle.
 80. Konfeti topu
 81. Karaoke mikrofonu kapma
 82. Konser ön sıra
-83. Sinemada uzun boylu önde oturuyor
+83. Sinemada uzun boylu önde oturuyor ✔08
 84. Sinemada patlamış mısır hışırtısı
 85. Telefon çalıyor (sessiz ortam)
 86. Kütüphanede sessizlik
@@ -245,7 +245,7 @@ her listeye 30+ yeni madde ekle.
 - E. Zincirleme büyüyen tek şaka (domino etkisi) ✔05
 - F. Tırmanan sayaç (`counter`): TRY 1/5…, ikiye katlanan şey, seviye barı ✔03
 - G. Yarış (paralel çekim, iki şerit) ✔06
-- H. Taklit: biri ötekini kopyalıyor, iş çığırından çıkıyor
+- H. Taklit: biri ötekini kopyalıyor, iş çığırından çıkıyor ✔08
 - I. Yanlış anlaşılma: izleyici gerçeği biliyor, karakterler bilmiyor
 - J. İş birliği: birlikte bir şey yapıyorlar, sonunda ters tepiyor
 - K. Gizlilik/sızma: lazerler, nöbetçi, saklanma
@@ -253,7 +253,7 @@ her listeye 30+ yeni madde ekle.
 - M. Döngü: başa saran olay, her turda değişen tek detay
 
 ## SON (son 5 bölümde kullanılanı tekrarlama)
-- Nibbo kazanır ✔01 ✔02
+- Nibbo kazanır ✔01 ✔02 ✔08
 - Grumpo kazanır ✔07
 - İkisi de kaybeder / rezil olur ✔03
 - Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…) ✔04

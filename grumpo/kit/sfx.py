@@ -740,6 +740,29 @@ def s_chicken():
     return norm(filt(x, 300, 6000) * env(len(t), 0.02, curve=0.8)) * 0.75
 
 
+def s_seat_clack():
+    """spring-loaded cinema seat snapping up: short creak + hard wooden clack + rattle."""
+    d = 0.32
+    t = T(d)
+    cr = filt(noise(0.06), 900, 3000) * np.sin(2 * np.pi * 34 * T(0.06)) ** 2
+    hit = np.sin(2 * np.pi * np.cumsum(420 * np.exp(-t * 30) + 160) / SR) * np.exp(-t * 28)
+    hit += 0.8 * filt(noise(d), 1200, 7000) * np.exp(-t * 70)
+    rat = 0.25 * filt(noise(d), 2500, 8000) * np.exp(-t * 14) * (0.5 + 0.5 * np.sign(np.sin(2 * np.pi * 26 * t)))
+    return norm(cat(cr * 0.5, hit + rat))
+
+
+def s_popcorn():
+    """a shower of popcorn puffs: light dry patter."""
+    d = 0.9
+    out = np.zeros(int(SR * d))
+    for k in range(22):
+        st = int(rng.uniform(0, d - 0.05) * SR)
+        n = int(0.025 * SR)
+        y = filt(noise(0.025), 1800, 9000) * env(n, 0.0008, curve=6) * rng.uniform(0.3, 1.0)
+        out[st:st + n] += y[: len(out) - st]
+    return norm(out * env(len(out), 0.02, curve=1.2)) * 0.7
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 
