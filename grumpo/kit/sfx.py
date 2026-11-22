@@ -844,6 +844,75 @@ def s_tweet():
     return norm(cat(*out)) * 0.5
 
 
+def s_keys():
+    """keyring jingle (several small metallic clinks)."""
+    d = 0.45
+    out = np.zeros(int(SR * d))
+    for k, (st, f) in enumerate([(0.0, 3300), (0.05, 4100), (0.11, 2800), (0.18, 3700), (0.27, 4500)]):
+        dd = 0.18
+        t = T(dd)
+        x = sum(a * np.sin(2 * np.pi * f * m * t) for m, a in [(1, 1), (1.51, 0.5), (2.3, 0.25)]) * np.exp(-t * 28)
+        i = int(st * SR)
+        out[i:i + len(x)] += x[: len(out) - i] * (1 - 0.12 * k)
+    out += 0.15 * filt(noise(d), 5000, 12000) * np.exp(-T(d) * 20)
+    return norm(out) * 0.5
+
+
+def s_tink():
+    """single tiny metal tink (keys hitting shaft wall)."""
+    d = 0.35
+    t = T(d)
+    x = sum(a * np.sin(2 * np.pi * f * t) * np.exp(-t * k) for f, a, k in [(3600, 1, 14), (5400, 0.5, 20), (7900, 0.25, 30)])
+    return norm(x) * 0.45
+
+
+def s_lift_door():
+    """elevator door slide: soft mechanical rumble with a clunk at the end (0.55 s)."""
+    d = 0.55
+    t = T(d)
+    x = filt(noise(d), 150, 900) * (0.6 + 0.4 * np.sin(np.pi * t / d))
+    x += 0.4 * np.sin(2 * np.pi * np.cumsum(90 + 30 * t / d) / SR)
+    x *= env(len(t), 0.05, curve=0.6)
+    tail = int(0.47 * SR)
+    k = T(d - 0.47)
+    x[tail:] += 0.9 * np.sin(2 * np.pi * 140 * k) * np.exp(-k * 40)
+    return norm(x) * 0.6
+
+
+def s_lift_hum():
+    """elevator motor hum while travelling (1.0 s)."""
+    d = 1.0
+    t = T(d)
+    f = 70 + 40 * np.minimum(1, t / 0.3)
+    ph = 2 * np.pi * np.cumsum(f) / SR
+    x = np.sin(ph) + 0.5 * np.sin(2 * ph) + 0.2 * filt(noise(d), 200, 1200)
+    x *= np.minimum(1, t / 0.1) * np.minimum(1, (d - t) / 0.2)
+    return norm(filt(x, 50, 1800)) * 0.4
+
+
+def s_deflate():
+    """balloon letting air out (raspberry whistle, 0.8 s)."""
+    d = 0.8
+    t = T(d)
+    f = 700 - 450 * t / d + 120 * np.sin(2 * np.pi * 9 * t)
+    x = np.tanh(3 * np.sin(2 * np.pi * np.cumsum(f) / SR)) * (0.6 + 0.4 * np.sin(2 * np.pi * 37 * t))
+    x += 0.3 * filt(noise(d), 1000, 5000)
+    return norm(filt(x, 200, 6000) * env(len(t), 0.02, curve=0.7)) * 0.55
+
+
+def s_pant():
+    """quick tired panting (4 breaths, 0.9 s)."""
+    d = 0.9
+    out = np.zeros(int(SR * d))
+    for k in range(4):
+        dd = 0.13
+        t = T(dd)
+        x = filt(noise(dd), 600 + 300 * (k % 2), 3000) * np.sin(np.pi * t / dd) ** 2
+        i = int(k * 0.22 * SR)
+        out[i:i + len(x)] += x[: len(out) - i]
+    return norm(out) * 0.45
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 

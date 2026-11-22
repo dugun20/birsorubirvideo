@@ -24,7 +24,7 @@ her listeye 30+ yeni madde ekle.
 12. Plaj
 13. Süpermarket reyonu
 14. Spor salonu
-15. Asansör
+15. Asansör ✔11
 16. Uzay istasyonu
 17. Kütüphane
 18. Çamaşırhane
@@ -135,7 +135,7 @@ her listeye 30+ yeni madde ekle.
 19. Toplantıda uyuklama
 20. Patronun kahvesi
 21. Fotokopi makinesi sıkışması
-22. Kayıp anahtar
+22. Kayıp anahtar ✔11
 23. Kilitli kapı / anahtar içeride
 24. Komşunun gürültüsü
 25. Kargo kutusu kimin
@@ -246,11 +246,11 @@ her listeye 30+ yeni madde ekle.
 - F. Tırmanan sayaç (`counter`): TRY 1/5…, ikiye katlanan şey, seviye barı ✔03
 - G. Yarış (paralel çekim, iki şerit) ✔06
 - H. Taklit: biri ötekini kopyalıyor, iş çığırından çıkıyor ✔08
-- I. Yanlış anlaşılma: izleyici gerçeği biliyor, karakterler bilmiyor
+- I. Yanlış anlaşılma: izleyici gerçeği biliyor, karakterler bilmiyor ✔11
 - J. İş birliği: birlikte bir şey yapıyorlar, sonunda ters tepiyor ✔09
 - K. Gizlilik/sızma: lazerler, nöbetçi, saklanma
 - L. Tek mekânda zaman atlaması (sabah → gece, mevsim)
-- M. Döngü: başa saran olay, her turda değişen tek detay
+- M. Döngü: başa saran olay, her turda değişen tek detay ✔11 (I ile birlikte)
 
 ## SON (son 5 bölümde kullanılanı tekrarlama)
 - Nibbo kazanır ✔01 ✔02 ✔08
@@ -258,7 +258,7 @@ her listeye 30+ yeni madde ekle.
 - İkisi de kaybeder / rezil olur ✔03 ✔09
 - Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…) ✔04
 - Barışırlar / paylaşırlar ✔05
-- Beklenmedik ters köşe (her şey rüyaydı DEĞİL — onu kullanma)
+- Beklenmedik ters köşe (her şey rüyaydı DEĞİL — onu kullanma) ✔11
 - Ödül değersiz çıkar (uğruna savaştıkları şey boşmuş) ✔06
 
 ## ÖZEL GÜN TAKVİMİ (tarihten 1–5 gün önce üret)
