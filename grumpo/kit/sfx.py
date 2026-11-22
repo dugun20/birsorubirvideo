@@ -694,6 +694,52 @@ def s_stretch():
     return norm(x) * 0.6
 
 
+def s_alarm_ring():
+    """old bell alarm clock ringing (1.2 s, hammer ~22 Hz)."""
+    d = 1.2
+    t = T(d)
+    x = sum(a * np.sin(2 * np.pi * f * t) for f, a in [(2100, 1), (2630, 0.6), (4200, 0.3), (5300, 0.2)])
+    ham = (np.sin(2 * np.pi * 22 * t) > 0).astype(float)
+    ham = filt(ham, hi=200)
+    x = x * (0.35 + 0.65 * np.abs(ham)) + 0.15 * filt(noise(d), 3000, 8000)
+    return norm(x * env(len(t), 0.005, curve=0.4)) * 0.7
+
+
+def s_honk():
+    """air horn blast."""
+    d = 0.9
+    t = T(d)
+    x = sum(np.tanh(3 * np.sin(2 * np.pi * f * t)) for f in (415, 523, 622))
+    x = filt(x, 200, 5000) * env(len(t), 0.01, curve=0.6)
+    return norm(x) * 0.85
+
+
+def s_gong():
+    """soft gong 'dong'."""
+    d = 2.0
+    t = T(d)
+    x = sum(a * np.sin(2 * np.pi * f * t + 0.3 * np.sin(2 * np.pi * 3 * t)) for f, a in [(110, 1), (167, 0.6), (233, 0.4), (391, 0.25)])
+    return norm(x * np.exp(-t * 1.6) * np.minimum(1, t / 0.01)) * 0.8
+
+
+def s_snore():
+    """one snore: rough inhale + whistle exhale."""
+    d1, d2 = 0.6, 0.5
+    a = filt(noise(d1), 80, 600) * (0.5 + 0.5 * np.abs(np.sin(2 * np.pi * 28 * T(d1)))) * env(int(SR * d1), 0.2, curve=1.2)
+    b = 0.5 * sweep(900, 1300, d2, wave="sine") * env(int(SR * d2), 0.05, curve=1.5) + 0.2 * filt(noise(d2), 1500, 4000) * env(int(SR * d2), 0.05, curve=2)
+    return norm(cat(a, b)) * 0.55
+
+
+def s_chicken():
+    """rubber chicken squawk."""
+    d = 0.45
+    t = T(d)
+    f = 700 + 500 * np.sin(np.pi * t / d) + 60 * np.sin(2 * np.pi * 30 * t)
+    ph = 2 * np.pi * np.cumsum(f) / SR
+    x = np.tanh(2.5 * np.sin(ph)) + 0.3 * filt(noise(d), 1500, 5000)
+    return norm(filt(x, 300, 6000) * env(len(t), 0.02, curve=0.8)) * 0.75
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 
