@@ -1,0 +1,43 @@
+{
+ "nn": 9,
+ "file": "rollo/out/rollo-09.mp4",
+ "title": "Which Color Wins This Marble Race? 🏁 #9",
+ "title_tpl": "Which Color Wins This Marble Race? 🏁 #{nn}",
+ "description": "Pick your color before the race starts! 🏁\n8 marbles, 1 winner. Which one did you choose? 👇\nComment your color and subscribe for new races every day! 🏆\n\n#marblerace #whowins #shorts",
+ "tags": "marble race, marble racing, who wins, rollo racing, marble run, satisfying, oddly satisfying, ball race, marble race shorts, race simulation, guess who wins, satisfying video, color race, pick your color",
+ "comment": "Which color did you pick? 👇",
+ "theme": "candy",
+ "world": "candy",
+ "palette": null,
+ "start": "shelf",
+ "fmt": "classic",
+ "parts": [
+  "windmill",
+  "scatter",
+  "pads",
+  "spinners",
+  "funnel",
+  "sliders",
+  "plinko",
+  "split"
+ ],
+ "names": [
+  "PINK",
+  "PURPLE",
+  "RED",
+  "GREEN",
+  "CYAN",
+  "YELLOW",
+  "ORANGE",
+  "BLUE"
+ ],
+ "winner": "GREEN",
+ "layout": 184523,
+ "seed": 13,
+ "first": 13.34,
+ "gap": 0.03,
+ "changes": 10,
+ "dur": 17.9,
+ "mb": 8.1,
+ "summary": "classic race, world candy, start shelf, parts windmill+scatter+pads+spinners+funnel+sliders+plinko+split; GREEN wins by 0.03s"
+}

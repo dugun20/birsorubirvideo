@@ -172,5 +172,30 @@
   "seed": 7,
   "first": 14.13,
   "gap": 0.05
+ },
+ {
+  "nn": 9,
+  "title": "Which Color Wins This Marble Race? 🏁 #9",
+  "title_tpl": "Which Color Wins This Marble Race? 🏁 #{nn}",
+  "theme": "candy",
+  "world": "candy",
+  "palette": null,
+  "start": "shelf",
+  "fmt": "classic",
+  "parts": [
+   "windmill",
+   "scatter",
+   "pads",
+   "spinners",
+   "funnel",
+   "sliders",
+   "plinko",
+   "split"
+  ],
+  "winner": "GREEN",
+  "layout": 184523,
+  "seed": 13,
+  "first": 13.34,
+  "gap": 0.03
  }
 ]
