@@ -913,6 +913,57 @@ def s_pant():
     return norm(out) * 0.45
 
 
+def s_surf():
+    """gentle beach wave washing in and out (2.8 s ambience)."""
+    d = 2.8
+    t = T(d)
+    sw = np.sin(np.pi * np.minimum(1, t / 1.1)) ** 2 * np.exp(-np.maximum(0, t - 1.1) * 1.4)
+    x = filt(noise(d), 200, 3500) * sw + 0.5 * filt(noise(d), 60, 300) * sw
+    x *= np.minimum(1, t / 0.4) * np.minimum(1, (d - t) / 0.5)
+    return norm(x) * 0.5
+
+
+def s_ffwd():
+    """cartoon time-lapse fast-forward: chirpy rising warble (1.5 s)."""
+    d = 1.5
+    t = T(d)
+    f = 500 * (2.2 ** (t / d)) * (1 + 0.18 * np.sign(np.sin(2 * np.pi * 16 * t)))
+    ph = 2 * np.pi * np.cumsum(f) / SR
+    x = 0.6 * np.tanh(2 * np.sin(ph)) + 0.25 * filt(noise(d), 2000, 7000) * (0.5 + 0.5 * np.sin(2 * np.pi * 16 * t))
+    x *= np.minimum(1, t / 0.08) * np.minimum(1, (d - t) / 0.15)
+    return norm(filt(x, 200, 8000)) * 0.4
+
+
+def s_coconut():
+    """hollow coconut knock on a head: woody 'tok' with resonance."""
+    d = 0.4
+    t = T(d)
+    x = sum(a * np.sin(2 * np.pi * f * t) * np.exp(-t * k) for f, a, k in [(420, 1, 22), (980, 0.55, 30), (1650, 0.3, 45)])
+    x += 0.5 * filt(noise(d), 1200, 5000) * np.exp(-t * 160)
+    return norm(x) * 0.85
+
+
+def s_crab():
+    """tiny pincer clicks (3 quick snips)."""
+    d = 0.35
+    out = np.zeros(int(SR * d))
+    for k in range(3):
+        n = int(0.03 * SR)
+        tt = np.arange(n) / SR
+        h = np.sin(2 * np.pi * 3200 * tt) * np.exp(-tt * 260) + 0.6 * filt(noise(0.03), 3000, 9000)[:n] * np.exp(-tt * 300)
+        i = int(k * 0.1 * SR)
+        out[i:i + n] += h[: len(out) - i]
+    return norm(out) * 0.4
+
+
+def s_rustle():
+    """palm fronds rustling/whipping (0.6 s)."""
+    d = 0.6
+    t = T(d)
+    x = filt(noise(d), 1500, 9000) * (0.5 + 0.5 * np.abs(np.sin(2 * np.pi * 13 * t))) * env(len(t), 0.02, curve=1.5)
+    return norm(x) * 0.55
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 

@@ -21,7 +21,7 @@ her listeye 30+ yeni madde ekle.
 9. Uçak koltukları
 10. Düğün salonu
 11. Karlı tepe
-12. Plaj
+12. Plaj ✔12
 13. Süpermarket reyonu
 14. Spor salonu
 15. Asansör ✔11
@@ -162,7 +162,7 @@ her listeye 30+ yeni madde ekle.
 46. Kayıp bavul
 47. Otel minibarı fiyatı
 48. Kahvaltı büfesinde son kruvasan
-49. Güneşlenme yeri (havlu ile yer kapma)
+49. Güneşlenme yeri (havlu ile yer kapma) ✔12
 50. Kum kalesi yarışması
 51. Martı patates çalıyor
 52. Balık tutma yarışı
@@ -249,14 +249,14 @@ her listeye 30+ yeni madde ekle.
 - I. Yanlış anlaşılma: izleyici gerçeği biliyor, karakterler bilmiyor ✔11
 - J. İş birliği: birlikte bir şey yapıyorlar, sonunda ters tepiyor ✔09
 - K. Gizlilik/sızma: lazerler, nöbetçi, saklanma
-- L. Tek mekânda zaman atlaması (sabah → gece, mevsim)
+- L. Tek mekânda zaman atlaması (sabah → gece, mevsim) ✔12
 - M. Döngü: başa saran olay, her turda değişen tek detay ✔11 (I ile birlikte)
 
 ## SON (son 5 bölümde kullanılanı tekrarlama)
 - Nibbo kazanır ✔01 ✔02 ✔08
 - Grumpo kazanır ✔07
 - İkisi de kaybeder / rezil olur ✔03 ✔09
-- Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…) ✔04
+- Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…) ✔04 ✔12
 - Barışırlar / paylaşırlar ✔05
 - Beklenmedik ters köşe (her şey rüyaydı DEĞİL — onu kullanma) ✔11
 - Ödül değersiz çıkar (uğruna savaştıkları şey boşmuş) ✔06
