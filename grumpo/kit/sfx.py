@@ -1009,6 +1009,47 @@ def s_can():
     return norm(x) * 0.6
 
 
+def s_cabin_hum():
+    """airplane cabin: steady jet-engine air roar, 2.4 s with soft edges (overlap copies every ~2 s)."""
+    d = 2.4
+    t = T(d)
+    x = filt(noise(d), 60, 700) + 0.25 * filt(noise(d), 700, 2200)
+    x += 0.15 * np.sin(2 * np.pi * 118 * t) + 0.08 * np.sin(2 * np.pi * 236 * t)
+    e = np.minimum(1, t / 0.4) * np.minimum(1, (d - t) / 0.4)
+    return norm(x * e) * 0.35
+
+
+def s_plane_chime():
+    """cabin PA chime: soft two-tone 'bing-bong'."""
+    def tone(f, d):
+        t = T(d)
+        y = np.sin(2 * np.pi * f * t) + 0.3 * np.sin(2 * np.pi * 2 * f * t) + 0.1 * np.sin(2 * np.pi * 3 * f * t)
+        return y * np.exp(-t * 3.2) * np.minimum(1, t / 0.004)
+    a = tone(1175, 1.2)
+    b = tone(880, 1.4)
+    x = np.zeros(int(SR * 1.9))
+    x[:len(a)] += a
+    st = int(0.42 * SR)
+    x[st:st + len(b)] += b[: len(x) - st]
+    return norm(x) * 0.75
+
+
+def s_buckle():
+    """seatbelt buckle unlatching: metallic double click + strap slither."""
+    d = 0.35
+    t = T(d)
+    c1 = filt(noise(0.02), 2500, 9000) * env(int(0.02 * SR), 0.001, curve=2)
+    ring = sum(np.sin(2 * np.pi * f * T(0.12)) * np.exp(-T(0.12) * 40) for f in (2900, 4300))
+    x = np.zeros(len(t))
+    x[:len(c1)] += c1
+    st = int(0.06 * SR)
+    x[st:st + len(ring)] += ring * 0.6
+    sl = filt(noise(0.15), 1500, 6000) * env(int(0.15 * SR), 0.02, curve=1.5) * 0.3
+    st = int(0.18 * SR)
+    x[st:st + len(sl)] += sl
+    return norm(x) * 0.7
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 

@@ -18,7 +18,7 @@ her listeye 30+ yeni madde ekle.
 6. Otobüs durağı (yağmur) ✔09
 7. Kamp alanı / çadır
 8. Hastane-doktor bekleme salonu
-9. Uçak koltukları
+9. Uçak koltukları ✔14
 10. Düğün salonu
 11. Karlı tepe
 12. Plaj ✔12
@@ -157,7 +157,7 @@ her listeye 30+ yeni madde ekle.
 41. Lastik patladı
 42. Benzin bitti
 43. Tatile bavul sığmıyor
-44. Uçakta kolçak savaşı
+44. Uçakta kolçak savaşı ✔14
 45. Uçakta cam kenarı
 46. Kayıp bavul
 47. Otel minibarı fiyatı
@@ -238,7 +238,7 @@ her listeye 30+ yeni madde ekle.
 122. Black Friday kapışması – son %90 indirimli TV ✔06
 
 ## YAPI (dönüşümlü – son 5 bölümde kullanılanı tekrarlama)
-- A. 3 deneme + final ✔01
+- A. 3 deneme + final ✔01 ✔14
 - B. Sıcak-soğuk / ipucu oyunu + kılık + kovalamaca ✔02
 - C. Ters rol: Grumpo istiyor, Nibbo engelliyor ✔07
 - D. Ortak düşman: ikisi birlikte üçüncü bir şeye karşı ✔04
@@ -253,7 +253,7 @@ her listeye 30+ yeni madde ekle.
 - M. Döngü: başa saran olay, her turda değişen tek detay ✔11 (I ile birlikte)
 
 ## SON (son 5 bölümde kullanılanı tekrarlama)
-- Nibbo kazanır ✔01 ✔02 ✔08
+- Nibbo kazanır ✔01 ✔02 ✔08 ✔14
 - Grumpo kazanır ✔07
 - İkisi de kaybeder / rezil olur ✔03 ✔09
 - Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…) ✔04 ✔12
