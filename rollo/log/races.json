@@ -147,5 +147,30 @@
   "seed": 7,
   "first": 13.95,
   "gap": 0.07
+ },
+ {
+  "nn": 8,
+  "title": "Pick a Marble Before the Race Starts! 🏁 #8",
+  "title_tpl": "Pick a Marble Before the Race Starts! 🏁 #{nn}",
+  "theme": "winter",
+  "world": "winter",
+  "palette": null,
+  "start": "v",
+  "fmt": "classic",
+  "parts": [
+   "scatter",
+   "windmill",
+   "bumpers",
+   "sliders",
+   "pads",
+   "plinko",
+   "spinners",
+   "split"
+  ],
+  "winner": "BLUE",
+  "layout": 316354,
+  "seed": 7,
+  "first": 14.13,
+  "gap": 0.05
  }
 ]
