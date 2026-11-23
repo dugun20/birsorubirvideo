@@ -89,7 +89,7 @@ her listeye 30+ yeni madde ekle.
 77. Havalimanı güvenlik kontrolü
 78. Bagaj bandı
 79. Otel resepsiyonu / lobi
-80. Otel odası (minibar)
+80. Otel odası (minibar) ✔13
 81. Taksi
 82. Trafik sıkışıklığı
 83. Araba yıkama
@@ -123,7 +123,7 @@ her listeye 30+ yeni madde ekle.
 7. Klima sıcaklığı
 8. Park yeri
 9. Sırada öne geçme
-10. Diyet – gizli tatlı
+10. Diyet – gizli tatlı ✔13
 11. Bozuk otomat makinesi (para yuttu) ✔04
 12. Sinir bozucu sinek
 13. Rüzgârda uçan şapka
@@ -248,7 +248,7 @@ her listeye 30+ yeni madde ekle.
 - H. Taklit: biri ötekini kopyalıyor, iş çığırından çıkıyor ✔08
 - I. Yanlış anlaşılma: izleyici gerçeği biliyor, karakterler bilmiyor ✔11
 - J. İş birliği: birlikte bir şey yapıyorlar, sonunda ters tepiyor ✔09
-- K. Gizlilik/sızma: lazerler, nöbetçi, saklanma
+- K. Gizlilik/sızma: lazerler, nöbetçi, saklanma ✔13
 - L. Tek mekânda zaman atlaması (sabah → gece, mevsim) ✔12
 - M. Döngü: başa saran olay, her turda değişen tek detay ✔11 (I ile birlikte)
 
@@ -259,7 +259,7 @@ her listeye 30+ yeni madde ekle.
 - Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…) ✔04 ✔12
 - Barışırlar / paylaşırlar ✔05
 - Beklenmedik ters köşe (her şey rüyaydı DEĞİL — onu kullanma) ✔11
-- Ödül değersiz çıkar (uğruna savaştıkları şey boşmuş) ✔06
+- Ödül değersiz çıkar (uğruna savaştıkları şey boşmuş) ✔06 ✔13
 
 ## ÖZEL GÜN TAKVİMİ (tarihten 1–5 gün önce üret)
 - 31 Ekim Cadılar Bayramı (kostüm, balkabağı, şeker)

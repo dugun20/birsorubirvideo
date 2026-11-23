@@ -964,6 +964,51 @@ def s_rustle():
     return norm(x) * 0.55
 
 
+def s_crunch():
+    """loud crisp celery crunch: sharp noisy snap + a few crackly fragments."""
+    d = 0.45
+    t = T(d)
+    x = filt(noise(d), 1800, 9000) * np.exp(-t * 30) * np.minimum(1, t / 0.001)
+    for k in range(5):
+        st = int((0.04 + k * 0.05 + rng.uniform(0, 0.02)) * SR)
+        n = int(0.025 * SR)
+        y = filt(noise(0.025), 2500, 10000)[:n] * np.exp(-np.arange(n) / SR * 200)
+        x[st:st + n] += 0.6 * y[: len(x) - st]
+    x += 0.5 * sweep(300, 120, d) * np.exp(-t * 25)
+    return norm(x) * 0.9
+
+
+def s_fridge_hum():
+    """small fridge compressor hum (1.2 s): low buzzy 50 Hz-ish drone."""
+    d = 1.2
+    t = T(d)
+    x = sweep(58, 58, d, wave="saw") * 0.5 + 0.3 * np.sin(2 * np.pi * 116 * t)
+    x = filt(x, hi=600) * env(len(t), 0.15, curve=0.6)
+    return norm(x) * 0.35
+
+
+def s_shine():
+    """fridge light / treasure glow: airy shimmering rise (0.9 s)."""
+    d = 0.9
+    t = T(d)
+    x = np.zeros(len(t))
+    for k, f in enumerate((1320, 1760, 2090, 2640, 3520)):
+        st = k * 0.09
+        e = np.clip((t - st) / 0.01, 0, 1) * np.exp(-np.clip(t - st, 0, None) * 5)
+        x += np.sin(2 * np.pi * f * t) * e
+    x += 0.25 * filt(noise(d), 4000, 12000) * env(len(t), 0.2, curve=1.5)
+    return norm(x) * 0.5
+
+
+def s_can():
+    """empty tin can clink."""
+    d = 0.3
+    t = T(d)
+    x = sum(np.sin(2 * np.pi * f * t) * np.exp(-t * dk) for f, dk in ((1850, 18), (2730, 25), (4100, 35)))
+    x += 0.5 * filt(noise(d), 3000, 9000) * np.exp(-t * 120)
+    return norm(x) * 0.6
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 
