@@ -1191,6 +1191,53 @@ def s_dial():
     return norm(x) * 0.6
 
 
+def s_rip():
+    """cardboard / paper tearing: crackly noise with jittery amplitude (0.45 s)."""
+    d = 0.45
+    n = int(SR * d)
+    x = filt(noise(d), 700, 7000)
+    jit = np.repeat(rng.uniform(0.2, 1.0, n // 300 + 1), 300)[:n]
+    e = np.minimum(1, np.arange(n) / (0.03 * SR)) * (1 - np.arange(n) / n) ** 0.6
+    return norm(x * jit * e) * 0.8
+
+
+def s_cart_rattle():
+    """shopping cart rolling fast: rattly wire clatter + wheel rumble (0.8 s)."""
+    d = 0.8
+    n = int(SR * d)
+    tt = np.arange(n) / SR
+    rattle = filt(noise(d), 2000, 7000) * (0.5 + 0.5 * np.sign(np.sin(2 * np.pi * 23 * tt)))
+    rumble = filt(noise(d), 60, 300) * 1.5
+    e = np.minimum(1, tt / 0.05) * np.minimum(1, (d - tt) / 0.2)
+    return norm((rattle * 0.6 + rumble) * e) * 0.7
+
+
+def s_metal_crash():
+    """cart crashing into a display: metallic clangs + clatter tail (1.0 s)."""
+    d = 1.0
+    out = np.zeros(int(SR * d))
+    for k in range(9):
+        st = int((k * 0.07 + rng.uniform(0, 0.04)) * SR)
+        m = int(0.3 * SR)
+        tt = np.arange(m) / SR
+        f = rng.uniform(300, 1800)
+        h = (np.sin(2 * np.pi * f * tt) + 0.5 * np.sin(2 * np.pi * f * 2.76 * tt)) * np.exp(-tt * (12 + 4 * k))
+        h += 0.8 * filt(noise(0.3), 1000, 8000)[:m] * np.exp(-tt * 40)
+        out[st:st + m] += h[: len(out) - st] * (1.0 if k == 0 else rng.uniform(0.4, 0.8))
+    boom = filt(noise(0.25), 40, 200) * np.exp(-T(0.25) * 14) * 3
+    out[: len(boom)] += boom
+    return norm(out) * 0.85
+
+
+def s_tube():
+    """hollow cardboard tube 'tok' on a head."""
+    d = 0.25
+    tt = T(d)
+    x = np.sin(2 * np.pi * 420 * tt) * np.exp(-tt * 30) + 0.6 * np.sin(2 * np.pi * 630 * tt) * np.exp(-tt * 45)
+    x += 0.4 * filt(noise(d), 800, 3000) * np.exp(-tt * 80)
+    return norm(x) * 0.7
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 

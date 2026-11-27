@@ -22,7 +22,7 @@ her listeye 30+ yeni madde ekle.
 10. Düğün salonu
 11. Karlı tepe ✔16
 12. Plaj ✔12
-13. Süpermarket reyonu
+13. Süpermarket reyonu ✔19
 14. Spor salonu
 15. Asansör ✔11
 16. Uzay istasyonu
@@ -146,7 +146,7 @@ her listeye 30+ yeni madde ekle.
 30. Battaniye/yorgan çekişmesi
 31. Ranzada üst kat kavgası
 32. Banyo sırası
-33. Son tuvalet kâğıdı
+33. Son tuvalet kâğıdı ✔19
 34. Buzdolabındaki etiketli yemek
 35. Mikrodalga sırası
 36. Robot süpürge saldırısı
@@ -248,7 +248,7 @@ her listeye 30+ yeni madde ekle.
 - G. Yarış (paralel çekim, iki şerit) ✔06 ✔16
 - H. Taklit: biri ötekini kopyalıyor, iş çığırından çıkıyor ✔08
 - I. Yanlış anlaşılma: izleyici gerçeği biliyor, karakterler bilmiyor ✔11 ✔18
-- J. İş birliği: birlikte bir şey yapıyorlar, sonunda ters tepiyor ✔09
+- J. İş birliği: birlikte bir şey yapıyorlar, sonunda ters tepiyor ✔09 ✔19
 - K. Gizlilik/sızma: lazerler, nöbetçi, saklanma ✔13
 - L. Tek mekânda zaman atlaması (sabah → gece, mevsim) ✔12
 - M. Döngü: başa saran olay, her turda değişen tek detay ✔11 (I ile birlikte)
@@ -260,7 +260,7 @@ her listeye 30+ yeni madde ekle.
 - Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…) ✔04 ✔12
 - Barışırlar / paylaşırlar ✔05 ✔17
 - Beklenmedik ters köşe (her şey rüyaydı DEĞİL — onu kullanma) ✔11 ✔18
-- Ödül değersiz çıkar (uğruna savaştıkları şey boşmuş) ✔06 ✔13
+- Ödül değersiz çıkar (uğruna savaştıkları şey boşmuş) ✔06 ✔13 ✔19
 
 ## ÖZEL GÜN TAKVİMİ (tarihten 1–5 gün önce üret)
 - 31 Ekim Cadılar Bayramı (kostüm, balkabağı, şeker)
