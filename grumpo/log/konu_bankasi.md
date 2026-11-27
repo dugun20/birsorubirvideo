@@ -83,7 +83,7 @@ her listeye 30+ yeni madde ekle.
 71. Piknik alanı
 72. Kafe
 73. Fast-food sırası
-74. Sushi bandı
+74. Sushi bandı ✔20
 75. Pizza fırını
 76. Pazar yeri
 77. Havalimanı güvenlik kontrolü
@@ -237,6 +237,7 @@ her listeye 30+ yeni madde ekle.
 121. Lades kemiği çekme – son dilim balkabağı turtası (Thanksgiving) ✔05
 122. Black Friday kapışması – son %90 indirimli TV ✔06
 123. Tek çalışan çamaşır makinesi – beyazlara karışan kırmızı çorap ✔18
+124. Konveyör bantta dönen son altın sushi ✔20
 
 ## YAPI (dönüşümlü – son 5 bölümde kullanılanı tekrarlama)
 - A. 3 deneme + final ✔01 ✔14
@@ -244,20 +245,20 @@ her listeye 30+ yeni madde ekle.
 - C. Ters rol: Grumpo istiyor, Nibbo engelliyor ✔07
 - D. Ortak düşman: ikisi birlikte üçüncü bir şeye karşı ✔04 ✔17
 - E. Zincirleme büyüyen tek şaka (domino etkisi) ✔05 ✔15
-- F. Tırmanan sayaç (`counter`): TRY 1/5…, ikiye katlanan şey, seviye barı ✔03
+- F. Tırmanan sayaç (`counter`): TRY 1/5…, ikiye katlanan şey, seviye barı ✔03 ✔20
 - G. Yarış (paralel çekim, iki şerit) ✔06 ✔16
 - H. Taklit: biri ötekini kopyalıyor, iş çığırından çıkıyor ✔08
 - I. Yanlış anlaşılma: izleyici gerçeği biliyor, karakterler bilmiyor ✔11 ✔18
 - J. İş birliği: birlikte bir şey yapıyorlar, sonunda ters tepiyor ✔09 ✔19
 - K. Gizlilik/sızma: lazerler, nöbetçi, saklanma ✔13
 - L. Tek mekânda zaman atlaması (sabah → gece, mevsim) ✔12
-- M. Döngü: başa saran olay, her turda değişen tek detay ✔11 (I ile birlikte)
+- M. Döngü: başa saran olay, her turda değişen tek detay ✔11 (I ile birlikte) ✔20
 
 ## SON (son 5 bölümde kullanılanı tekrarlama)
 - Nibbo kazanır ✔01 ✔02 ✔08 ✔14
 - Grumpo kazanır ✔07 ✔16
 - İkisi de kaybeder / rezil olur ✔03 ✔09 ✔15
-- Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…) ✔04 ✔12
+- Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…) ✔04 ✔12 ✔20
 - Barışırlar / paylaşırlar ✔05 ✔17
 - Beklenmedik ters köşe (her şey rüyaydı DEĞİL — onu kullanma) ✔11 ✔18
 - Ödül değersiz çıkar (uğruna savaştıkları şey boşmuş) ✔06 ✔13 ✔19

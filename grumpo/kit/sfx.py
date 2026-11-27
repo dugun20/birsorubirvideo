@@ -1238,6 +1238,53 @@ def s_tube():
     return norm(x) * 0.7
 
 
+def s_clack():
+    """wooden chopsticks clacking together: bright dry double click."""
+    d = 0.12
+    out = np.zeros(int(SR * d))
+    for st_t, f in ((0.0, 2400), (0.035, 2900)):
+        tt = T(0.05)
+        h = np.sin(2 * np.pi * f * tt) * np.exp(-tt * 140) + 0.5 * filt(noise(0.05), 2500, 9000) * np.exp(-tt * 200)
+        st = int(st_t * SR)
+        out[st:st + len(h)] += h[: len(out) - st]
+    return norm(out) * 0.7
+
+
+def s_purr():
+    """cat purring: low rumbly amplitude-modulated noise (1.2 s)."""
+    d = 1.2
+    tt = T(d)
+    x = filt(noise(d), 40, 260) * (0.55 + 0.45 * np.sin(2 * np.pi * 24 * tt)) * (0.7 + 0.3 * np.sin(2 * np.pi * 1.6 * tt))
+    e = np.minimum(1, tt / 0.1) * np.minimum(1, (d - tt) / 0.2)
+    return norm(x * e) * 0.6
+
+
+def s_plate_spin():
+    """a plate spinning down on a counter: accelerating ceramic rattle (1.0 s)."""
+    d = 1.0
+    out = np.zeros(int(SR * d))
+    tk = 0.0
+    gap = 0.12
+    while tk < d - 0.05:
+        tt = T(0.04)
+        h = np.sin(2 * np.pi * 3100 * tt) * np.exp(-tt * 160) + 0.4 * filt(noise(0.04), 3000, 9000) * np.exp(-tt * 220)
+        st = int(tk * SR)
+        out[st:st + len(h)] += h[: len(out) - st] * (0.4 + 0.6 * tk / d)
+        tk += gap
+        gap = max(0.018, gap * 0.82)
+    return norm(out) * 0.6
+
+
+def s_belt():
+    """sushi conveyor hum (2 s, loopable bed)."""
+    d = 2.0
+    tt = T(d)
+    x = 0.5 * np.sin(2 * np.pi * 95 * tt) + 0.3 * np.sin(2 * np.pi * 190 * tt) + 0.4 * filt(noise(d), 100, 600)
+    x *= 0.8 + 0.2 * np.sin(2 * np.pi * 3 * tt)
+    e = np.minimum(1, tt / 0.2) * np.minimum(1, (d - tt) / 0.2)
+    return norm(x * e) * 0.3
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 
