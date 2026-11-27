@@ -1,0 +1,43 @@
+{
+ "nn": 10,
+ "file": "rollo/out/rollo-10.mp4",
+ "title": "Satisfying Marble Race – Who Wins? 🔴🟢🔵 #10",
+ "title_tpl": "Satisfying Marble Race – Who Wins? 🔴🟢🔵 #{nn}",
+ "description": "Pick your color before the race starts! 🏁\n8 marbles, 1 winner. Which one did you choose? 👇\nComment your color and subscribe for new races every day! 🏆\n\n#marblerace #whowins #shorts",
+ "tags": "marble race, marble racing, who wins, rollo racing, marble run, satisfying, oddly satisfying, ball race, marble race shorts, race simulation, guess who wins, satisfying video, color race, pick your color",
+ "comment": "Which color did you pick? 👇",
+ "theme": "jungle",
+ "world": "jungle",
+ "palette": null,
+ "start": "v",
+ "fmt": "classic",
+ "parts": [
+  "scatter",
+  "plinko",
+  "spinners",
+  "funnel",
+  "windmill",
+  "sliders",
+  "split",
+  "bumpers"
+ ],
+ "names": [
+  "PINK",
+  "PURPLE",
+  "RED",
+  "GREEN",
+  "CYAN",
+  "YELLOW",
+  "ORANGE",
+  "BLUE"
+ ],
+ "winner": "PURPLE",
+ "layout": 822725,
+ "seed": 5,
+ "first": 13.3,
+ "gap": 0.0,
+ "changes": 11,
+ "dur": 17.8,
+ "mb": 6.7,
+ "summary": "classic race, world jungle, start v, parts scatter+plinko+spinners+funnel+windmill+sliders+split+bumpers; PURPLE wins by 0.0s"
+}

@@ -1,0 +1,42 @@
+{
+ "nn": 11,
+ "file": "rollo/out/rollo-11.mp4",
+ "title": "Pick Your Color! WHO WINS? 🏆 Marble Race #11",
+ "title_tpl": "Pick Your Color! WHO WINS? 🏆 Marble Race #{nn}",
+ "description": "Pick your color before the race starts! 🏁\n8 marbles, 1 winner. Which one did you choose? 👇\nComment your color and subscribe for new races every day! 🏆\n\n#marblerace #whowins #shorts",
+ "tags": "marble race, marble racing, who wins, rollo racing, marble run, satisfying, oddly satisfying, ball race, marble race shorts, race simulation, guess who wins, satisfying video, color race, pick your color",
+ "comment": "Which color did you pick? 👇",
+ "theme": "pastel:sky",
+ "world": "pastel",
+ "palette": "sky",
+ "start": "v",
+ "fmt": "classic",
+ "parts": [
+  "split",
+  "bumpers",
+  "funnel",
+  "zigzag",
+  "pads",
+  "sliders",
+  "windmill"
+ ],
+ "names": [
+  "PINK",
+  "PURPLE",
+  "RED",
+  "GREEN",
+  "CYAN",
+  "YELLOW",
+  "ORANGE",
+  "BLUE"
+ ],
+ "winner": "PINK",
+ "layout": 410957,
+ "seed": 8,
+ "first": 18.47,
+ "gap": 0.16,
+ "changes": 11,
+ "dur": 23.0,
+ "mb": 7.7,
+ "summary": "classic race, world pastel:sky, start v, parts split+bumpers+funnel+zigzag+pads+sliders+windmill; PINK wins by 0.16s"
+}

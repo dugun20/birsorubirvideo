@@ -197,5 +197,54 @@
   "seed": 13,
   "first": 13.34,
   "gap": 0.03
+ },
+ {
+  "nn": 10,
+  "title": "Satisfying Marble Race – Who Wins? 🔴🟢🔵 #10",
+  "title_tpl": "Satisfying Marble Race – Who Wins? 🔴🟢🔵 #{nn}",
+  "theme": "jungle",
+  "world": "jungle",
+  "palette": null,
+  "start": "v",
+  "fmt": "classic",
+  "parts": [
+   "scatter",
+   "plinko",
+   "spinners",
+   "funnel",
+   "windmill",
+   "sliders",
+   "split",
+   "bumpers"
+  ],
+  "winner": "PURPLE",
+  "layout": 822725,
+  "seed": 5,
+  "first": 13.3,
+  "gap": 0.0
+ },
+ {
+  "nn": 11,
+  "title": "Pick Your Color! WHO WINS? 🏆 Marble Race #11",
+  "title_tpl": "Pick Your Color! WHO WINS? 🏆 Marble Race #{nn}",
+  "theme": "pastel:sky",
+  "world": "pastel",
+  "palette": "sky",
+  "start": "v",
+  "fmt": "classic",
+  "parts": [
+   "split",
+   "bumpers",
+   "funnel",
+   "zigzag",
+   "pads",
+   "sliders",
+   "windmill"
+  ],
+  "winner": "PINK",
+  "layout": 410957,
+  "seed": 8,
+  "first": 18.47,
+  "gap": 0.16
  }
 ]
