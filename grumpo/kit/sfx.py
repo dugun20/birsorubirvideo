@@ -1050,6 +1050,78 @@ def s_buckle():
     return norm(x) * 0.7
 
 
+def s_sneeze_build():
+    """'ah... ah...' wordless pre-sneeze: two rising breathy hums."""
+    out = []
+    for k, (f0, f1, d) in enumerate([(240, 330, 0.32), (300, 470, 0.42)]):
+        t = T(d)
+        v = filt(sweep(f0, f1, d, wave="saw"), 250, 2200) * (t / d) ** 0.6
+        br = filt(noise(d), 900, 3500) * (t / d) ** 1.4 * 0.6
+        x = (v + br) * np.minimum(1, (d - t) / 0.03)
+        out.append(x)
+        out.append(np.zeros(int(SR * 0.08)))
+    return norm(cat(*out)) * 0.55
+
+
+def s_mff():
+    """muffled sneeze behind a hand: low 'mfff' thump + cheek puff."""
+    d = 0.4
+    t = T(d)
+    burst = filt(noise(d), 120, 700) * np.exp(-t * 9) * np.minimum(1, t / 0.006)
+    thump = np.sin(2 * np.pi * np.cumsum(140 * np.exp(-t * 6) + 60) / SR) * np.exp(-t * 10)
+    vox = filt(sweep(300, 160, d, wave="saw"), 100, 600) * np.exp(-t * 8) * 0.6
+    return norm(burst + thump + vox) * 0.85
+
+
+def s_big_achoo():
+    """the huge final sneeze: long inhale tail + roaring blast + rumble."""
+    a = s_inhale() * 0.5
+    d = 1.1
+    t = T(d)
+    burst = filt(noise(d), 300, 6000) * np.exp(-t * 3.2) * np.minimum(1, t / 0.004)
+    vox = filt(sweep(700, 180, d, wave="saw"), 150, 2600) * np.exp(-t * 3.5)
+    rum = filt(noise(d), 30, 200) * np.exp(-t * 2.5) * 1.6
+    return norm(cat(a, burst + 0.8 * vox + rum)) * 1.0
+
+
+def s_book_thud():
+    """hardcover book landing: papery slap + low knock."""
+    d = 0.18
+    t = T(d)
+    slap = filt(noise(d), 400, 3000) * np.exp(-t * 55)
+    knock = np.sin(2 * np.pi * np.cumsum(220 * np.exp(-t * 18) + 90) / SR) * np.exp(-t * 26)
+    return norm(slap + knock) * 0.75
+
+
+def s_flutter():
+    """pages fluttering (fast rustly flaps)."""
+    d = 0.6
+    t = T(d)
+    am = 0.5 + 0.5 * np.sin(2 * np.pi * 24 * t) ** 2
+    x = filt(noise(d), 1500, 7000) * am * np.sin(np.pi * t / d)
+    return norm(x) * 0.5
+
+
+def s_tick():
+    """quiet library clock tick-tock."""
+    d = 0.55
+    x = np.zeros(int(SR * d))
+    for k, f in enumerate((2600, 2100)):
+        tt = T(0.04)
+        h = np.sin(2 * np.pi * f * tt) * np.exp(-tt * 160) + 0.4 * filt(noise(0.04), 2000, 8000) * np.exp(-tt * 200)
+        st = int(k * 0.5 * SR)
+        x[st:st + len(h)] += h[: len(x) - st]
+    return norm(x) * 0.4
+
+
+def s_poof():
+    """soft dust puff."""
+    d = 0.35
+    t = T(d)
+    x = filt(noise(d), 300, 2000) * np.exp(-t * 9) * np.minimum(1, t / 0.01)
+    return norm(x) * 0.5
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 

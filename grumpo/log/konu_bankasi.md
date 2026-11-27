@@ -20,13 +20,13 @@ her listeye 30+ yeni madde ekle.
 8. Hastane-doktor bekleme salonu
 9. Uçak koltukları ✔14
 10. Düğün salonu
-11. Karlı tepe
+11. Karlı tepe ✔16
 12. Plaj ✔12
 13. Süpermarket reyonu
 14. Spor salonu
 15. Asansör ✔11
 16. Uzay istasyonu
-17. Kütüphane
+17. Kütüphane ✔15
 18. Çamaşırhane
 19. Otopark
 20. Lunapark
@@ -172,7 +172,7 @@ her listeye 30+ yeni madde ekle.
 56. Bahçede dev sebze yarışması
 57. Köstebek bahçeyi kazıyor
 58. Kartopu savaşı
-59. Kardan adam yarışması
+59. Kardan adam yarışması ✔16
 60. Kızak yarışı
 61. Buz pateninde dengede durma
 62. Spor salonunda ağırlık gösterisi
@@ -199,7 +199,7 @@ her listeye 30+ yeni madde ekle.
 83. Sinemada uzun boylu önde oturuyor ✔08
 84. Sinemada patlamış mısır hışırtısı
 85. Telefon çalıyor (sessiz ortam)
-86. Kütüphanede sessizlik
+86. Kütüphanede sessizlik ✔15
 87. Sınavda kopya (yetişkin mizahı, hafif)
 88. Fotoğraf çekiminde göz kırpma
 89. Ressam modeli kıpırdıyor
@@ -215,7 +215,7 @@ her listeye 30+ yeni madde ekle.
 99. Mıknatıs kaosu
 100. Yapışkan sakız
 101. Muz kabuğu zinciri
-102. Hapşırık tutma
+102. Hapşırık tutma ✔15
 103. Hıçkırık durdurma
 104. Uyurgezer
 105. Horlama
@@ -242,9 +242,9 @@ her listeye 30+ yeni madde ekle.
 - B. Sıcak-soğuk / ipucu oyunu + kılık + kovalamaca ✔02
 - C. Ters rol: Grumpo istiyor, Nibbo engelliyor ✔07
 - D. Ortak düşman: ikisi birlikte üçüncü bir şeye karşı ✔04
-- E. Zincirleme büyüyen tek şaka (domino etkisi) ✔05
+- E. Zincirleme büyüyen tek şaka (domino etkisi) ✔05 ✔15
 - F. Tırmanan sayaç (`counter`): TRY 1/5…, ikiye katlanan şey, seviye barı ✔03
-- G. Yarış (paralel çekim, iki şerit) ✔06
+- G. Yarış (paralel çekim, iki şerit) ✔06 ✔16
 - H. Taklit: biri ötekini kopyalıyor, iş çığırından çıkıyor ✔08
 - I. Yanlış anlaşılma: izleyici gerçeği biliyor, karakterler bilmiyor ✔11
 - J. İş birliği: birlikte bir şey yapıyorlar, sonunda ters tepiyor ✔09
@@ -254,8 +254,8 @@ her listeye 30+ yeni madde ekle.
 
 ## SON (son 5 bölümde kullanılanı tekrarlama)
 - Nibbo kazanır ✔01 ✔02 ✔08 ✔14
-- Grumpo kazanır ✔07
-- İkisi de kaybeder / rezil olur ✔03 ✔09
+- Grumpo kazanır ✔07 ✔16
+- İkisi de kaybeder / rezil olur ✔03 ✔09 ✔15
 - Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…) ✔04 ✔12
 - Barışırlar / paylaşırlar ✔05
 - Beklenmedik ters köşe (her şey rüyaydı DEĞİL — onu kullanma) ✔11
