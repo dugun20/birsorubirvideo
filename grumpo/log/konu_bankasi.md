@@ -46,7 +46,7 @@ her listeye 30+ yeni madde ekle.
 34. Basketbol potası
 35. Buz pateni pisti
 36. Kayak teleferiği
-37. Kamp ateşi gecesi
+37. Kamp ateşi gecesi ✔17
 38. Balıkçı iskelesi
 39. Tekne / göl
 40. Ağaç ev
@@ -166,7 +166,7 @@ her listeye 30+ yeni madde ekle.
 50. Kum kalesi yarışması
 51. Martı patates çalıyor
 52. Balık tutma yarışı
-53. Kamp ateşinde marshmallow
+53. Kamp ateşinde marshmallow ✔17
 54. Çadır kurma
 55. Ayı/rakun yiyecek çalıyor
 56. Bahçede dev sebze yarışması
@@ -241,7 +241,7 @@ her listeye 30+ yeni madde ekle.
 - A. 3 deneme + final ✔01 ✔14
 - B. Sıcak-soğuk / ipucu oyunu + kılık + kovalamaca ✔02
 - C. Ters rol: Grumpo istiyor, Nibbo engelliyor ✔07
-- D. Ortak düşman: ikisi birlikte üçüncü bir şeye karşı ✔04
+- D. Ortak düşman: ikisi birlikte üçüncü bir şeye karşı ✔04 ✔17
 - E. Zincirleme büyüyen tek şaka (domino etkisi) ✔05 ✔15
 - F. Tırmanan sayaç (`counter`): TRY 1/5…, ikiye katlanan şey, seviye barı ✔03
 - G. Yarış (paralel çekim, iki şerit) ✔06 ✔16
@@ -257,7 +257,7 @@ her listeye 30+ yeni madde ekle.
 - Grumpo kazanır ✔07 ✔16
 - İkisi de kaybeder / rezil olur ✔03 ✔09 ✔15
 - Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…) ✔04 ✔12
-- Barışırlar / paylaşırlar ✔05
+- Barışırlar / paylaşırlar ✔05 ✔17
 - Beklenmedik ters köşe (her şey rüyaydı DEĞİL — onu kullanma) ✔11
 - Ödül değersiz çıkar (uğruna savaştıkları şey boşmuş) ✔06 ✔13
 

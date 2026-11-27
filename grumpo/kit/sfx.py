@@ -1122,6 +1122,75 @@ def s_poof():
     return norm(x) * 0.5
 
 
+def s_buzz():
+    """mosquito whine (1.2 s, wobbling pitch)."""
+    d = 1.2
+    t = T(d)
+    f = 620 + 60 * np.sin(2 * np.pi * 3.3 * t) + 25 * np.sin(2 * np.pi * 11 * t)
+    ph = 2 * np.pi * np.cumsum(f) / SR
+    x = np.tanh(3 * np.sin(ph)) + 0.35 * np.sin(2 * ph)
+    am = 0.6 + 0.4 * np.sin(2 * np.pi * 5 * t)
+    x = filt(x, 400, 5000) * am * np.minimum(1, t / 0.08) * np.minimum(1, (d - t) / 0.15)
+    return norm(x) * 0.45
+
+
+def s_slap():
+    """sharp cartoon slap."""
+    d = 0.22
+    t = T(d)
+    x = filt(noise(d), 900, 7000) * np.exp(-t * 45) + 0.6 * np.sin(2 * np.pi * 180 * t) * np.exp(-t * 30)
+    return norm(x) * 0.95
+
+
+def s_crackle():
+    """campfire crackle bed (2 s)."""
+    d = 2.0
+    x = 0.25 * filt(noise(d), 80, 600) * (0.6 + 0.4 * np.sin(2 * np.pi * 0.7 * T(d)))
+    r = np.random.default_rng(11)
+    for _ in range(26):
+        st = int(r.uniform(0, d - 0.03) * SR)
+        tt = T(r.uniform(0.004, 0.02))
+        nz = filt(rng.standard_normal(len(tt)), 1500, 8000)
+        x[st:st + len(tt)] += r.uniform(0.4, 1.0) * nz * np.exp(-tt * 300)
+    return norm(x) * 0.5
+
+
+def s_blow():
+    """puffed-cheek blowing."""
+    d = 0.5
+    t = T(d)
+    x = filt(noise(d), 500, 3000) * np.sin(np.pi * t / d) ** 0.6
+    return norm(x) * 0.6
+
+
+def s_washer():
+    """washing machine churn (1.5 s)."""
+    d = 1.5
+    t = T(d)
+    x = filt(noise(d), 120, 900) * (0.55 + 0.45 * np.sin(2 * np.pi * 1.6 * t) ** 2)
+    x += 0.5 * np.sin(2 * np.pi * 55 * t) * (0.6 + 0.4 * np.sin(2 * np.pi * 1.6 * t))
+    return norm(x * np.minimum(1, t / 0.1) * np.minimum(1, (d - t) / 0.1)) * 0.55
+
+
+def s_spin_up():
+    """motor winding up."""
+    d = 0.9
+    x = sweep(120, 900, d, wave="saw") * 0.5 + 0.4 * filt(noise(d), 300, 3000)
+    return norm(filt(x, 80, 4000) * env(int(SR * d), 0.05, curve=0.8)) * 0.7
+
+
+def s_dial():
+    """ratchet dial clicks."""
+    d = 0.35
+    x = np.zeros(int(SR * d))
+    for k in range(6):
+        tt = T(0.02)
+        st = int(k * 0.055 * SR)
+        h = filt(noise(0.02), 2000, 9000) * np.exp(-tt * 260)
+        x[st:st + len(h)] += h[: len(x) - st]
+    return norm(x) * 0.6
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 
