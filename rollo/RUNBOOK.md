@@ -5,7 +5,7 @@ Make senaryosu 8708385 ("Rollo Racing - Kuyruktan YouTube Shorts yükle", her g�
 video `https://dugun20.github.io/birsorubirvideo/rollo/out/rollo-<NN>.mp4` adresinden alınır (GitHub Pages).
 
 Cihan bu seri için tam otomatik üretime onay verdi: **kullanıcıya soru sorma**, render için onay bekleme.
-Kuyrukta zaten **4 veya daha fazla 'kuyrukta' satırı** varsa yeni yarış üretme, sadece kısa rapor ver.
+Kuyrukta zaten **10 veya daha fazla 'kuyrukta' satırı** (yedek tampon: kullanım sınırı dolup üretim birkaç gün durursa paylaşım kesilmesin diye) varsa yeni yarış üretme, sadece kısa rapor ver.
 
 ## Sabitler
 - Kod: `rollo/kit/` — `course.py` (parça kütüphanesi + pymunk fizik), `render.py` (pastel stil), `audio.py` (ONAYLI sesler),
@@ -40,7 +40,7 @@ Kuyrukta zaten **4 veya daha fazla 'kuyrukta' satırı** varsa yeni yarış üre
 ## Adımlar
 0. Ön kontrol: `pip install --break-system-packages pymunk pycairo numpy pillow` (yoksa), `which ffmpeg`,
    `mkdir -p ~/.fonts && cp rollo/assets/fonts/LilitaOne.ttf ~/.fonts/ && fc-cache -f`.
-   Kuyruk tablosunu `get_values` (`Rollo!A1:J400`) ile oku; 'kuyrukta' satırlarını say (≥4 ise dur, rapor ver).
+   Kuyruk tablosunu `get_values` (`Rollo!A1:J400`) ile oku; 'kuyrukta' satırlarını say (≥10 ise dur, rapor ver). Kuyrukta 3'ten AZ satır varsa bu çalışmada art arda 2 video üret (açığı hızlı kapatmak için).
    NN = tablodaki son No + 1.
 1. `cd rollo/kit && python3 make_race.py run NN` (≈1 dk). Çıktı: `rollo/out/rollo-NN.mp4`, `check-NN.png`, `rollo-NN.json`.
 2. `rollo/out/check-NN.png` resmine BAK: başlık okunuyor mu, yazı taşıyor mu, bilyeler görünüyor mu, final yazısı doğru mu,

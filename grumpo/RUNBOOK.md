@@ -5,7 +5,7 @@ paylaşım kuyruğuna ekler. Günde 2 çalışma var. Make senaryosu kuyruktaki 
 video `https://dugun20.github.io/birsorubirvideo/grumpo/out/grumpo-<NN>.mp4` adresinden alınır (GitHub Pages).
 
 Cihan bu seri için tam otomatik üretime onay verdi: **kullanıcıya soru sorma**, render için onay bekleme.
-Kuyrukta zaten **4 veya daha fazla 'kuyrukta' satırı** varsa yeni bölüm üretme, sadece kısa rapor ver.
+Kuyrukta zaten **10 veya daha fazla 'kuyrukta' satırı** (yedek tampon: kullanım sınırı dolup üretim birkaç gün durursa paylaşım kesilmesin diye) varsa yeni bölüm üretme, sadece kısa rapor ver.
 
 ## Sabitler
 - Depo klasörü: `grumpo/` (bu klasör). Kit: `grumpo/kit/` (chars2.py, env2.py, still_v2.py, sfx.py, build.py)
@@ -55,7 +55,7 @@ D. **İlk 1 saniye:** olay hemen başlasın (çatışma ilk karede görünsün),
 ## Adımlar
 0. Ön kontrol: `which rsvg-convert ffmpeg`, `python3 -c "import numpy, scipy"`
    (yoksa `apt-get install -y librsvg2-bin ffmpeg` / `pip install --break-system-packages numpy scipy`).
-   Kuyruk tablosunu `get_values` (A1:I400) ile oku; 'kuyrukta' satırlarını say (≥4 ise dur, rapor ver). Son No'yu bul → NN = son No + 1 (iki haneli: 02, 03…).
+   Kuyruk tablosunu `get_values` (A1:I400) ile oku; 'kuyrukta' satırlarını say (≥10 ise dur, rapor ver). Kuyrukta 3'ten AZ satır varsa bu çalışmada art arda 2 video üret (açığı hızlı kapatmak için). Son No'yu bul → NN = son No + 1 (iki haneli: 02, 03…).
 1. `log/indeks.md` (tamamı) ve `log/konu_bankasi.md`'yi oku. Önce özel gün takvimine bak (tarihe 1–5 gün varsa özel gün bölümü yap).
    Değilse bankadan kullanılmamış 1 MEKÂN + 1 ÇATIŞMA + son 5 bölümde olmayan 1 YAPI + 1 SON seç (banka kurallarına uy).
    Yeni bölümün hikâyesini yaz: saniye saniye akış, gag'ler, son, başlık kancası. İndeksteki gag anahtar kelimeleriyle çakışmadığını kontrol et.
