@@ -1,0 +1,43 @@
+{
+ "nn": 12,
+ "file": "rollo/out/rollo-12.mp4",
+ "title": "Can Your Color Win? Marble Race #12 🏆",
+ "title_tpl": "Can Your Color Win? Marble Race #{nn} 🏆",
+ "description": "Pick your color before the race starts! 🏁\n8 marbles, 1 winner. Which one did you choose? 👇\nComment your color and subscribe for new races every day! 🏆\n\n#marblerace #whowins #shorts",
+ "tags": "marble race, marble racing, who wins, rollo racing, marble run, satisfying, oddly satisfying, ball race, marble race shorts, race simulation, guess who wins, satisfying video, color race, pick your color",
+ "comment": "Which color did you pick? 👇",
+ "theme": "beach",
+ "world": "beach",
+ "palette": null,
+ "start": "shelf",
+ "fmt": "classic",
+ "parts": [
+  "spinners",
+  "bumpers",
+  "sliders",
+  "funnel",
+  "windmill",
+  "plinko",
+  "split",
+  "pads"
+ ],
+ "names": [
+  "PINK",
+  "PURPLE",
+  "RED",
+  "GREEN",
+  "CYAN",
+  "YELLOW",
+  "ORANGE",
+  "BLUE"
+ ],
+ "winner": "CYAN",
+ "layout": 130148,
+ "seed": 3,
+ "first": 13.33,
+ "gap": 0.21,
+ "changes": 10,
+ "dur": 17.9,
+ "mb": 8.4,
+ "summary": "classic race, world beach, start shelf, parts spinners+bumpers+sliders+funnel+windmill+plinko+split+pads; CYAN wins by 0.21s"
+}

@@ -246,5 +246,55 @@
   "seed": 8,
   "first": 18.47,
   "gap": 0.16
+ },
+ {
+  "nn": 12,
+  "title": "Can Your Color Win? Marble Race #12 🏆",
+  "title_tpl": "Can Your Color Win? Marble Race #{nn} 🏆",
+  "theme": "beach",
+  "world": "beach",
+  "palette": null,
+  "start": "shelf",
+  "fmt": "classic",
+  "parts": [
+   "spinners",
+   "bumpers",
+   "sliders",
+   "funnel",
+   "windmill",
+   "plinko",
+   "split",
+   "pads"
+  ],
+  "winner": "CYAN",
+  "layout": 130148,
+  "seed": 3,
+  "first": 13.33,
+  "gap": 0.21
+ },
+ {
+  "nn": 13,
+  "title": "Only 1 Marble Can Win! Pick Your Color 🏆 #13",
+  "title_tpl": "Only 1 Marble Can Win! Pick Your Color 🏆 #{nn}",
+  "theme": "candy",
+  "world": "candy",
+  "palette": null,
+  "start": "shelf",
+  "fmt": "classic",
+  "parts": [
+   "plinko",
+   "sliders",
+   "pads",
+   "scatter",
+   "spinners",
+   "split",
+   "bumpers",
+   "zigzag"
+  ],
+  "winner": "BLUE",
+  "layout": 814250,
+  "seed": 4,
+  "first": 18.83,
+  "gap": 0.82
  }
 ]

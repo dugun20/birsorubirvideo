@@ -1,0 +1,43 @@
+{
+ "nn": 13,
+ "file": "rollo/out/rollo-13.mp4",
+ "title": "Only 1 Marble Can Win! Pick Your Color 🏆 #13",
+ "title_tpl": "Only 1 Marble Can Win! Pick Your Color 🏆 #{nn}",
+ "description": "Pick your color before the race starts! 🏁\n8 marbles, 1 winner. Which one did you choose? 👇\nComment your color and subscribe for new races every day! 🏆\n\n#marblerace #whowins #shorts",
+ "tags": "marble race, marble racing, who wins, rollo racing, marble run, satisfying, oddly satisfying, ball race, marble race shorts, race simulation, guess who wins, satisfying video, color race, pick your color",
+ "comment": "Which color did you pick? 👇",
+ "theme": "candy",
+ "world": "candy",
+ "palette": null,
+ "start": "shelf",
+ "fmt": "classic",
+ "parts": [
+  "plinko",
+  "sliders",
+  "pads",
+  "scatter",
+  "spinners",
+  "split",
+  "bumpers",
+  "zigzag"
+ ],
+ "names": [
+  "PINK",
+  "PURPLE",
+  "RED",
+  "GREEN",
+  "CYAN",
+  "YELLOW",
+  "ORANGE",
+  "BLUE"
+ ],
+ "winner": "BLUE",
+ "layout": 814250,
+ "seed": 4,
+ "first": 18.83,
+ "gap": 0.82,
+ "changes": 6,
+ "dur": 23.4,
+ "mb": 10.0,
+ "summary": "classic race, world candy, start shelf, parts plinko+sliders+pads+scatter+spinners+split+bumpers+zigzag; BLUE wins by 0.82s"
+}
