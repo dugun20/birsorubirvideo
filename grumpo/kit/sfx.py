@@ -1319,6 +1319,83 @@ def s_charge_ok():
     return norm(cat(*out)) * 0.45
 
 
+def s_beep():
+    """thermostat button beep: short clean square-ish tone."""
+    d = 0.07
+    x = np.tanh(2.5 * np.sin(2 * np.pi * 1900 * T(d))) * env(int(SR * d), 0.002, curve=1.5)
+    return norm(filt(x, 300, 6000)) * 0.4
+
+
+def s_chatter():
+    """teeth chattering from cold: fast irregular tiny clicks (0.9 s)."""
+    d = 0.9
+    x = np.zeros(int(SR * d))
+    r = np.random.default_rng(21)
+    tt = 0.0
+    while tt < d - 0.03:
+        st = int(tt * SR)
+        k = filt(r.standard_normal(int(SR * 0.012)), 1800, 6000) * np.exp(-T(0.012) * 400)
+        x[st:st + len(k)] += k * r.uniform(0.6, 1.0)
+        tt += r.uniform(0.035, 0.055)
+    return norm(x) * 0.5
+
+
+def s_freeze():
+    """things freezing over: rising glassy shimmer + crystalline crackle (0.9 s)."""
+    d = 0.9
+    t = T(d)
+    sh = sum(a * np.sin(2 * np.pi * f * t * (1 + 0.6 * t / d)) for f, a in [(1800, 0.5), (2700, 0.35), (4100, 0.2)])
+    sh *= np.minimum(1, t / 0.25) * (1 - t / d) ** 1.2
+    cr = np.zeros(len(t))
+    r = np.random.default_rng(5)
+    for _ in range(30):
+        st = int(r.uniform(0, d - 0.02) * SR)
+        k = filt(r.standard_normal(int(SR * 0.008)), 3000, 9000) * np.exp(-T(0.008) * 500)
+        cr[st:st + len(k)] += k * r.uniform(0.3, 1.0)
+    return norm(sh * 0.6 + cr) * 0.6
+
+
+def s_ice_shatter():
+    """ice block cracking and shattering: crack + tinkly shards."""
+    c = filt(noise(0.12), lo=1200) * env(int(SR * 0.12), 0.0006, curve=10)
+    d = 0.7
+    t = T(d)
+    tk = np.zeros(len(t))
+    r = np.random.default_rng(8)
+    for _ in range(14):
+        st = int(r.uniform(0.02, 0.5) * SR)
+        f = r.uniform(2500, 6500)
+        tt = T(0.15)
+        k = np.sin(2 * np.pi * f * tt) * np.exp(-tt * 30)
+        tk[st:st + len(k)] += k[: len(tk) - st] * r.uniform(0.3, 0.8)
+    return norm(np.concatenate([c, np.zeros(len(t) - len(c))]) + tk * 0.5) * 0.8
+
+
+def s_ac_hum():
+    """air conditioner running: airy fan hiss + low motor hum (2 s, loopable bed)."""
+    d = 2.0
+    t = T(d)
+    x = 0.6 * filt(noise(d), 200, 1800) + 0.35 * np.sin(2 * np.pi * 100 * t) + 0.15 * np.sin(2 * np.pi * 200 * t)
+    e = np.minimum(1, t / 0.15) * np.minimum(1, (d - t) / 0.15)
+    return norm(x * e) * 0.35
+
+
+def s_blast():
+    """huge cold air blast: big low whoomp + roaring noise burst."""
+    d = 1.3
+    t = T(d)
+    lo = sweep(90, 35, d) * np.exp(-t * 3)
+    nz = filt(noise(d), 150, 3000) * np.minimum(1, t / 0.02) * np.exp(-t * 2.2)
+    return norm(lo * 0.9 + nz) * 0.95
+
+
+def s_drip():
+    """single water drip 'plink'."""
+    d = 0.25
+    x = sweep(900, 1700, d) * np.exp(-T(d) * 22)
+    return norm(x) * 0.45
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 

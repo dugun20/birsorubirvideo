@@ -71,7 +71,7 @@ her listeye 30+ yeni madde ekle.
 59. Laboratuvar
 60. Fabrika bandı
 61. İnşaat alanı / vinç
-62. Çatı katı
+62. Çatı katı ✔22
 63. Bodrum katı
 64. Banyo
 65. Yatak odası (ranza) ✔07
@@ -120,7 +120,7 @@ her listeye 30+ yeni madde ekle.
 4. TV kumandası
 5. Telefon şarj kablosu / tek priz ✔21
 6. Sabah alarmı – biri uyumak istiyor ✔07
-7. Klima sıcaklığı
+7. Klima sıcaklığı ✔22
 8. Park yeri
 9. Sırada öne geçme
 10. Diyet – gizli tatlı ✔13
@@ -244,7 +244,7 @@ her listeye 30+ yeni madde ekle.
 - B. Sıcak-soğuk / ipucu oyunu + kılık + kovalamaca ✔02
 - C. Ters rol: Grumpo istiyor, Nibbo engelliyor ✔07
 - D. Ortak düşman: ikisi birlikte üçüncü bir şeye karşı ✔04 ✔17
-- E. Zincirleme büyüyen tek şaka (domino etkisi) ✔05 ✔15
+- E. Zincirleme büyüyen tek şaka (domino etkisi) ✔05 ✔15 ✔22
 - F. Tırmanan sayaç (`counter`): TRY 1/5…, ikiye katlanan şey, seviye barı ✔03 ✔20
 - G. Yarış (paralel çekim, iki şerit) ✔06 ✔16
 - H. Taklit: biri ötekini kopyalıyor, iş çığırından çıkıyor ✔08
@@ -257,7 +257,7 @@ her listeye 30+ yeni madde ekle.
 ## SON (son 5 bölümde kullanılanı tekrarlama)
 - Nibbo kazanır ✔01 ✔02 ✔08 ✔14 ✔21
 - Grumpo kazanır ✔07 ✔16
-- İkisi de kaybeder / rezil olur ✔03 ✔09 ✔15
+- İkisi de kaybeder / rezil olur ✔03 ✔09 ✔15 ✔22
 - Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…) ✔04 ✔12 ✔20
 - Barışırlar / paylaşırlar ✔05 ✔17
 - Beklenmedik ters köşe (her şey rüyaydı DEĞİL — onu kullanma) ✔11 ✔18
