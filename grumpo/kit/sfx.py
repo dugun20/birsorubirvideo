@@ -1285,6 +1285,40 @@ def s_belt():
     return norm(x * e) * 0.3
 
 
+def s_zap():
+    """short electric zap / spark crackle (plug going in, energy blip)."""
+    d = 0.22
+    tt = T(d)
+    buzz = np.sign(np.sin(2 * np.pi * 120 * tt)) * 0.4 + filt(noise(d), 1500, 7000)
+    gate = (rng.random(len(tt)) > 0.55).astype(float)
+    gate = filt(gate, hi=400)
+    x = buzz * (0.4 + gate) * np.exp(-tt * 14)
+    return norm(x) * 0.55
+
+
+def s_power_off():
+    """phone dying: descending sine 'pwoo' + tiny click at the end."""
+    a = sweep(900, 110, 0.55, wave="tri") * env(int(SR * 0.55), 0.005, curve=0.8)
+    c = filt(noise(0.03), 2000, 8000) * np.exp(-T(0.03) * 120)
+    return norm(cat(a, np.zeros(int(SR * 0.04)), c * 0.6)) * 0.6
+
+
+def s_shutter():
+    """phone camera shutter: two quick clicks with a soft swish."""
+    k = filt(noise(0.025), 1500, 9000) * np.exp(-T(0.025) * 160)
+    sw = filt(noise(0.06), 800, 4000) * env(int(SR * 0.06), 0.01, curve=2)
+    return norm(cat(k, sw * 0.4, k * 0.8)) * 0.7
+
+
+def s_charge_ok():
+    """'charging connected' chime: two quick rising soft notes."""
+    out = []
+    for f in (880, 1320):
+        d = 0.12
+        out.append((np.sin(2 * np.pi * f * T(d)) + 0.3 * np.sin(4 * np.pi * f * T(d))) * env(int(SR * d), 0.004, curve=2))
+    return norm(cat(*out)) * 0.45
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith("s_")}
 
 

@@ -81,7 +81,7 @@ her listeye 30+ yeni madde ekle.
 69. Çamaşır ipi olan avlu
 70. Çocuk parkı (salıncak, kaydırak)
 71. Piknik alanı
-72. Kafe
+72. Kafe ✔21
 73. Fast-food sırası
 74. Sushi bandı ✔20
 75. Pizza fırını
@@ -118,7 +118,7 @@ her listeye 30+ yeni madde ekle.
 2. Wi-Fi şifresi ✔02
 3. Son dilim pizza
 4. TV kumandası
-5. Telefon şarj kablosu / tek priz
+5. Telefon şarj kablosu / tek priz ✔21
 6. Sabah alarmı – biri uyumak istiyor ✔07
 7. Klima sıcaklığı
 8. Park yeri
@@ -250,12 +250,12 @@ her listeye 30+ yeni madde ekle.
 - H. Taklit: biri ötekini kopyalıyor, iş çığırından çıkıyor ✔08
 - I. Yanlış anlaşılma: izleyici gerçeği biliyor, karakterler bilmiyor ✔11 ✔18
 - J. İş birliği: birlikte bir şey yapıyorlar, sonunda ters tepiyor ✔09 ✔19
-- K. Gizlilik/sızma: lazerler, nöbetçi, saklanma ✔13
+- K. Gizlilik/sızma: lazerler, nöbetçi, saklanma ✔13 ✔21
 - L. Tek mekânda zaman atlaması (sabah → gece, mevsim) ✔12
 - M. Döngü: başa saran olay, her turda değişen tek detay ✔11 (I ile birlikte) ✔20
 
 ## SON (son 5 bölümde kullanılanı tekrarlama)
-- Nibbo kazanır ✔01 ✔02 ✔08 ✔14
+- Nibbo kazanır ✔01 ✔02 ✔08 ✔14 ✔21
 - Grumpo kazanır ✔07 ✔16
 - İkisi de kaybeder / rezil olur ✔03 ✔09 ✔15
 - Üçüncü biri kazanır (kuş, kedi, robot, rüzgâr…) ✔04 ✔12 ✔20
